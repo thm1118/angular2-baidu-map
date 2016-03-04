@@ -5,22 +5,20 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'ng-baidu-map',
-    styles: [`
-       h1 {
-            color: blue;
-        }
-    `],
     template: `<div>
                   <h1 (click)="onClick()">{{message}}</h1>
                </div>`
 })
 export class BaiduMap {
 
-    message = "Click Me ...";
+    MAP_URL = `http://api.map.baidu.com/api?v=2.0&ak=${key}&callback=baidumapinit`;
+
+    constructor() {
+
+    }
+
 
     onClick() {
-        this.message = "Hello World!"
-        console.log(this.message);
 
     }
 
