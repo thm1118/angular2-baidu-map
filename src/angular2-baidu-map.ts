@@ -7,7 +7,7 @@ import {Component, SimpleChange, Input, OnInit, OnChanges, ChangeDetectionStrate
     selector: 'baidu-map',
     template: ''
 })
-export class Baidu implements OnInit, OnChanges {
+export class BaiduMap implements OnInit, OnChanges {
 
     @Input() mapKey: string;
     @Input() options: MapOptions;

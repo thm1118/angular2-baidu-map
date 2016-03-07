@@ -2,7 +2,7 @@
   "name": "angular2-baidu-map",
   "version": "1.0.0",
   "description": "Angular2 component for Baidu map",
-  "main": "./src/angular2-baidu-map.ts",
+  "main": "./dist/angular2-baidu-map.js",
   "scripts": {
     "type": "tsd install --save --overwrite --resolve",
     "preinstall": "npm run type",

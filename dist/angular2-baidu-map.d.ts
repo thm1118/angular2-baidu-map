@@ -1,5 +1,5 @@
 import { SimpleChange, OnInit, OnChanges, ElementRef } from 'angular2/core';
-export declare class Baidu implements OnInit, OnChanges {
+export declare class BaiduMap implements OnInit, OnChanges {
     private el;
     mapKey: string;
     options: MapOptions;

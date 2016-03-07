@@ -2,11 +2,12 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "module": "commonjs",
+        "module": "umd",
         "target": "es5",
+        "moduleResolution" : "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "declaration": true,
         "outDir": "./dist"
     },
