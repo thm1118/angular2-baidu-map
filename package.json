@@ -4,9 +4,10 @@
   "description": "Angular2 component for Baidu map",
   "main": "./dist/angular2-baidu-map.js",
   "scripts": {
-    "prepublish": "tsc",
-    "watch": "tsc src -w",
-    "build": "rm -rf dist && tsc"
+    "type": "tsd install --save --overwrite --resolve",
+    "preinstall": "npm run type",
+    "prepublish": "npm run dist",
+    "dist": "rm -rf dist && tsc"
   },
   "typings": "./dist/angular2-baidu-map.d.ts",
   "files": [
@@ -32,10 +33,6 @@
   "dependencies": {},
   "devDependencies": {
     "angular2": "^2.0.0-beta.8",
-    "es6-promise": "^3.1.2",
-    "es6-shim": "^0.35.0",
-    "reflect-metadata": "^0.1.3",
-    "rxjs": "^5.0.0-beta.2",
-    "zone.js": "^0.6.2"
+    "rxjs": "^5.0.0-beta.2"
   }
 }

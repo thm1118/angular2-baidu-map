@@ -2,8 +2,8 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "removeComments": true,
-        "module": "commonjs",
-        "target": "es5",
+        "module": "es2015",
+        "target": "es2015",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -13,11 +13,9 @@
     },
     "buildOnSave": false,
     "compileOnSave": false,
-    "files": [
-        "src/angular2-baidu-map.ts"
-    ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "typings"
     ],
     "atom": {
         "rewriteTsconfig": true,
