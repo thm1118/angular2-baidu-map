@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, ChangeDetectionStrategy, ElementRef } from 'angular2/core';
-export let Baidu = class Baidu {
-    constructor(el) {
+var core_1 = require('angular2/core');
+var Baidu = (function () {
+    function Baidu(el) {
         this.el = el;
         this.defaultOpts = {
             navCtrl: true,
@@ -22,10 +22,10 @@ export let Baidu = class Baidu {
         this.win = window;
         this.previousMarkers = [];
     }
-    ngOnInit() {
+    Baidu.prototype.ngOnInit = function () {
         this._drawBaiduMap();
-    }
-    ngOnChanges(changes) {
+    };
+    Baidu.prototype.ngOnChanges = function (changes) {
         var baiduMap = this.win.baiduMap;
         if (!baiduMap || baiduMap.status !== 'loaded') {
             return;
@@ -34,13 +34,14 @@ export let Baidu = class Baidu {
         this._center(opts);
         this._zoom(opts);
         this._mark();
-    }
-    _drawBaiduMap() {
-        var MAP_URL = `http://api.map.baidu.com/api?v=2.0&ak=${this.mapKey}&callback=baidumapinit`;
+    };
+    Baidu.prototype._drawBaiduMap = function () {
+        var _this = this;
+        var MAP_URL = "http://api.map.baidu.com/api?v=2.0&ak=" + this.mapKey + "&callback=baidumapinit";
         var baiduMap = this.win.baiduMap;
         if (baiduMap && baiduMap.status === 'loading') {
-            baiduMap.callbacks.push(() => {
-                this._generateMap(this.el);
+            baiduMap.callbacks.push(function () {
+                _this._generateMap(_this.el);
             });
             return;
         }
@@ -54,18 +55,19 @@ export let Baidu = class Baidu {
         script.type = 'text/javascript';
         script.src = MAP_URL;
         document.body.appendChild(script);
-    }
-    _getBaiduScriptLoaded(el) {
-        return () => {
-            this.win.baiduMap.status = 'loaded';
-            this._generateMap(el);
-            this.win.baiduMap.callbacks.forEach(function (cb) {
+    };
+    Baidu.prototype._getBaiduScriptLoaded = function (el) {
+        var _this = this;
+        return function () {
+            _this.win.baiduMap.status = 'loaded';
+            _this._generateMap(el);
+            _this.win.baiduMap.callbacks.forEach(function (cb) {
                 cb();
             });
-            this.win.baiduMap.callbacks = [];
+            _this.win.baiduMap.callbacks = [];
         };
-    }
-    _generateMap(el) {
+    };
+    Baidu.prototype._generateMap = function (el) {
         var BMap = this.BMap = this.win.BMap;
         var map = this.map = new BMap.Map(el.nativeElement);
         var opts = Object.assign({}, this.defaultOpts, this.options);
@@ -84,22 +86,23 @@ export let Baidu = class Baidu {
         }
         map.setCurrentCity(opts.city);
         this._mark();
-    }
-    _center(opts) {
-        var { BMap, map } = this;
+    };
+    Baidu.prototype._center = function (opts) {
+        var _a = this, BMap = _a.BMap, map = _a.map;
         if (opts.center) {
             map.setCenter(new BMap.Point(opts.center.longitude, opts.center.latitude));
         }
-    }
-    _zoom(opts) {
-        var { map } = this;
+    };
+    Baidu.prototype._zoom = function (opts) {
+        var map = this.map;
         if (opts.zoom) {
             map.setZoom(opts.zoom);
         }
-    }
-    _mark() {
-        var { BMap, map, options } = this;
-        for (let { marker, listener } of this.previousMarkers) {
+    };
+    Baidu.prototype._mark = function () {
+        var _a = this, BMap = _a.BMap, map = _a.map, options = _a.options;
+        for (var _i = 0, _b = this.previousMarkers; _i < _b.length; _i++) {
+            var _c = _b[_i], marker = _c.marker, listener = _c.listener;
             marker.removeEventListener('click', listener);
             map.removeOverlay(marker);
         }
@@ -107,7 +110,8 @@ export let Baidu = class Baidu {
         if (!options.markers) {
             return;
         }
-        for (let marker of options.markers) {
+        for (var _d = 0, _e = options.markers; _d < _e.length; _d++) {
+            var marker = _e[_d];
             var pt = new BMap.Point(marker.longitude, marker.latitude);
             var marker2;
             if (marker.icon) {
@@ -136,21 +140,24 @@ export let Baidu = class Baidu {
             };
             marker2.addEventListener('click', previousMarker.listener);
         }
-    }
-};
-__decorate([
-    Input(), 
-    __metadata('design:type', String)
-], Baidu.prototype, "mapKey", void 0);
-__decorate([
-    Input(), 
-    __metadata('design:type', Object)
-], Baidu.prototype, "options", void 0);
-Baidu = __decorate([
-    Component({
-        changeDetection: ChangeDetectionStrategy.CheckAlways,
-        selector: 'baidu-map',
-        template: ''
-    }), 
-    __metadata('design:paramtypes', [ElementRef])
-], Baidu);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], Baidu.prototype, "mapKey", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], Baidu.prototype, "options", void 0);
+    Baidu = __decorate([
+        core_1.Component({
+            changeDetection: core_1.ChangeDetectionStrategy.CheckAlways,
+            selector: 'baidu-map',
+            template: ''
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], Baidu);
+    return Baidu;
+}());
+exports.Baidu = Baidu;
+//# sourceMappingURL=angular2-baidu-map.js.map

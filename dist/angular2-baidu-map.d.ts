@@ -21,11 +21,11 @@ export declare class Baidu implements OnInit, OnChanges {
     _mark(): void;
 }
 export interface MapDefaultOptions {
-    navCtrl: boolean;
-    scaleCtrl: boolean;
-    overviewCtrl: boolean;
-    enableScrollWheelZoom: boolean;
-    zoom: number;
+    navCtrl?: boolean;
+    scaleCtrl?: boolean;
+    overviewCtrl?: boolean;
+    enableScrollWheelZoom?: boolean;
+    zoom?: number;
 }
 export interface PreviousMarker {
     marker: any;
@@ -36,15 +36,15 @@ export interface MapOptions extends MapDefaultOptions {
         longitude: number;
         latitude: number;
     };
-    city: string;
-    markers: {
+    city?: string;
+    markers?: {
         longitude: number;
         latitude: number;
-        icon: string;
-        width: number;
-        height: number;
-        title: string;
-        content: string;
-        enableMessage: boolean;
+        icon?: string;
+        width?: number;
+        height?: number;
+        title?: string;
+        content?: string;
+        enableMessage?: boolean;
     }[];
 }

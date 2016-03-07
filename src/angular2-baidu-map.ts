@@ -160,11 +160,11 @@ export class Baidu implements OnInit, OnChanges {
 }
 
 export interface MapDefaultOptions {
-    navCtrl: boolean;
-    scaleCtrl: boolean;
-    overviewCtrl: boolean;
-    enableScrollWheelZoom: boolean;
-    zoom: number;
+    navCtrl?: boolean;
+    scaleCtrl?: boolean;
+    overviewCtrl?: boolean;
+    enableScrollWheelZoom?: boolean;
+    zoom?: number;
 }
 
 export interface PreviousMarker {
@@ -174,6 +174,6 @@ export interface PreviousMarker {
 
 export interface MapOptions extends MapDefaultOptions {
     center: { longitude: number, latitude: number };
-    city: string;
-    markers: { longitude: number, latitude: number, icon: string, width: number, height: number, title: string, content: string, enableMessage: boolean }[];
+    city?: string;
+    markers?: { longitude: number, latitude: number, icon?: string, width?: number, height?: number, title?: string, content?: string, enableMessage?: boolean }[];
 }
