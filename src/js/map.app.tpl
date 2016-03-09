@@ -73,7 +73,6 @@ export class MainApp implements OnInit {
                 latitude: 31.245554
             },
             zoom: 17,
-            city: 'ShangHai',
             markers: [{
                 longitude: 121.506191,
                 latitude: 31.245554,
@@ -82,7 +81,6 @@ export class MainApp implements OnInit {
             }]
         };
     }
-
 }<!--
     --></code></pre>
     <br/>
@@ -124,7 +122,6 @@ export class MainApp implements OnInit {
             }
         };
     }
-
 }<!--
     --></code></pre>
     <br/>
