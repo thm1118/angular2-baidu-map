@@ -11,7 +11,7 @@ Angular2 component for Baidu map
 ## Install via npm ##
 
 ```bash
-npm install angular-promiseify
+npm install angular2-baidu-map
 ```
 
 ## Usage ##
