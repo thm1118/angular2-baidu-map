@@ -30,9 +30,10 @@
     "url": "https://github.com/leftstick/angular2-baidu-map/issues"
   },
   "homepage": "https://github.com/leftstick/angular2-baidu-map#readme",
-  "dependencies": {},
+  "dependencies": {
+    "angular2": "^2.0.0-beta.8"
+  },
   "devDependencies": {
-    "angular2": "^2.0.0-beta.8",
     "rxjs": "^5.0.0-beta.2"
   }
 }
