@@ -96,7 +96,6 @@ export class BaiduMap implements OnInit, OnChanges {
         if (opts.enableScrollWheelZoom) {
             map.enableScrollWheelZoom();
         }
-        map.setCurrentCity(opts.city);
         this._mark(opts);
     }
 
@@ -176,6 +175,5 @@ export interface PreviousMarker {
 
 export interface MapOptions extends MapDefaultOptions {
     center: { longitude: number, latitude: number };
-    city?: string;
     markers?: { longitude: number, latitude: number, icon?: string, width?: number, height?: number, title?: string, content?: string, enableMessage?: boolean }[];
 }

@@ -84,7 +84,6 @@ var BaiduMap = (function () {
         if (opts.enableScrollWheelZoom) {
             map.enableScrollWheelZoom();
         }
-        map.setCurrentCity(opts.city);
         this._mark(opts);
     };
     BaiduMap.prototype._center = function (opts) {

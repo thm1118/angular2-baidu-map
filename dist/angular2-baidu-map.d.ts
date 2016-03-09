@@ -36,7 +36,6 @@ export interface MapOptions extends MapDefaultOptions {
         longitude: number;
         latitude: number;
     };
-    city?: string;
     markers?: {
         longitude: number;
         latitude: number;
