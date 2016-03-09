@@ -4,12 +4,11 @@
         "removeComments": true,
         "module": "commonjs",
         "target": "es5",
-        "moduleResolution" : "node",
+        "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "sourceMap": false,
-        "declaration": true,
-        "outDir": "./dist"
+        "sourceMap": true,
+        "declaration": false
     },
     "buildOnSave": false,
     "compileOnSave": false,
@@ -19,18 +18,5 @@
     "atom": {
         "rewriteTsconfig": true,
         "formatOnSave": true
-    },
-    "formatCodeOptions": {
-        "indentSize": 4,
-        "tabSize": 4,
-        "convertTabsToSpaces": true,
-        "insertSpaceAfterCommaDelimiter": true,
-        "insertSpaceAfterSemicolonInForStatements": true,
-        "insertSpaceBeforeAndAfterBinaryOperators": true,
-        "insertSpaceAfterKeywordsInControlFlowStatements": true,
-        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
-        "placeOpenBraceOnNewLineForFunctions": false,
-        "placeOpenBraceOnNewLineForControlBlocks": false
     }
 }
