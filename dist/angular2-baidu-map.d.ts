@@ -18,7 +18,7 @@ export declare class BaiduMap implements OnInit, OnChanges {
     _generateMap(el: ElementRef): void;
     _center(opts: MapOptions): void;
     _zoom(opts: MapOptions): void;
-    _mark(): void;
+    _mark(opts: MapOptions): void;
 }
 export interface MapDefaultOptions {
     navCtrl?: boolean;

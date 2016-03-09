@@ -33,7 +33,7 @@ var BaiduMap = (function () {
         var opts = changes['options'].currentValue;
         this._center(opts);
         this._zoom(opts);
-        this._mark();
+        this._mark(opts);
     };
     BaiduMap.prototype._drawBaiduMap = function () {
         var _this = this;
@@ -85,7 +85,7 @@ var BaiduMap = (function () {
             map.enableScrollWheelZoom();
         }
         map.setCurrentCity(opts.city);
-        this._mark();
+        this._mark(opts);
     };
     BaiduMap.prototype._center = function (opts) {
         var _a = this, BMap = _a.BMap, map = _a.map;
@@ -99,18 +99,18 @@ var BaiduMap = (function () {
             map.setZoom(opts.zoom);
         }
     };
-    BaiduMap.prototype._mark = function () {
-        var _a = this, BMap = _a.BMap, map = _a.map, options = _a.options;
+    BaiduMap.prototype._mark = function (opts) {
+        var _a = this, BMap = _a.BMap, map = _a.map;
+        if (!opts.markers) {
+            return;
+        }
         for (var _i = 0, _b = this.previousMarkers; _i < _b.length; _i++) {
             var _c = _b[_i], marker = _c.marker, listener = _c.listener;
             marker.removeEventListener('click', listener);
             map.removeOverlay(marker);
         }
         this.previousMarkers.length = 0;
-        if (!options.markers) {
-            return;
-        }
-        for (var _d = 0, _e = options.markers; _d < _e.length; _d++) {
+        for (var _d = 0, _e = opts.markers; _d < _e.length; _d++) {
             var marker = _e[_d];
             var pt = new BMap.Point(marker.longitude, marker.latitude);
             var marker2;

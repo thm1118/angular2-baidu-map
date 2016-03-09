@@ -40,7 +40,7 @@ export class BaiduMap implements OnInit, OnChanges {
         var opts = changes['options'].currentValue;
         this._center(opts);
         this._zoom(opts);
-        this._mark();
+        this._mark(opts);
     }
 
     _drawBaiduMap() {
@@ -97,7 +97,7 @@ export class BaiduMap implements OnInit, OnChanges {
             map.enableScrollWheelZoom();
         }
         map.setCurrentCity(opts.city);
-        this._mark();
+        this._mark(opts);
     }
 
     _center(opts: MapOptions) {
@@ -114,18 +114,20 @@ export class BaiduMap implements OnInit, OnChanges {
         }
     }
 
-    _mark() {
-        var {BMap, map, options} = this;
+    _mark(opts: MapOptions) {
+        var {BMap, map} = this;
+
+        if (!opts.markers) {
+            return;
+        }
 
         for (let {marker, listener} of this.previousMarkers) {
             marker.removeEventListener('click', listener);
             map.removeOverlay(marker);
         }
         this.previousMarkers.length = 0;
-        if (!options.markers) {
-            return;
-        }
-        for (let marker of options.markers) {
+
+        for (let marker of opts.markers) {
             var pt = new BMap.Point(marker.longitude, marker.latitude);
             var marker2: any;
             if (marker.icon) {
