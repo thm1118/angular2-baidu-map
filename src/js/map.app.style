@@ -5,6 +5,12 @@ baidu-map{
     margin: auto;
 }
 
+@media screen and (max-width: 500px) {
+    baidu-map{
+        width: 100%;
+    }
+}
+
 code{
     font-style: italic;
 }

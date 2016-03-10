@@ -162,21 +162,21 @@ export class MainApp implements OnInit {
         <thead>
           <tr>
               <th>Param</th>
-              <th>Type</th>
-              <th>Required</th>
-              <th>Description</th>
-              <th>Example</th>
+              <th class="hide-on-small-only">Type</th>
+              <th class="hide-on-small-only">Required</th>
+              <th >Description</th>
+              <th class="hide-on-small-only">Example</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
             <td>center</td>
-            <td><span class="object-type">Object</span></td>
-            <td>Yes</td>
+            <td class="hide-on-small-only"><span class="object-type">Object</span></td>
+            <td class="hide-on-small-only">Yes</td>
             <td>the point in geographical coordinates</td>
-            <td style="padding: 0;"><pre style="margin: 0; padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
-            -->{
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
+-->{
     longitude: 121.506191,
     latitude: 31.245554
 }<!--
@@ -185,67 +185,58 @@ export class MainApp implements OnInit {
 
           <tr>
             <td>zoom</td>
-            <td><span class="number-type">Number</span></td>
-            <td>No</td>
+            <td class="hide-on-small-only"><span class="number-type">Number</span></td>
+            <td class="hide-on-small-only">No</td>
             <td>zoom level which will be displayed on the map. default is <code>10</code></td>
-            <td style="padding: 0;"><pre style="margin: 0; padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
-            -->15<!--
-            --></code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">15</code></pre></td>
           </tr>
 
           <tr>
             <td>navCtrl</td>
-            <td><span class="boolean-type">Boolean</span></td>
-            <td>No</td>
+            <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
+            <td class="hide-on-small-only">No</td>
             <td>whether to add a NavigationControl to the map. default is <code>true</code></td>
-            <td style="padding: 0;"><pre style="margin: 0; padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
-            -->false<!--
-            --></code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">false</code></pre></td>
           </tr>
 
           <tr>
             <td>scaleCtrl</td>
-            <td><span class="boolean-type">Boolean</span></td>
-            <td>No</td>
+            <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
+            <td class="hide-on-small-only">No</td>
             <td>whether to add a ScaleControl to the map. default is <code>true</code></td>
-            <td style="padding: 0;"><pre style="margin: 0; padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
-            -->false<!--
-            --></code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">false</code></pre></td>
           </tr>
 
           <tr>
             <td>overviewCtrl</td>
-            <td><span class="boolean-type">Boolean</span></td>
-            <td>No</td>
+            <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
+            <td class="hide-on-small-only">No</td>
             <td>whether to add a OverviewMapControl to the map. default is <code>true</code></td>
-            <td style="padding: 0;"><pre style="margin: 0; padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
-            -->false<!--
-            --></code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">false</code></pre></td>
           </tr>
 
           <tr>
             <td>enableScrollWheelZoom</td>
-            <td><span class="boolean-type">Boolean</span></td>
-            <td>No</td>
+            <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
+            <td class="hide-on-small-only">No</td>
             <td>whether to enableScrollWheelZoom to the map. default is <code>true</code></td>
-            <td style="padding: 0;"><pre style="margin: 0; padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
-            -->false<!--
-            --></code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">false</code></pre></td>
           </tr>
 
           <tr>
             <td>markers</td>
-            <td><span class="array-type">Array</span></td>
-            <td>No</td>
+            <td class="hide-on-small-only"><span class="array-type">Array</span></td>
+            <td class="hide-on-small-only">No</td>
             <td>marker will be displayed on the map. default is <code>empty</code></td>
-            <td style="padding: 0;"><pre style="margin: 0; padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
-            -->[{
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
+-->[{
     longitude: 121.506191,
     latitude: 31.245554,
     title: 'Where',
     content: 'Put description here'
 }]<!--
-            --></code></pre></td>
+              --></code></pre>
+            </td>
           </tr>
         </tbody>
     </table>
