@@ -53,13 +53,13 @@ import {BaiduMap} from 'angular2-baidu-map';
         &lt;h1&gt;Test Baidu-Map&lt;h1&gt;
         &lt;baidu-map mapKey="put your ak here" [options]="opts"&gt;&lt;/baidu-map&gt;
     `,
-    styles: `
+    styles: [`
         baidu-map{
             width: 500px;
             height: 400px;
             display: block;
         }
-    `,
+    `],
     directives: [BaiduMap]
 })
 export class MainApp implements OnInit {
@@ -98,7 +98,7 @@ export class MainApp implements OnInit {
         &lt;baidu-map mapKey="put your ak here" [options]="opts"&gt;&lt;/baidu-map&gt;
         &lt;button (click)="updateCoordinate($event)"&gt;Update Coordinate&lt;button&gt;
     `,
-    styles: ...,
+    styles: [...],
     directives: [BaiduMap]
 })
 export class MainApp implements OnInit {
