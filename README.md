@@ -26,13 +26,13 @@ import {BaiduMap} from 'angular2-baidu-map';
         <h1>Test Baidu-Map<h1>
         <baidu-map mapKey="put your ak here" [options]="opts"></baidu-map>
     `,
-    styles: `
+    styles: [`
         baidu-map{
             width: 500px;
             height: 400px;
             display: block;
         }
-    `,
+    `],
     directives: [BaiduMap]
 })
 export class MainApp implements OnInit {
