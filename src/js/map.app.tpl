@@ -66,7 +66,7 @@ export class MainApp implements OnInit {
 
     opts: any;
 
-    ngOnInit{
+    ngOnInit() {
         this.opts = {
             center: {
                 longitude: 121.506191,
@@ -105,7 +105,7 @@ export class MainApp implements OnInit {
 
     opts: any;
 
-    ngOnInit{
+    ngOnInit() {
         ...
     }
 
