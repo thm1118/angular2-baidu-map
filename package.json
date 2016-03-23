@@ -27,28 +27,28 @@
     "angular2-baidu-map": "https://github.com/leftstick/angular2-baidu-map.git"
   },
   "devDependencies": {
-    "angular2": "^2.0.0-beta.8",
-    "autoprefixer": "^6.3.3",
-    "babel-core": "^6.6.4",
+    "angular2": "^2.0.0-beta.11",
+    "autoprefixer": "^6.3.4",
+    "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.6.0",
     "css-loader": "^0.23.1",
     "es6-shim": "^0.35.0",
     "file-loader": "^0.8.5",
-    "html-webpack-plugin": "^2.9.0",
+    "html-webpack-plugin": "^2.12.0",
     "less": "^2.6.0",
     "less-loader": "^2.2.2",
     "materialize-css": "^0.97.5",
-    "postcss-loader": "^0.8.1",
+    "postcss-loader": "^0.8.2",
     "prismjs": "^1.4.1",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "^0.1.3",
-    "rxjs": "^5.0.0-beta.2",
+    "rxjs": "^5.0.0-beta.3",
     "splash-screen": "^2.3.3",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.8.1",
-    "typescript": "^1.8.7",
+    "typescript": "^1.8.9",
     "webpack": "^1.12.14",
-    "zone.js": "^0.6.2"
+    "zone.js": "^0.6.5"
   }
 }
