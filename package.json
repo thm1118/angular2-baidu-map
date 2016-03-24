@@ -27,7 +27,7 @@
     "angular2-baidu-map": "https://github.com/leftstick/angular2-baidu-map.git"
   },
   "devDependencies": {
-    "angular2": "^2.0.0-beta.11",
+    "angular2": "^2.0.0-beta.12",
     "autoprefixer": "^6.3.4",
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
