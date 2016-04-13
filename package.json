@@ -1,10 +1,9 @@
 {
   "name": "angular2-baidu-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular2 component for Baidu map",
   "main": "./dist/angular2-baidu-map.js",
   "scripts": {
-    "type": "tsd install --save --overwrite --resolve",
     "preinstall": "npm run type",
     "prepublish": "npm run dist",
     "dist": "rm -rf dist && tsc"
@@ -31,9 +30,10 @@
   },
   "homepage": "https://github.com/leftstick/angular2-baidu-map#readme",
   "dependencies": {
-    "angular2": "^2.0.0-beta.8"
+    "angular2": "^2.0.0-beta.14"
   },
   "devDependencies": {
-    "rxjs": "^5.0.0-beta.2"
+    "rxjs": "5.0.0-beta.2",
+    "typescript": "^1.8.9"
   }
 }

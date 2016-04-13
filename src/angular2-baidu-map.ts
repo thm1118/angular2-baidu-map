@@ -1,9 +1,9 @@
-'use strict';
+/// <reference path="../node_modules/angular2/typings/browser.d.ts"/>
 
 import {Component, SimpleChange, Input, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef} from 'angular2/core';
 
 @Component({
-    changeDetection: ChangeDetectionStrategy.CheckAlways,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'baidu-map',
     template: ''
 })

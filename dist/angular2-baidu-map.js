@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -150,7 +150,7 @@ var BaiduMap = (function () {
     ], BaiduMap.prototype, "options", void 0);
     BaiduMap = __decorate([
         core_1.Component({
-            changeDetection: core_1.ChangeDetectionStrategy.CheckAlways,
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
             selector: 'baidu-map',
             template: ''
         }), 

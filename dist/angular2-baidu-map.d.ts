@@ -1,3 +1,4 @@
+/// <reference path="../node_modules/angular2/typings/browser.d.ts" />
 import { SimpleChange, OnInit, OnChanges, ElementRef } from 'angular2/core';
 export declare class BaiduMap implements OnInit, OnChanges {
     private el;
