@@ -13,8 +13,10 @@
     },
     "buildOnSave": false,
     "compileOnSave": false,
-    "exclude": [
-        "node_modules"
+    "files": [
+        "node_modules/angular2/typings/browser.d.ts",
+        "src/angular2-baidu-map.ts",
+        "Object.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true,

@@ -1,5 +1,3 @@
-/// <reference path="../node_modules/angular2/typings/browser.d.ts"/>
-
 import {Component, SimpleChange, Input, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef} from 'angular2/core';
 
 @Component({
