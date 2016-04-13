@@ -4,7 +4,6 @@
   "description": "Angular2 component for Baidu map",
   "main": "./dist/angular2-baidu-map.js",
   "scripts": {
-    "preinstall": "npm run type",
     "prepublish": "npm run dist",
     "dist": "rm -rf dist && tsc"
   },
