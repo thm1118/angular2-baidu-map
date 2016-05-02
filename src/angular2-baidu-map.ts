@@ -1,161 +1,76 @@
-import {Component, SimpleChange, Input, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef} from 'angular2/core';
+import {Component, SimpleChange, Input, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef} from '@angular/core';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'baidu-map',
-    template: ''
+    styles: [`
+        .offlinePanel{
+            width: 100%;
+            height: 100%;
+            background-color: #E6E6E6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+        }
+    `, `
+        .offlineLabel{
+            font-size: 30px;
+        }
+    `],
+    template: `
+        <div class="offlinePanel">
+            <label class="offlineLabel">{{ offlineWords }}</label>
+        </div>
+    `
 })
 export class BaiduMap implements OnInit, OnChanges {
 
-    @Input() mapKey: string;
+    @Input() ak: string;
     @Input() options: MapOptions;
+    @Input('offline') offlineOpts: OfflineOptions;
 
-    defaultOpts: MapDefaultOptions = {
-        navCtrl: true,
-        scaleCtrl: true,
-        overviewCtrl: true,
-        enableScrollWheelZoom: true,
-        zoom: 10
-    };
-
-    win: any = window;
-    previousMarkers: PreviousMarker[] = [];
-    BMap: any;
     map: any;
+    offlineWords: string;
+    previousMarkers: PreviousMarker[] = [];
 
-    constructor(private el: ElementRef) {
-    }
+    constructor(private el: ElementRef) { }
 
     ngOnInit() {
-        this._drawBaiduMap();
+        let offlineOpts: OfflineOptions = Object.assign({}, defaultOfflineOpts, this.offlineOpts);
+        this.offlineWords = offlineOpts.txt;
+        loader(this.ak, offlineOpts, this._draw.bind(this));
     }
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
-        var baiduMap = this.win.baiduMap;
-        if (!baiduMap || baiduMap.status !== 'loaded') {
+        let baiduMap = (<any>window)['baiduMap'];
+        if (!baiduMap || baiduMap.status !== MapStatus.LOADED) {
             return;
         }
-        var opts = changes['options'].currentValue;
-        this._center(opts);
-        this._zoom(opts);
-        this._mark(opts);
+        let opts = changes['options'].currentValue;
+        reCenter(this.map, opts);
+        reZoom(this.map, opts);
+        redrawMarkers(this.map, this.previousMarkers, opts);
     }
 
-    _drawBaiduMap() {
-        var MAP_URL = `http://api.map.baidu.com/api?v=2.0&ak=${this.mapKey}&callback=baidumapinit`;
-
-        var baiduMap = this.win.baiduMap;
-        if (baiduMap && baiduMap.status === 'loading') {
-            baiduMap.callbacks.push(() => {
-                this._generateMap(this.el);
-            });
-            return;
-        }
-
-        if (baiduMap && baiduMap.status === 'loaded') {
-            this._generateMap(this.el);
-            return;
-        }
-
-        this.win.baiduMap = { status: 'loading', callbacks: [] };
-        this.win.baidumapinit = this._getBaiduScriptLoaded(this.el);
-
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = MAP_URL;
-        document.body.appendChild(script);
+    _draw() {
+        let options: MapOptions = Object.assign({}, defaultOpts, this.options);
+        this.map = createInstance(options, this.el.nativeElement);
+        redrawMarkers(this.map, this.previousMarkers, options);
     }
+}
 
-    _getBaiduScriptLoaded(el: ElementRef) {
-        return () => {
-            this.win.baiduMap.status = 'loaded';
-            this._generateMap(el);
-            this.win.baiduMap.callbacks.forEach(function(cb: Function) {
-                cb();
-            });
-            this.win.baiduMap.callbacks = [];
-        };
-    }
+const defaultOpts: MapDefaultOptions = {
+    navCtrl: true,
+    scaleCtrl: true,
+    overviewCtrl: true,
+    enableScrollWheelZoom: true,
+    zoom: 10
+}
 
-    _generateMap(el: ElementRef) {
-        var BMap = this.BMap = this.win.BMap;
-        var map = this.map = new BMap.Map(el.nativeElement);
-        var opts = <MapOptions>Object.assign({}, this.defaultOpts, this.options);
-        map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
-        if (opts.navCtrl) {
-            map.addControl(new BMap.NavigationControl());
-        }
-        if (opts.scaleCtrl) {
-            map.addControl(new BMap.ScaleControl());
-        }
-        if (opts.overviewCtrl) {
-            map.addControl(new BMap.OverviewMapControl());
-        }
-        if (opts.enableScrollWheelZoom) {
-            map.enableScrollWheelZoom();
-        }
-        this._mark(opts);
-    }
-
-    _center(opts: MapOptions) {
-        var {BMap, map} = this;
-        if (opts.center) {
-            map.setCenter(new BMap.Point(opts.center.longitude, opts.center.latitude));
-        }
-    }
-
-    _zoom(opts: MapOptions) {
-        var { map} = this;
-        if (opts.zoom) {
-            map.setZoom(opts.zoom);
-        }
-    }
-
-    _mark(opts: MapOptions) {
-        var {BMap, map} = this;
-
-        if (!opts.markers) {
-            return;
-        }
-
-        for (let {marker, listener} of this.previousMarkers) {
-            marker.removeEventListener('click', listener);
-            map.removeOverlay(marker);
-        }
-        this.previousMarkers.length = 0;
-
-        for (let marker of opts.markers) {
-            var pt = new BMap.Point(marker.longitude, marker.latitude);
-            var marker2: any;
-            if (marker.icon) {
-                var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
-                marker2 = new BMap.Marker(pt, {
-                    icon: icon
-                });
-            } else {
-                marker2 = new BMap.Marker(pt);
-            }
-            map.addOverlay(marker2);
-            var previousMarker: PreviousMarker = {
-                marker: marker2,
-                listener: null
-            };
-            this.previousMarkers.push(previousMarker);
-
-            if (!marker.title && !marker.content) {
-                continue;
-            }
-
-            var infoWindow2 = new BMap.InfoWindow('<p>' + (marker.title ? marker.title : '') + '</p><p>' + (marker.content ? marker.content : '') + '</p>', {
-                enableMessage: !!marker.enableMessage
-            });
-            previousMarker.listener = function() {
-                this.openInfoWindow(infoWindow2);
-            };
-            marker2.addEventListener('click', previousMarker.listener);
-        }
-    }
-
+const defaultOfflineOpts: OfflineOptions = {
+    retryInterval: 30000,
+    txt: 'OFFLINE'
 }
 
 export interface MapDefaultOptions {
@@ -166,12 +81,165 @@ export interface MapDefaultOptions {
     zoom?: number;
 }
 
+export interface MapOptions extends MapDefaultOptions {
+    center: { longitude: number, latitude: number };
+    markers?: MarkerOptions[];
+}
+
+enum MapStatus {
+    LOADING,
+    LOADED
+}
+
+interface MapObjct {
+    status: MapStatus,
+    callbacks: Function[]
+}
+
+export interface OfflineOptions {
+    retryInterval?: number,
+    txt?: string
+}
+
 export interface PreviousMarker {
     marker: any;
     listener: Function;
 }
 
-export interface MapOptions extends MapDefaultOptions {
-    center: { longitude: number, latitude: number };
-    markers?: { longitude: number, latitude: number, icon?: string, width?: number, height?: number, title?: string, content?: string, enableMessage?: boolean }[];
+export interface MarkerOptions {
+    longitude: number,
+    latitude: number,
+    icon?: string,
+    width?: number,
+    height?: number,
+    title?: string,
+    content?: string,
+    enableMessage?: boolean
 }
+
+const loader = function(ak: string, offlineOpts: OfflineOptions, callback: Function) {
+    let MAP_URL: string = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit`;
+
+    let win: any = (<any>window);
+
+    let baiduMap: MapObjct = win['baiduMap'];
+    if (baiduMap && baiduMap.status === MapStatus.LOADING) {
+        return baiduMap.callbacks.push(callback);
+    }
+
+    if (baiduMap && baiduMap.status === MapStatus.LOADED) {
+        return callback();
+    }
+
+    win['baiduMap'] = { status: MapStatus.LOADING, callbacks: [] };
+    win['baidumapinit'] = function() {
+        win['baiduMap'].status = MapStatus.LOADED;
+        callback();
+        win['baiduMap'].callbacks.forEach((cb: Function) => cb());
+        win['baiduMap'].callbacks = [];
+    };
+
+    let createTag = function() {
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = MAP_URL;
+        script.onerror = function() {
+            Array.prototype
+                .slice
+                .call(document.querySelectorAll('baidu-map div'))
+                .forEach(function(node: any) {
+                    node.style.opacity = 1;
+                });
+            document.body.removeChild(script);
+            setTimeout(createTag, offlineOpts.retryInterval);
+        };
+        document.body.appendChild(script);
+    };
+
+    createTag();
+};
+
+const createInstance = function(opts: MapOptions, element: any) {
+    var BMap: any = (<any>window)['BMap'];
+    // create map instance
+    var map = new BMap.Map(element);
+
+    // init map, set central location and zoom level
+    map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
+    if (opts.navCtrl) {
+        // add navigation control
+        map.addControl(new BMap.NavigationControl());
+    }
+    if (opts.scaleCtrl) {
+        // add scale control
+        map.addControl(new BMap.ScaleControl());
+    }
+    if (opts.overviewCtrl) {
+        //add overview map control
+        map.addControl(new BMap.OverviewMapControl());
+    }
+    if (opts.enableScrollWheelZoom) {
+        //enable scroll wheel zoom
+        map.enableScrollWheelZoom();
+    }
+    return map;
+};
+
+const createMarker = function(marker: MarkerOptions, pt: any) {
+    var BMap: any = (<any>window)['BMap'];
+    if (marker.icon) {
+        var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
+        return new BMap.Marker(pt, { icon: icon });
+    }
+    return new BMap.Marker(pt);
+
+};
+
+const redrawMarkers = function(map: any, previousMarkers: PreviousMarker[], opts: MapOptions) {
+    var BMap: any = (<any>window)['BMap'];
+
+    previousMarkers.forEach(function({marker, listener}) {
+        marker.removeEventListener('click', listener);
+        map.removeOverlay(marker);
+    });
+
+    previousMarkers.length = 0;
+
+    if (!opts.markers) {
+        return;
+    }
+
+    opts.markers.forEach(function(marker: MarkerOptions) {
+
+        var marker2 = createMarker(marker, new BMap.Point(marker.longitude, marker.latitude));
+
+        // add marker to the map
+        map.addOverlay(marker2);
+        let previousMarker: PreviousMarker = { marker: marker2, listener: null };
+        previousMarkers.push(previousMarker);
+
+        if (!marker.title && !marker.content) {
+            return;
+        }
+        let msg = `<p>${marker.title || ''}</p><p>${marker.content || ''}</p>`;
+        let infoWindow2 = new BMap.InfoWindow(msg, {
+            enableMessage: !!marker.enableMessage
+        });
+        previousMarker.listener = function() {
+            this.openInfoWindow(infoWindow2);
+        };
+        marker2.addEventListener('click', previousMarker.listener);
+    });
+};
+
+const reCenter = function(map: any, opts: MapOptions) {
+    var BMap: any = (<any>window)['BMap'];
+    if (opts.center) {
+        map.setCenter(new BMap.Point(opts.center.longitude, opts.center.latitude));
+    }
+};
+const reZoom = function(map: any, opts: MapOptions) {
+    if (opts.zoom) {
+        map.setZoom(opts.zoom);
+    }
+};

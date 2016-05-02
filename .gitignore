@@ -4,3 +4,10 @@ npm-debug.log
 
 #mac
 .DS_Store
+
+#js
+
+src/**/*.js
+
+#tsd
+typings/

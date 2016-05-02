@@ -8,154 +8,170 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('angular2/core');
+var core_1 = require('@angular/core');
 var BaiduMap = (function () {
     function BaiduMap(el) {
         this.el = el;
-        this.defaultOpts = {
-            navCtrl: true,
-            scaleCtrl: true,
-            overviewCtrl: true,
-            enableScrollWheelZoom: true,
-            zoom: 10
-        };
-        this.win = window;
         this.previousMarkers = [];
     }
     BaiduMap.prototype.ngOnInit = function () {
-        this._drawBaiduMap();
+        var offlineOpts = Object.assign({}, defaultOfflineOpts, this.offlineOpts);
+        this.offlineWords = offlineOpts.txt;
+        loader(this.ak, offlineOpts, this._draw.bind(this));
     };
     BaiduMap.prototype.ngOnChanges = function (changes) {
-        var baiduMap = this.win.baiduMap;
-        if (!baiduMap || baiduMap.status !== 'loaded') {
+        var baiduMap = window['baiduMap'];
+        if (!baiduMap || baiduMap.status !== MapStatus.LOADED) {
             return;
         }
         var opts = changes['options'].currentValue;
-        this._center(opts);
-        this._zoom(opts);
-        this._mark(opts);
+        reCenter(this.map, opts);
+        reZoom(this.map, opts);
+        redrawMarkers(this.map, this.previousMarkers, opts);
     };
-    BaiduMap.prototype._drawBaiduMap = function () {
-        var _this = this;
-        var MAP_URL = "http://api.map.baidu.com/api?v=2.0&ak=" + this.mapKey + "&callback=baidumapinit";
-        var baiduMap = this.win.baiduMap;
-        if (baiduMap && baiduMap.status === 'loading') {
-            baiduMap.callbacks.push(function () {
-                _this._generateMap(_this.el);
-            });
-            return;
-        }
-        if (baiduMap && baiduMap.status === 'loaded') {
-            this._generateMap(this.el);
-            return;
-        }
-        this.win.baiduMap = { status: 'loading', callbacks: [] };
-        this.win.baidumapinit = this._getBaiduScriptLoaded(this.el);
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = MAP_URL;
-        document.body.appendChild(script);
-    };
-    BaiduMap.prototype._getBaiduScriptLoaded = function (el) {
-        var _this = this;
-        return function () {
-            _this.win.baiduMap.status = 'loaded';
-            _this._generateMap(el);
-            _this.win.baiduMap.callbacks.forEach(function (cb) {
-                cb();
-            });
-            _this.win.baiduMap.callbacks = [];
-        };
-    };
-    BaiduMap.prototype._generateMap = function (el) {
-        var BMap = this.BMap = this.win.BMap;
-        var map = this.map = new BMap.Map(el.nativeElement);
-        var opts = Object.assign({}, this.defaultOpts, this.options);
-        map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
-        if (opts.navCtrl) {
-            map.addControl(new BMap.NavigationControl());
-        }
-        if (opts.scaleCtrl) {
-            map.addControl(new BMap.ScaleControl());
-        }
-        if (opts.overviewCtrl) {
-            map.addControl(new BMap.OverviewMapControl());
-        }
-        if (opts.enableScrollWheelZoom) {
-            map.enableScrollWheelZoom();
-        }
-        this._mark(opts);
-    };
-    BaiduMap.prototype._center = function (opts) {
-        var _a = this, BMap = _a.BMap, map = _a.map;
-        if (opts.center) {
-            map.setCenter(new BMap.Point(opts.center.longitude, opts.center.latitude));
-        }
-    };
-    BaiduMap.prototype._zoom = function (opts) {
-        var map = this.map;
-        if (opts.zoom) {
-            map.setZoom(opts.zoom);
-        }
-    };
-    BaiduMap.prototype._mark = function (opts) {
-        var _a = this, BMap = _a.BMap, map = _a.map;
-        if (!opts.markers) {
-            return;
-        }
-        for (var _i = 0, _b = this.previousMarkers; _i < _b.length; _i++) {
-            var _c = _b[_i], marker = _c.marker, listener = _c.listener;
-            marker.removeEventListener('click', listener);
-            map.removeOverlay(marker);
-        }
-        this.previousMarkers.length = 0;
-        for (var _d = 0, _e = opts.markers; _d < _e.length; _d++) {
-            var marker = _e[_d];
-            var pt = new BMap.Point(marker.longitude, marker.latitude);
-            var marker2;
-            if (marker.icon) {
-                var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
-                marker2 = new BMap.Marker(pt, {
-                    icon: icon
-                });
-            }
-            else {
-                marker2 = new BMap.Marker(pt);
-            }
-            map.addOverlay(marker2);
-            var previousMarker = {
-                marker: marker2,
-                listener: null
-            };
-            this.previousMarkers.push(previousMarker);
-            if (!marker.title && !marker.content) {
-                continue;
-            }
-            var infoWindow2 = new BMap.InfoWindow('<p>' + (marker.title ? marker.title : '') + '</p><p>' + (marker.content ? marker.content : '') + '</p>', {
-                enableMessage: !!marker.enableMessage
-            });
-            previousMarker.listener = function () {
-                this.openInfoWindow(infoWindow2);
-            };
-            marker2.addEventListener('click', previousMarker.listener);
-        }
+    BaiduMap.prototype._draw = function () {
+        var options = Object.assign({}, defaultOpts, this.options);
+        this.map = createInstance(options, this.el.nativeElement);
+        redrawMarkers(this.map, this.previousMarkers, options);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], BaiduMap.prototype, "mapKey", void 0);
+    ], BaiduMap.prototype, "ak", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], BaiduMap.prototype, "options", void 0);
+    __decorate([
+        core_1.Input('offline'), 
+        __metadata('design:type', Object)
+    ], BaiduMap.prototype, "offlineOpts", void 0);
     BaiduMap = __decorate([
         core_1.Component({
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
             selector: 'baidu-map',
-            template: ''
+            styles: ["\n        .offlinePanel{\n            width: 100%;\n            height: 100%;\n            background-color: #E6E6E6;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            opacity: 0;\n        }\n    ", "\n        .offlineLabel{\n            font-size: 30px;\n        }\n    "],
+            template: "\n        <div class=\"offlinePanel\">\n            <label class=\"offlineLabel\">{{ offlineWords }}</label>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
     ], BaiduMap);
     return BaiduMap;
 }());
 exports.BaiduMap = BaiduMap;
+var defaultOpts = {
+    navCtrl: true,
+    scaleCtrl: true,
+    overviewCtrl: true,
+    enableScrollWheelZoom: true,
+    zoom: 10
+};
+var defaultOfflineOpts = {
+    retryInterval: 30000,
+    txt: 'OFFLINE'
+};
+var MapStatus;
+(function (MapStatus) {
+    MapStatus[MapStatus["LOADING"] = 0] = "LOADING";
+    MapStatus[MapStatus["LOADED"] = 1] = "LOADED";
+})(MapStatus || (MapStatus = {}));
+var loader = function (ak, offlineOpts, callback) {
+    var MAP_URL = "http://api.map.baidu.com/api?v=2.0&ak=" + ak + "&callback=baidumapinit";
+    var win = window;
+    var baiduMap = win['baiduMap'];
+    if (baiduMap && baiduMap.status === MapStatus.LOADING) {
+        return baiduMap.callbacks.push(callback);
+    }
+    if (baiduMap && baiduMap.status === MapStatus.LOADED) {
+        return callback();
+    }
+    win['baiduMap'] = { status: MapStatus.LOADING, callbacks: [] };
+    win['baidumapinit'] = function () {
+        win['baiduMap'].status = MapStatus.LOADED;
+        callback();
+        win['baiduMap'].callbacks.forEach(function (cb) { return cb(); });
+        win['baiduMap'].callbacks = [];
+    };
+    var createTag = function () {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = MAP_URL;
+        script.onerror = function () {
+            Array.prototype
+                .slice
+                .call(document.querySelectorAll('baidu-map div'))
+                .forEach(function (node) {
+                node.style.opacity = 1;
+            });
+            document.body.removeChild(script);
+            setTimeout(createTag, offlineOpts.retryInterval);
+        };
+        document.body.appendChild(script);
+    };
+    createTag();
+};
+var createInstance = function (opts, element) {
+    var BMap = window['BMap'];
+    var map = new BMap.Map(element);
+    map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
+    if (opts.navCtrl) {
+        map.addControl(new BMap.NavigationControl());
+    }
+    if (opts.scaleCtrl) {
+        map.addControl(new BMap.ScaleControl());
+    }
+    if (opts.overviewCtrl) {
+        map.addControl(new BMap.OverviewMapControl());
+    }
+    if (opts.enableScrollWheelZoom) {
+        map.enableScrollWheelZoom();
+    }
+    return map;
+};
+var createMarker = function (marker, pt) {
+    var BMap = window['BMap'];
+    if (marker.icon) {
+        var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
+        return new BMap.Marker(pt, { icon: icon });
+    }
+    return new BMap.Marker(pt);
+};
+var redrawMarkers = function (map, previousMarkers, opts) {
+    var BMap = window['BMap'];
+    previousMarkers.forEach(function (_a) {
+        var marker = _a.marker, listener = _a.listener;
+        marker.removeEventListener('click', listener);
+        map.removeOverlay(marker);
+    });
+    previousMarkers.length = 0;
+    if (!opts.markers) {
+        return;
+    }
+    opts.markers.forEach(function (marker) {
+        var marker2 = createMarker(marker, new BMap.Point(marker.longitude, marker.latitude));
+        map.addOverlay(marker2);
+        var previousMarker = { marker: marker2, listener: null };
+        previousMarkers.push(previousMarker);
+        if (!marker.title && !marker.content) {
+            return;
+        }
+        var msg = "<p>" + (marker.title || '') + "</p><p>" + (marker.content || '') + "</p>";
+        var infoWindow2 = new BMap.InfoWindow(msg, {
+            enableMessage: !!marker.enableMessage
+        });
+        previousMarker.listener = function () {
+            this.openInfoWindow(infoWindow2);
+        };
+        marker2.addEventListener('click', previousMarker.listener);
+    });
+};
+var reCenter = function (map, opts) {
+    var BMap = window['BMap'];
+    if (opts.center) {
+        map.setCenter(new BMap.Point(opts.center.longitude, opts.center.latitude));
+    }
+};
+var reZoom = function (map, opts) {
+    if (opts.zoom) {
+        map.setZoom(opts.zoom);
+    }
+};

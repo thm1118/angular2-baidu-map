@@ -1,24 +1,18 @@
-import { SimpleChange, OnInit, OnChanges, ElementRef } from 'angular2/core';
+import { SimpleChange, OnInit, OnChanges, ElementRef } from '@angular/core';
 export declare class BaiduMap implements OnInit, OnChanges {
     private el;
-    mapKey: string;
+    ak: string;
     options: MapOptions;
-    defaultOpts: MapDefaultOptions;
-    win: any;
-    previousMarkers: PreviousMarker[];
-    BMap: any;
+    offlineOpts: OfflineOptions;
     map: any;
+    offlineWords: string;
+    previousMarkers: PreviousMarker[];
     constructor(el: ElementRef);
     ngOnInit(): void;
     ngOnChanges(changes: {
         [propertyName: string]: SimpleChange;
     }): void;
-    _drawBaiduMap(): void;
-    _getBaiduScriptLoaded(el: ElementRef): () => void;
-    _generateMap(el: ElementRef): void;
-    _center(opts: MapOptions): void;
-    _zoom(opts: MapOptions): void;
-    _mark(opts: MapOptions): void;
+    _draw(): void;
 }
 export interface MapDefaultOptions {
     navCtrl?: boolean;
@@ -27,23 +21,28 @@ export interface MapDefaultOptions {
     enableScrollWheelZoom?: boolean;
     zoom?: number;
 }
-export interface PreviousMarker {
-    marker: any;
-    listener: Function;
-}
 export interface MapOptions extends MapDefaultOptions {
     center: {
         longitude: number;
         latitude: number;
     };
-    markers?: {
-        longitude: number;
-        latitude: number;
-        icon?: string;
-        width?: number;
-        height?: number;
-        title?: string;
-        content?: string;
-        enableMessage?: boolean;
-    }[];
+    markers?: MarkerOptions[];
+}
+export interface OfflineOptions {
+    retryInterval?: number;
+    txt?: string;
+}
+export interface PreviousMarker {
+    marker: any;
+    listener: Function;
+}
+export interface MarkerOptions {
+    longitude: number;
+    latitude: number;
+    icon?: string;
+    width?: number;
+    height?: number;
+    title?: string;
+    content?: string;
+    enableMessage?: boolean;
 }
