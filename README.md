@@ -17,14 +17,14 @@ npm install angular2-baidu-map
 ## Usage ##
 
 ```javascript
-import {Component, OnInit} from 'angular2/core';
-import {BaiduMap} from 'angular2-baidu-map';
+import {Component, OnInit} from '@angular/core';
+import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
 
 @Component({
     selector: 'map-presentation',
     template: `
         <h1>Test Baidu-Map<h1>
-        <baidu-map mapKey="put your ak here" [options]="opts"></baidu-map>
+        <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts"></baidu-map>
     `,
     styles: [`
         baidu-map{
@@ -38,6 +38,7 @@ import {BaiduMap} from 'angular2-baidu-map';
 export class MainApp implements OnInit {
 
     opts: any;
+    offlineOpts: OfflineOptions;
 
     ngOnInit() {
         this.opts = {
@@ -52,6 +53,11 @@ export class MainApp implements OnInit {
                 title: 'Where',
                 content: 'Put description here'
             }]
+        };
+
+        this.offlineOpts = {
+            retryInterval: 5000,
+            txt: 'NO-NETWORK'
         };
     }
 
