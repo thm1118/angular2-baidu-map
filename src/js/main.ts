@@ -1,10 +1,9 @@
-/// <reference path="../../node_modules/angular2/typings/browser.d.ts"/>
-
 import 'es6-shim';
-import 'angular2/bundles/angular2-polyfills';
-import {bootstrap} from 'angular2/platform/browser';
+import 'reflect-metadata';
+import 'zone.js/dist/zone';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 import {MainApp} from './map.app';
-import {enableProdMode} from 'angular2/core';
+import {enableProdMode} from '@angular/core';
 import Splash = require('splash-screen');
 
 class App {

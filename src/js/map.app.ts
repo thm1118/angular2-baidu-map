@@ -1,6 +1,6 @@
 'use strict';
 
-import {Component, Input, OnInit, AfterContentInit} from 'angular2/core';
+import {Component, Input, OnInit, AfterContentInit} from '@angular/core';
 import {BaiduMap} from 'angular2-baidu-map';
 
 var tpl = <string>require('./map.app.tpl');
