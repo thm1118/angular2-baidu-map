@@ -73,7 +73,7 @@ For more information, see [documentation](http://leftstick.github.io/angular2-ba
 
 
 [npm-url]: https://npmjs.org/package/angular2-baidu-map
-[npm-image]: https://badge.fury.io/js/angular2-baidu-map.png
+[npm-image]: https://img.shields.io/npm/v/angular2-baidu-map.svg
 [david-url]: https://david-dm.org/leftstick/angular2-baidu-map.png
 [dt-url]:https://img.shields.io/npm/dt/angular2-baidu-map.svg
 [license-url]:https://img.shields.io/npm/l/angular2-baidu-map.svg
