@@ -44,14 +44,14 @@
     <br/>
 
     <pre class="line-numbers"><code class="language-javascript"><!--
-    -->import {Component, OnInit} from 'angular2/core';
-import {BaiduMap} from 'angular2-baidu-map';
+    -->import {Component, OnInit} from '@angular/core';
+import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
 
 @Component({
     selector: 'map-presentation',
     template: `
         &lt;h1&gt;Test Baidu-Map&lt;h1&gt;
-        &lt;baidu-map mapKey="put your ak here" [options]="opts"&gt;&lt;/baidu-map&gt;
+        &lt;baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts"&gt;&lt;/baidu-map&gt;
     `,
     styles: [`
         baidu-map{
@@ -65,6 +65,7 @@ import {BaiduMap} from 'angular2-baidu-map';
 export class MainApp implements OnInit {
 
     opts: any;
+    offlineOpts: OfflineOptions;
 
     ngOnInit() {
         this.opts = {
@@ -79,6 +80,11 @@ export class MainApp implements OnInit {
                 title: 'Where',
                 content: 'Put description here'
             }]
+        };
+
+        this.offlineOpts = {
+            retryInterval: 5000,
+            txt: 'NO-NETWORK'
         };
     }
 }<!--
@@ -95,7 +101,7 @@ export class MainApp implements OnInit {
     -->@Component({
     selector: 'map-presentation',
     template: `
-        &lt;baidu-map mapKey="put your ak here" [options]="opts"&gt;&lt;/baidu-map&gt;
+        &lt;baidu-map ak="put your ak here" [options]="opts"&gt;&lt;/baidu-map&gt;
         &lt;button (click)="updateCoordinate($event)"&gt;Update Coordinate&lt;button&gt;
     `,
     styles: [...],
@@ -143,7 +149,7 @@ export class MainApp implements OnInit {
 
         <tbody>
           <tr>
-            <td>mapKey</td>
+            <td>ak</td>
             <td><span class="string-type">string</span></td>
             <td>ak that should be applied in <a href="http://lbsyun.baidu.com/apiconsole/key" target="_blank">Baidu Developer</a></td>
           </tr>
@@ -151,6 +157,11 @@ export class MainApp implements OnInit {
               <td>options</td>
               <td><span class="object-type">MapOptions</span></td>
               <td>options used to draw the map</td>
+          </tr>
+          <tr>
+              <td>offline</td>
+              <td><span class="object-type">OfflineOptions</span></td>
+              <td>options applied while no-network available</td>
           </tr>
         </tbody>
     </table>
@@ -237,6 +248,40 @@ export class MainApp implements OnInit {
 }]<!--
               --></code></pre>
             </td>
+          </tr>
+        </tbody>
+    </table>
+
+
+    <h5>OfflineOptions</h5>
+    <br/>
+
+    <table class="bordered striped hoverable">
+        <thead>
+          <tr>
+              <th>Param</th>
+              <th class="hide-on-small-only">Type</th>
+              <th class="hide-on-small-only">Required</th>
+              <th >Description</th>
+              <th class="hide-on-small-only">Example</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>retryInterval</td>
+            <td class="hide-on-small-only"><span class="number-type">Number</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>interval used to retry if network is available. 30000ms by default</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">5000</code></pre></td>
+          </tr>
+
+          <tr>
+            <td>txt</td>
+            <td class="hide-on-small-only"><span class="string-type">String</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>text to be displayed while no-network available. "OFFLINE" by default</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">NO-NETWORK</code></pre></td>
           </tr>
         </tbody>
     </table>
