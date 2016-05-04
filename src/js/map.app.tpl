@@ -12,7 +12,7 @@
 
     <h4>Demonstration</h4>
     <br/>
-    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts"></baidu-map>
+    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts" [offline]="offlineOpts"></baidu-map>
     <br/>
     <div class="center-align">
         <a class="btn-floating blue" (click)="updateCoordinate($event)"><i class="icon-globe"></i></a>

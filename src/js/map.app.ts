@@ -1,7 +1,7 @@
 'use strict';
 
 import {Component, Input, OnInit, AfterContentInit} from '@angular/core';
-import {BaiduMap} from 'angular2-baidu-map';
+import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
 
 var tpl = <string>require('./map.app.tpl');
 var style = <string>require('./map.app.style');
@@ -39,6 +39,7 @@ var markers2 = [{
 export class MainApp implements OnInit, AfterContentInit {
 
     opts: any;
+    offlineOpts: OfflineOptions;
     privousCenter: Object = center1;
     privousMarkers: Object[] = markers1;
 
@@ -47,6 +48,11 @@ export class MainApp implements OnInit, AfterContentInit {
             center: center1,
             zoom: 17,
             markers: markers1
+        };
+
+        this.offlineOpts = {
+            retryInterval: 5000,
+            txt: 'NO-NETWORK'
         };
     }
 
