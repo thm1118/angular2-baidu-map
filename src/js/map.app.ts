@@ -76,4 +76,8 @@ export class MainApp implements OnInit, AfterContentInit {
         };
     }
 
+    loadMap(map: any) {
+        console.log('The map instance is created', map);
+    }
+
 }

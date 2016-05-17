@@ -12,7 +12,7 @@
 
     <h4>Demonstration</h4>
     <br/>
-    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts" [offline]="offlineOpts"></baidu-map>
+    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)"></baidu-map>
     <br/>
     <div class="center-align">
         <a class="btn-floating blue" (click)="updateCoordinate($event)"><i class="icon-globe"></i></a>
@@ -51,7 +51,7 @@ import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
     selector: 'map-presentation',
     template: `
         &lt;h1&gt;Test Baidu-Map&lt;h1&gt;
-        &lt;baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts"&gt;&lt;/baidu-map&gt;
+        &lt;baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)"&gt;&lt;/baidu-map&gt;
     `,
     styles: [`
         baidu-map{
@@ -86,6 +86,10 @@ export class MainApp implements OnInit {
             retryInterval: 5000,
             txt: 'NO-NETWORK'
         };
+    }
+
+    loadMap(map: any) {
+        console.log('map instance here', map);
     }
 }<!--
     --></code></pre>
@@ -162,6 +166,11 @@ export class MainApp implements OnInit {
               <td>offline</td>
               <td><span class="object-type">OfflineOptions</span></td>
               <td>options applied while no-network available</td>
+          </tr>
+          <tr>
+              <td>onMapLoaded</td>
+              <td><span class="expression-type">Expression</span></td>
+              <td>Expression to evaluate upon callback, (Event object is available as the map instance)</td>
           </tr>
         </tbody>
     </table>
