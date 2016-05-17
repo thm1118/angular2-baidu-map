@@ -1,4 +1,4 @@
-import {Component, SimpleChange, Input, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef} from '@angular/core';
+import {Component, SimpleChange, Input, Output, EventEmitter, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef} from '@angular/core';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +29,7 @@ export class BaiduMap implements OnInit, OnChanges {
     @Input() ak: string;
     @Input() options: MapOptions;
     @Input('offline') offlineOpts: OfflineOptions;
+    @Output() onMapLoaded = new EventEmitter();
 
     map: any;
     offlineWords: string;
@@ -56,6 +57,7 @@ export class BaiduMap implements OnInit, OnChanges {
     _draw() {
         let options: MapOptions = Object.assign({}, defaultOpts, this.options);
         this.map = createInstance(options, this.el.nativeElement);
+        this.onMapLoaded.emit(this.map);
         redrawMarkers(this.map, this.previousMarkers, options);
     }
 }

@@ -1,9 +1,10 @@
-import { SimpleChange, OnInit, OnChanges, ElementRef } from '@angular/core';
+import { SimpleChange, EventEmitter, OnInit, OnChanges, ElementRef } from '@angular/core';
 export declare class BaiduMap implements OnInit, OnChanges {
     private el;
     ak: string;
     options: MapOptions;
     offlineOpts: OfflineOptions;
+    onMapLoaded: EventEmitter<{}>;
     map: any;
     offlineWords: string;
     previousMarkers: PreviousMarker[];

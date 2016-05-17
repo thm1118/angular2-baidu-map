@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var BaiduMap = (function () {
     function BaiduMap(el) {
         this.el = el;
+        this.onMapLoaded = new core_1.EventEmitter();
         this.previousMarkers = [];
     }
     BaiduMap.prototype.ngOnInit = function () {
@@ -32,6 +33,7 @@ var BaiduMap = (function () {
     BaiduMap.prototype._draw = function () {
         var options = Object.assign({}, defaultOpts, this.options);
         this.map = createInstance(options, this.el.nativeElement);
+        this.onMapLoaded.emit(this.map);
         redrawMarkers(this.map, this.previousMarkers, options);
     };
     __decorate([
@@ -46,6 +48,10 @@ var BaiduMap = (function () {
         core_1.Input('offline'), 
         __metadata('design:type', Object)
     ], BaiduMap.prototype, "offlineOpts", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], BaiduMap.prototype, "onMapLoaded", void 0);
     BaiduMap = __decorate([
         core_1.Component({
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,

@@ -24,7 +24,7 @@ import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
     selector: 'map-presentation',
     template: `
         <h1>Test Baidu-Map<h1>
-        <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts"></baidu-map>
+        <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)"></baidu-map>
     `,
     styles: [`
         baidu-map{
@@ -59,6 +59,10 @@ export class MainApp implements OnInit {
             retryInterval: 5000,
             txt: 'NO-NETWORK'
         };
+    }
+
+    loadMap(e) {
+        console.log(e);//e here is the instance of BMap.Map
     }
 
 }
