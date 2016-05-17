@@ -1,14 +1,14 @@
 'use strict';
 
-require.ensure(['splash-screen/splash.min.css', 'splash-screen'], function(require) {
-    (<any>require('splash-screen/splash.min.css')).use();
-    (<any>require('splash-screen')).enable('circular');
+require.ensure(['splash-screen/dist/splash.min.css', 'splash-screen'], function(require) {
+    (<any>require('splash-screen/dist/splash.min.css')).use();
+    (<any>require('splash-screen')).Splash.enable('circular');
 });
 
 require.ensure(['../less/main.less', './main'], function(require) {
 
     require('../less/main.less');
 
-    var App = (<any>require('./main'));
+    var App = (<any>require('./main')).default;
     (new App()).run();
 });

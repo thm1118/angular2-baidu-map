@@ -4,7 +4,7 @@ import 'zone.js/dist/zone';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {MainApp} from './map.app';
 import {enableProdMode} from '@angular/core';
-import Splash = require('splash-screen');
+import {Splash} from 'splash-screen';
 
 class App {
 
@@ -15,7 +15,7 @@ class App {
     destroySplash(): void {
         var _this = this;
         Splash.destroy();
-        (<any>require('splash-screen/splash.min.css')).unuse();
+        (<any>require('splash-screen/dist/splash.min.css')).unuse();
         setTimeout(function() {
             if (Splash.isRunning()) {
                 _this.destroySplash();
@@ -33,4 +33,4 @@ class App {
     }
 }
 
-export = App;
+export default App;
