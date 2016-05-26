@@ -24,7 +24,7 @@ import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
     selector: 'map-presentation',
     template: `
         <h1>Test Baidu-Map<h1>
-        <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)"></baidu-map>
+        <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)"></baidu-map>
     `,
     styles: [`
         baidu-map{
@@ -61,8 +61,12 @@ export class MainApp implements OnInit {
         };
     }
 
-    loadMap(e) {
+    loadMap(e: any) {
         console.log(e);//e here is the instance of BMap.Map
+    }
+
+    clickMarker(marker: any){
+        console.log('The clicked marker is', marker);
     }
 
 }
