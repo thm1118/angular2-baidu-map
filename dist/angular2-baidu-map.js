@@ -148,6 +148,7 @@ var createMarker = function (marker, pt) {
 };
 var redrawMarkers = function (map, previousMarkers, opts) {
     var BMap = window['BMap'];
+    var self = this;
     previousMarkers.forEach(function (_a) {
         var marker = _a.marker, listeners = _a.listeners;
         listeners.forEach(function (listener) { marker.removeEventListener('click', listener); });
@@ -158,13 +159,12 @@ var redrawMarkers = function (map, previousMarkers, opts) {
         return;
     }
     opts.markers.forEach(function (marker) {
-        var _this = this;
         var marker2 = createMarker(marker, new BMap.Point(marker.longitude, marker.latitude));
         map.addOverlay(marker2);
         var previousMarker = { marker: marker2, listeners: [] };
         previousMarkers.push(previousMarker);
         var onMarkerClickedListener = function () {
-            _this.onMarkerClicked.emit(marker2);
+            self.onMarkerClicked.emit(marker2);
         };
         marker2.addEventListener('click', onMarkerClickedListener);
         previousMarker.listeners.push(onMarkerClickedListener);

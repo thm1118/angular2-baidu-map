@@ -200,6 +200,7 @@ const createMarker = function(marker: MarkerOptions, pt: any) {
 
 const redrawMarkers = function(map: any, previousMarkers: PreviousMarker[], opts: MapOptions) {
     var BMap: any = (<any>window)['BMap'];
+    var self = this;
 
     previousMarkers.forEach(function({marker, listeners}) {
         listeners.forEach(listener => { marker.removeEventListener('click', listener); });
@@ -223,7 +224,7 @@ const redrawMarkers = function(map: any, previousMarkers: PreviousMarker[], opts
 
 
         let onMarkerClickedListener = () => {
-            this.onMarkerClicked.emit(marker2);
+            self.onMarkerClicked.emit(marker2);
         };
         marker2.addEventListener('click', onMarkerClickedListener);
         previousMarker.listeners.push(onMarkerClickedListener);
