@@ -5,6 +5,7 @@ export declare class BaiduMap implements OnInit, OnChanges {
     options: MapOptions;
     offlineOpts: OfflineOptions;
     onMapLoaded: EventEmitter<{}>;
+    onMarkerClicked: EventEmitter<{}>;
     map: any;
     offlineWords: string;
     previousMarkers: PreviousMarker[];
@@ -35,7 +36,7 @@ export interface OfflineOptions {
 }
 export interface PreviousMarker {
     marker: any;
-    listener: Function;
+    listeners: Function[];
 }
 export interface MarkerOptions {
     longitude: number;

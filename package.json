@@ -1,6 +1,6 @@
 {
   "name": "angular2-baidu-map",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Angular2 component for Baidu map",
   "main": "./dist/angular2-baidu-map.js",
   "typings": "./dist/angular2-baidu-map.d.ts",
@@ -36,10 +36,6 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
-    "@angular/common": "2.0.0-rc.1",
-    "@angular/core": "2.0.0-rc.1",
-    "rxjs": "5.0.0-beta.6",
-    "zone.js": "^0.6.12",
     "tsd": "^0.6.5",
     "typescript": "^1.8.10"
   }

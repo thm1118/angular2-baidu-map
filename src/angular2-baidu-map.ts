@@ -30,6 +30,7 @@ export class BaiduMap implements OnInit, OnChanges {
     @Input() options: MapOptions;
     @Input('offline') offlineOpts: OfflineOptions;
     @Output() onMapLoaded = new EventEmitter();
+    @Output() onMarkerClicked = new EventEmitter();
 
     map: any;
     offlineWords: string;
@@ -105,7 +106,7 @@ export interface OfflineOptions {
 
 export interface PreviousMarker {
     marker: any;
-    listener: Function;
+    listeners: Function[];
 }
 
 export interface MarkerOptions {
@@ -200,8 +201,8 @@ const createMarker = function(marker: MarkerOptions, pt: any) {
 const redrawMarkers = function(map: any, previousMarkers: PreviousMarker[], opts: MapOptions) {
     var BMap: any = (<any>window)['BMap'];
 
-    previousMarkers.forEach(function({marker, listener}) {
-        marker.removeEventListener('click', listener);
+    previousMarkers.forEach(function({marker, listeners}) {
+        listeners.forEach(listener => { marker.removeEventListener('click', listener); });
         map.removeOverlay(marker);
     });
 
@@ -217,8 +218,15 @@ const redrawMarkers = function(map: any, previousMarkers: PreviousMarker[], opts
 
         // add marker to the map
         map.addOverlay(marker2);
-        let previousMarker: PreviousMarker = { marker: marker2, listener: null };
+        let previousMarker: PreviousMarker = { marker: marker2, listeners: [] };
         previousMarkers.push(previousMarker);
+
+
+        let onMarkerClickedListener = () => {
+            this.onMarkerClicked.emit(marker2);
+        };
+        marker2.addEventListener('click', onMarkerClickedListener);
+        previousMarker.listeners.push(onMarkerClickedListener);
 
         if (!marker.title && !marker.content) {
             return;
@@ -227,10 +235,11 @@ const redrawMarkers = function(map: any, previousMarkers: PreviousMarker[], opts
         let infoWindow2 = new BMap.InfoWindow(msg, {
             enableMessage: !!marker.enableMessage
         });
-        previousMarker.listener = function() {
+        let openInfoWindowListener = function() {
             this.openInfoWindow(infoWindow2);
         };
-        marker2.addEventListener('click', previousMarker.listener);
+        previousMarker.listeners.push(openInfoWindowListener);
+        marker2.addEventListener('click', openInfoWindowListener);
     });
 };
 
