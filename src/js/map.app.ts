@@ -80,4 +80,8 @@ export class MainApp implements OnInit, AfterContentInit {
         console.log('The map instance is created', map);
     }
 
+    clickMarker(marker: any) {
+        console.log('The clicked marker is', marker);
+    }
+
 }
