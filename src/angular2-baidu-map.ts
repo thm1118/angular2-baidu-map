@@ -68,6 +68,7 @@ const defaultOpts: MapDefaultOptions = {
     scaleCtrl: true,
     overviewCtrl: true,
     enableScrollWheelZoom: true,
+    geolocationCtrl: false,
     zoom: 10
 }
 
@@ -81,7 +82,33 @@ export interface MapDefaultOptions {
     scaleCtrl?: boolean;
     overviewCtrl?: boolean;
     enableScrollWheelZoom?: boolean;
+    geolocationCtrl?: boolean | GeolocationControlOptions;
     zoom?: number;
+}
+
+export enum ControlAnchor {
+    BMAP_ANCHOR_TOP_LEFT = 0,
+    BMAP_ANCHOR_TOP_RIGHT = 1,
+    BMAP_ANCHOR_BOTTOM_LEFT = 2,
+    BMAP_ANCHOR_BOTTOM_RIGHT = 3
+}
+
+export interface Size {
+    width: number;
+    height: number;
+}
+
+export interface Icon {
+    url: string;
+    size: Size;
+}
+
+export interface GeolocationControlOptions {
+    anchor?: ControlAnchor;
+    offset?: Size;
+    showAddressBar?: boolean;
+    enableAutoLocation?: boolean;
+    locationIcon?: Icon;
 }
 
 export interface MapOptions extends MapDefaultOptions {
@@ -184,6 +211,29 @@ const createInstance = function(opts: MapOptions, element: any) {
     if (opts.enableScrollWheelZoom) {
         //enable scroll wheel zoom
         map.enableScrollWheelZoom();
+    }
+    if (opts.geolocationCtrl) {
+        //enable GeolocationControl
+        var geoOpts: any = {};
+        if (typeof opts.geolocationCtrl !== 'boolean') {
+            var ctrl = <GeolocationControlOptions>opts.geolocationCtrl;
+            if (ctrl.anchor) {
+                geoOpts.anchor = ctrl.anchor;
+            }
+            if (ctrl.offset) {
+                geoOpts.offset = new BMap.Size(ctrl.offset.width, ctrl.offset.height);
+            }
+            if (typeof geoOpts.showAddressBar === 'boolean') {
+                geoOpts.showAddressBar = ctrl.showAddressBar;
+            }
+            if (typeof geoOpts.enableAutoLocation === 'boolean') {
+                geoOpts.enableAutoLocation = ctrl.enableAutoLocation;
+            }
+            if (geoOpts.locationIcon) {
+                geoOpts.locationIcon = new BMap.Size(ctrl.locationIcon.url, new BMap.Size(ctrl.locationIcon.size.width, ctrl.locationIcon.size.height));
+            }
+        }
+        map.addControl(new BMap.GeolocationControl(geoOpts));
     }
     return map;
 };

@@ -9,5 +9,5 @@ npm-debug.log
 
 src/**/*.js
 
-#tsd
+#typings
 typings/

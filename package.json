@@ -1,12 +1,12 @@
 {
   "name": "angular2-baidu-map",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Angular2 component for Baidu map",
   "main": "./dist/angular2-baidu-map.js",
   "typings": "./dist/angular2-baidu-map.d.ts",
   "scripts": {
     "prepublish": "npm run dist",
-    "preinstall": "tsd install",
+    "preinstall": "typings install",
     "dist": "rm -rf dist; tsc"
   },
   "files": [
@@ -36,7 +36,7 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
-    "tsd": "^0.6.5",
+    "typings": "^1.0.4",
     "typescript": "^1.8.10"
   }
 }

@@ -74,12 +74,20 @@ var defaultOpts = {
     scaleCtrl: true,
     overviewCtrl: true,
     enableScrollWheelZoom: true,
+    geolocationCtrl: false,
     zoom: 10
 };
 var defaultOfflineOpts = {
     retryInterval: 30000,
     txt: 'OFFLINE'
 };
+(function (ControlAnchor) {
+    ControlAnchor[ControlAnchor["BMAP_ANCHOR_TOP_LEFT"] = 0] = "BMAP_ANCHOR_TOP_LEFT";
+    ControlAnchor[ControlAnchor["BMAP_ANCHOR_TOP_RIGHT"] = 1] = "BMAP_ANCHOR_TOP_RIGHT";
+    ControlAnchor[ControlAnchor["BMAP_ANCHOR_BOTTOM_LEFT"] = 2] = "BMAP_ANCHOR_BOTTOM_LEFT";
+    ControlAnchor[ControlAnchor["BMAP_ANCHOR_BOTTOM_RIGHT"] = 3] = "BMAP_ANCHOR_BOTTOM_RIGHT";
+})(exports.ControlAnchor || (exports.ControlAnchor = {}));
+var ControlAnchor = exports.ControlAnchor;
 var MapStatus;
 (function (MapStatus) {
     MapStatus[MapStatus["LOADING"] = 0] = "LOADING";
@@ -135,6 +143,28 @@ var createInstance = function (opts, element) {
     }
     if (opts.enableScrollWheelZoom) {
         map.enableScrollWheelZoom();
+    }
+    if (opts.geolocationCtrl) {
+        var geoOpts = {};
+        if (typeof opts.geolocationCtrl !== 'boolean') {
+            var ctrl = opts.geolocationCtrl;
+            if (ctrl.anchor) {
+                geoOpts.anchor = ctrl.anchor;
+            }
+            if (ctrl.offset) {
+                geoOpts.offset = new BMap.Size(ctrl.offset.width, ctrl.offset.height);
+            }
+            if (typeof geoOpts.showAddressBar === 'boolean') {
+                geoOpts.showAddressBar = ctrl.showAddressBar;
+            }
+            if (typeof geoOpts.enableAutoLocation === 'boolean') {
+                geoOpts.enableAutoLocation = ctrl.enableAutoLocation;
+            }
+            if (geoOpts.locationIcon) {
+                geoOpts.locationIcon = new BMap.Size(ctrl.locationIcon.url, new BMap.Size(ctrl.locationIcon.size.width, ctrl.locationIcon.size.height));
+            }
+        }
+        map.addControl(new BMap.GeolocationControl(geoOpts));
     }
     return map;
 };
