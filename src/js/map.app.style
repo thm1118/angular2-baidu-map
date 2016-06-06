@@ -45,6 +45,13 @@ pre code{
     border-radius: 2px;
 }
 
+.enum-type{
+    color: #fff;
+    background-color: rgb(189, 63, 66);
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
 .array-type{
     color: #fff;
     background-color: #F90;

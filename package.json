@@ -3,9 +3,9 @@
   "version": "2.0.0",
   "description": "Angular2 component for Baidu map",
   "scripts": {
-    "preinstall": "tsd install",
-    "build": "rm -rf dist && webpack",
-    "dist": "npm run build && mv dist/index.html index.html"
+    "preinstall": "typings install",
+    "start": "webpack-dev-server --history-api-fallback --hot --inline",
+    "dist": "rm -rf dist/; webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -41,14 +41,15 @@
     "autoprefixer": "^6.3.6",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
-    "html-webpack-plugin": "^2.17.0",
-    "less": "^2.7.0",
+    "html-webpack-plugin": "^2.19.0",
+    "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",
     "typescript": "^1.8.10",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }

@@ -45,7 +45,7 @@
 
     <pre class="line-numbers"><code class="language-javascript"><!--
     -->import {Component, OnInit} from '@angular/core';
-import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
+import {BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
 
 @Component({
     selector: 'map-presentation',
@@ -79,7 +79,10 @@ export class MainApp implements OnInit {
                 latitude: 31.245554,
                 title: 'Where',
                 content: 'Put description here'
-            }]
+            }],
+            geolocationCtrl: {
+                anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
+            }
         };
 
         this.offlineOpts = {
@@ -253,6 +256,28 @@ export class MainApp implements OnInit {
           </tr>
 
           <tr>
+            <td>geolocationCtrl</td>
+            <td class="hide-on-small-only"><span class="object-type">GeolocationControlOptions || Boolean </span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>Add GeolocationControl to the map</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
+-->{
+    anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT,
+    offset: { width: 100, height: 200},
+    showAddressBar: true,
+    enableAutoLocation: true,
+    locationIcon: {
+        url: 'http://xxx/url.png',
+        size: {
+            width: 100,
+            height: 100
+        }
+    }
+}<!--
+              --></code></pre></td>
+          </tr>
+
+          <tr>
             <td>markers</td>
             <td class="hide-on-small-only"><span class="array-type">Array</span></td>
             <td class="hide-on-small-only">No</td>
@@ -300,6 +325,63 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only">No</td>
             <td>text to be displayed while no-network available. "OFFLINE" by default</td>
             <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">NO-NETWORK</code></pre></td>
+          </tr>
+        </tbody>
+    </table>
+
+    <h5>GeolocationControlOptions</h5>
+    <br/>
+
+    <table class="bordered striped hoverable">
+        <thead>
+          <tr>
+              <th>Param</th>
+              <th class="hide-on-small-only">Type</th>
+              <th class="hide-on-small-only">Required</th>
+              <th >Description</th>
+              <th class="hide-on-small-only">Example</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>anchor</td>
+            <td class="hide-on-small-only"><span class="enum-type">ControlAnchor</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>Where to place the GeoLocaltionControl</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">ControlAnchor.BMAP_ANCHOR_TOP_LEFT</code></pre></td>
+          </tr>
+
+          <tr>
+            <td>offset</td>
+            <td class="hide-on-small-only"><span class="object-type">Size</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>Horizontal offset of the GeoLocaltionControl</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ width: 100, height: 100}</code></pre></td>
+          </tr>
+
+          <tr>
+            <td>showAddressBar</td>
+            <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>Whether to display the control panel</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">true</code></pre></td>
+          </tr>
+
+          <tr>
+            <td>enableAutoLocation</td>
+            <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>Whether to positioning while map added</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">true</code></pre></td>
+          </tr>
+
+          <tr>
+            <td>locationIcon</td>
+            <td class="hide-on-small-only"><span class="object-type">Icon</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>Customize the icon</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ url: 'http://wwww/xx.png', size: { width: 50, height: 50} }</code></pre></td>
           </tr>
         </tbody>
     </table>

@@ -8,12 +8,11 @@ module.exports = {
     entry: {
         index: './src/js/index.ts'
     },
-    devtool: 'source-map',
     output: {
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname, 'dist'),
         filename: '[hash].[name].bundle.js',
         chunkFilename: '[hash].[id].bundle.js',
-        publicPath: '/'
+        publicPath: 'dist/'
     },
     module: {
         loaders: [
@@ -65,7 +64,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin('[hash].common.bundle.js'),
         new HtmlWebpackPlugin({
             title: 'angular2-baidu-map',
-            filename: 'index.html',
+            filename: '../index.html',
             inject: 'body',
             template: 'src/index.ejs',
             hash: false,

@@ -1,7 +1,7 @@
 'use strict';
 
 import {Component, Input, OnInit, AfterContentInit} from '@angular/core';
-import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
+import {BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
 
 var tpl = <string>require('./map.app.tpl');
 var style = <string>require('./map.app.style');
@@ -47,7 +47,10 @@ export class MainApp implements OnInit, AfterContentInit {
         this.opts = {
             center: center1,
             zoom: 17,
-            markers: markers1
+            markers: markers1,
+            geolocationCtrl: {
+                anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
+            }
         };
 
         this.offlineOpts = {
