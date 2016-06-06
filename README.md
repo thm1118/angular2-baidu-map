@@ -18,7 +18,7 @@ npm install angular2-baidu-map
 
 ```javascript
 import {Component, OnInit} from '@angular/core';
-import {BaiduMap, OfflineOptions} from 'angular2-baidu-map';
+import {BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
 
 @Component({
     selector: 'map-presentation',
@@ -52,7 +52,10 @@ export class MainApp implements OnInit {
                 latitude: 31.245554,
                 title: 'Where',
                 content: 'Put description here'
-            }]
+            }],
+            geolocationCtrl: {
+                anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
+            }
         };
 
         this.offlineOpts = {
