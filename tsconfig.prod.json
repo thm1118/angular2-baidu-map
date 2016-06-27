@@ -8,12 +8,14 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": false,
-        "declaration": false
+        "declaration": true,
+        "outDir": "./"
     },
     "buildOnSave": false,
     "compileOnSave": false,
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "demo"
     ],
     "atom": {
         "rewriteTsconfig": true,

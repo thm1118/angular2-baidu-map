@@ -1,0 +1,72 @@
+baidu-map{
+    width: 500px;
+    height: 400px;
+    display: block;
+    margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+    baidu-map{
+        width: 100%;
+    }
+}
+
+code{
+    font-style: italic;
+}
+
+pre code{
+    font-style: normal;
+}
+
+.string-type{
+    color: #fff;
+    background-color: #3a87ad;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+.boolean-type{
+    color: #fff;
+    background-color: rgb(18, 131, 39);
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+.object-type{
+    color: #fff;
+    background-color: #999;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.number-type{
+    color: #fff;
+    background-color: rgb(189, 63, 66);
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.enum-type{
+    color: #fff;
+    background-color: rgb(189, 63, 66);
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.array-type{
+    color: #fff;
+    background-color: #F90;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.expression-type{
+    color: #fff;
+    background-color: purple;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.footer{
+    text-align: center;
+    margin: 30px 0 20px 0;
+}
