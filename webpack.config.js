@@ -7,7 +7,6 @@ module.exports = {
     entry: {
         index: './demo/js/index.ts'
     },
-    devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: '[hash].[name].bundle.js',
