@@ -9,7 +9,7 @@ webpackJsonp([0,3],[
 	});
 	__webpack_require__.e/* nsure */(2, function (require) {
 	    __webpack_require__(6).use();
-	    var App = __webpack_require__(35).default;
+	    var App = __webpack_require__(36).default;
 	    (new App()).run();
 	});
 
