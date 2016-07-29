@@ -1,7 +1,7 @@
 'use strict';
 
-import {Component, Input, OnInit, AfterContentInit} from '@angular/core';
-import {BaiduMap, OfflineOptions, ControlAnchor, NavigationControlType} from '../../';
+import { Component, Input, OnInit, AfterContentInit } from '@angular/core';
+import { BaiduMap, OfflineOptions, ControlAnchor, NavigationControlType } from '../../';
 
 var tpl = <string>require('./demo.app.tpl');
 var style = <string>require('./demo.app.style');
@@ -43,6 +43,7 @@ export class MainApp implements OnInit, AfterContentInit {
     offlineOpts: OfflineOptions;
     privousCenter: Object = center1;
     privousMarkers: Object[] = markers1;
+    display: boolean = true;
 
     ngOnInit() {
         this.opts = {
@@ -95,6 +96,10 @@ export class MainApp implements OnInit, AfterContentInit {
 
     clickMarker(marker: any) {
         console.log('The clicked marker is', marker);
+    }
+
+    toggleDisplay(e: MouseEvent) {
+        this.display = !this.display;
     }
 
 }

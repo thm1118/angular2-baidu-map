@@ -12,12 +12,13 @@
 
     <h4>Demonstration</h4>
     <br/>
-    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)"></baidu-map>
+    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)" *ngIf="display"></baidu-map>
     <br/>
     <div class="center-align">
         <a class="btn-floating blue" (click)="updateCoordinate($event)"><i class="icon-globe"></i></a>
         <a class="btn-floating blue" (click)="updateMarker($event)"><i class="icon-location"></i></a>
         <a class="btn-floating blue" (click)="updateZoom($event)"><i class="icon-search"></i></a>
+        <a class="btn-floating blue" (click)="toggleDisplay($event)"><i class="icon-eye-off"></i></a>
     </div>
     <br/>
 

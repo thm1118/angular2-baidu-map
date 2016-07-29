@@ -1,13 +1,13 @@
-import {Component, SimpleChange, Input, Output, EventEmitter, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef} from '@angular/core';
+import { Component, SimpleChange, Input, Output, EventEmitter, OnInit, OnChanges, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 
-import {MapOptions, OfflineOptions} from './interfaces/Options';
-import {PreviousMarker} from './interfaces/PreviousMarker';
-import {MapStatus} from './enum/MapStatus';
+import { MapOptions, OfflineOptions } from './interfaces/Options';
+import { PreviousMarker } from './interfaces/PreviousMarker';
+import { MapStatus } from './enum/MapStatus';
 
-import {defaultOfflineOpts, defaultOpts} from './defaults';
+import { defaultOfflineOpts, defaultOpts } from './defaults';
 
-import {loader} from './Loader';
-import {reCenter, reZoom, redrawMarkers, createInstance} from './CoreOperations';
+import { loader } from './Loader';
+import { reCenter, reZoom, redrawMarkers, createInstance } from './CoreOperations';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,6 +58,9 @@ export class BaiduMap implements OnInit, OnChanges {
         if (!baiduMap || baiduMap.status !== MapStatus.LOADED) {
             return;
         }
+        if (changes['options'].isFirstChange() && !this.map) {
+            return;
+        }
         let opts = changes['options'].currentValue;
         reCenter(this.map, opts);
         reZoom(this.map, opts);
@@ -72,13 +75,13 @@ export class BaiduMap implements OnInit, OnChanges {
     }
 }
 
-export {MarkerOptions, MapDefaultOptions, MapOptions, OfflineOptions} from './interfaces/Options';
-export {GeolocationControlOptions} from './controls/GeoControl';
-export {ScaleControlOptions} from './controls/ScaleControl';
-export {OverviewMapControlOptions} from './controls/OverviewMapControl';
-export {NavigationControlOptions} from './controls/NavigationControl';
-export {Icon} from './interfaces/Icon';
-export {Size} from './interfaces/Size';
-export {ControlAnchor} from './enum/ControlAnchor';
+export { MarkerOptions, MapDefaultOptions, MapOptions, OfflineOptions } from './interfaces/Options';
+export { GeolocationControlOptions } from './controls/GeoControl';
+export { ScaleControlOptions } from './controls/ScaleControl';
+export { OverviewMapControlOptions } from './controls/OverviewMapControl';
+export { NavigationControlOptions } from './controls/NavigationControl';
+export { Icon } from './interfaces/Icon';
+export { Size } from './interfaces/Size';
+export { ControlAnchor } from './enum/ControlAnchor';
 export * from './enum/NavigationControlType';
-export {MapStatus} from './enum/MapStatus';
+export { MapStatus } from './enum/MapStatus';

@@ -89,6 +89,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!baiduMap || baiduMap.status !== MapStatus_1.MapStatus.LOADED) {
 	            return;
 	        }
+	        if (changes['options'].isFirstChange() && !this.map) {
+	            return;
+	        }
 	        var opts = changes['options'].currentValue;
 	        CoreOperations_1.reCenter(this.map, opts);
 	        CoreOperations_1.reZoom(this.map, opts);
