@@ -99,6 +99,25 @@ export class MainApp implements OnInit, AfterContentInit {
     }
 
     toggleDisplay(e: MouseEvent) {
+        if (!this.display) {
+            this.opts = {
+                center: center1,
+                zoom: 17,
+                markers: markers1,
+                geolocationCtrl: {
+                    anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
+                },
+                scaleCtrl: {
+                    anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_LEFT
+                },
+                overviewCtrl: {
+                    isOpen: true
+                },
+                navCtrl: {
+                    type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
+                }
+            };
+        }
         this.display = !this.display;
     }
 
