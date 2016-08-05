@@ -60041,6 +60041,25 @@ webpackJsonp([2,1,3],[
 	        console.log('The clicked marker is', marker);
 	    };
 	    MainApp.prototype.toggleDisplay = function (e) {
+	        if (!this.display) {
+	            this.opts = {
+	                center: center1,
+	                zoom: 17,
+	                markers: markers1,
+	                geolocationCtrl: {
+	                    anchor: _1.ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
+	                },
+	                scaleCtrl: {
+	                    anchor: _1.ControlAnchor.BMAP_ANCHOR_BOTTOM_LEFT
+	                },
+	                overviewCtrl: {
+	                    isOpen: true
+	                },
+	                navCtrl: {
+	                    type: _1.NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
+	                }
+	            };
+	        }
 	        this.display = !this.display;
 	    };
 	    MainApp = __decorate([
