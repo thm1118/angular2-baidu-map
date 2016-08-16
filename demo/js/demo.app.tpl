@@ -37,7 +37,7 @@
     <h5 class="title">ES2015</h5>
 
     <pre class="line-numbers"><code class="language-javascript"><!--
-    -->import {BaiduMap} from 'angular2-baidu-map';<!--
+    -->import &#123;BaiduMap} from 'angular2-baidu-map';<!--
     --></code></pre>
     <br/>
 
@@ -45,17 +45,17 @@
     <br/>
 
     <pre class="line-numbers"><code class="language-javascript"><!--
-    -->import {Component, OnInit} from '@angular/core';
-import {BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
+    -->import &#123;Component, OnInit} from '@angular/core';
+import &#123;BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
 
-@Component({
+@Component(&#123;
     selector: 'map-presentation',
     template: `
         &lt;h1&gt;Test Baidu-Map&lt;h1&gt;
         &lt;baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)"&gt;&lt;/baidu-map&gt;
     `,
     styles: [`
-        baidu-map{
+        baidu-map&#123;
             width: 500px;
             height: 400px;
             display: block;
@@ -63,49 +63,49 @@ import {BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
     `],
     directives: [BaiduMap]
 })
-export class MainApp implements OnInit {
+export class MainApp implements OnInit &#123;
 
     opts: any;
     offlineOpts: OfflineOptions;
 
-    ngOnInit() {
-        this.opts = {
-            center: {
+    ngOnInit() &#123;
+        this.opts = &#123;
+            center: &#123;
                 longitude: 121.506191,
                 latitude: 31.245554
             },
             zoom: 17,
-            markers: [{
+            markers: [&#123;
                 longitude: 121.506191,
                 latitude: 31.245554,
                 title: 'Where',
                 content: 'Put description here'
             }],
-            geolocationCtrl: {
+            geolocationCtrl: &#123;
                 anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
             },
-            scaleCtrl: {
+            scaleCtrl: &#123;
                 anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_LEFT
             },
-            overviewCtrl: {
+            overviewCtrl: &#123;
                 isOpen: true
             },
-            navCtrl: {
+            navCtrl: &#123;
                 type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
             }
         };
 
-        this.offlineOpts = {
+        this.offlineOpts = &#123;
             retryInterval: 5000,
             txt: 'NO-NETWORK'
         };
     }
 
-    loadMap(map: any) {
+    loadMap(map: any) &#123;
         console.log('map instance here', map);
     }
 
-    clickMarker(marker: any){
+    clickMarker(marker: any)&#123;
         console.log('The clicked marker is', marker);
     }
 }<!--
@@ -119,7 +119,7 @@ export class MainApp implements OnInit {
     <br/>
 
     <pre class="line-numbers"><code class="language-javascript"><!--
-    -->@Component({
+    -->@Component(&#123;
     selector: 'map-presentation',
     template: `
         &lt;baidu-map ak="put your ak here" [options]="opts"&gt;&lt;/baidu-map&gt;
@@ -128,11 +128,11 @@ export class MainApp implements OnInit {
     styles: [...],
     directives: [BaiduMap]
 })
-export class MainApp implements OnInit {
+export class MainApp implements OnInit &#123;
 
     opts: any;
 
-    ngOnInit() {
+    ngOnInit() &#123;
         ...
     }
 
@@ -141,9 +141,9 @@ export class MainApp implements OnInit {
      * new coordinate once click
      * the button
      */
-    updateCoordinate(e: MouseEvent){
-        this.opts = {
-            center: {
+    updateCoordinate(e: MouseEvent)&#123;
+        this.opts = &#123;
+            center: &#123;
                 longitude: 121.500885,
                 latitude: 31.190032
             }
@@ -218,7 +218,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only">Yes</td>
             <td>the point in geographical coordinates</td>
             <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
--->{
+-->&#123;
     longitude: 121.506191,
     latitude: 31.245554
 }<!--
@@ -271,14 +271,14 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only">No</td>
             <td>Add GeolocationControl to the map</td>
             <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
--->{
+-->&#123;
     anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT,
-    offset: { width: 100, height: 200},
+    offset: &#123; width: 100, height: 200},
     showAddressBar: true,
     enableAutoLocation: true,
-    locationIcon: {
+    locationIcon: &#123;
         url: 'http://xxx/url.png',
-        size: {
+        size: &#123;
             width: 100,
             height: 100
         }
@@ -293,7 +293,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only">No</td>
             <td>marker will be displayed on the map. default is <code>empty</code></td>
             <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript"><!--
--->[{
+-->[&#123;
     longitude: 121.506191,
     latitude: 31.245554,
     title: 'Where',
@@ -461,7 +461,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only"><span class="object-type">Size</span></td>
             <td class="hide-on-small-only">No</td>
             <td>Horizontal offset of the GeoLocaltionControl</td>
-            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ width: 100, height: 100}</code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">&#123; width: 100, height: 100}</code></pre></td>
           </tr>
 
           <tr>
@@ -485,7 +485,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only"><span class="object-type">Icon</span></td>
             <td class="hide-on-small-only">No</td>
             <td>Customize the icon</td>
-            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ url: 'http://wwww/xx.png', size: { width: 50, height: 50} }</code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">&#123; url: 'http://wwww/xx.png', size: &#123; width: 50, height: 50} }</code></pre></td>
           </tr>
         </tbody>
     </table>
@@ -520,7 +520,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only"><span class="object-type">Size</span></td>
             <td class="hide-on-small-only">No</td>
             <td>Horizontal offset of the NavigationControl</td>
-            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ width: 100, height: 100}</code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">&#123; width: 100, height: 100}</code></pre></td>
           </tr>
 
           <tr>
@@ -579,7 +579,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only"><span class="object-type">Size</span></td>
             <td class="hide-on-small-only">No</td>
             <td>Horizontal offset of the OverviewMapControl</td>
-            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ width: 100, height: 100}</code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">&#123; width: 100, height: 100}</code></pre></td>
           </tr>
 
           <tr>
@@ -587,7 +587,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only"><span class="object-type">Size</span></td>
             <td class="hide-on-small-only">No</td>
             <td>Specify size of displayed OverviewMapControl</td>
-            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ width: 100, height: 100 }</code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">&#123; width: 100, height: 100 }</code></pre></td>
           </tr>
 
           <tr>
@@ -630,7 +630,7 @@ export class MainApp implements OnInit {
             <td class="hide-on-small-only"><span class="object-type">Size</span></td>
             <td class="hide-on-small-only">No</td>
             <td>Horizontal offset of the ScaleControl</td>
-            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">{ width: 100, height: 100}</code></pre></td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">&#123; width: 100, height: 100}</code></pre></td>
           </tr>
         </tbody>
     </table>
