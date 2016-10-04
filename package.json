@@ -10,7 +10,7 @@
     "dist": "rm -rf dist && webpack --config webpack.config.prod.js && mv dist/`pwd`/ dist && rm -rf dist/`pwd`",
     "start": "webpack-dev-server --content-base demo/ --hot --inline --debug --devtool source-map --host 0.0.0.0",
     "demo": "rm -rf build && webpack --output-public-path /angular2-baidu-map/",
-    "deploy": "npm run demo && git checkout gh-pages && rm -f * && mv build/* ."
+    "deploy": "npm run demo && git checkout gh-pages && rm -f *.* && mv build/* ."
   },
   "files": [
     "dist/angular2-baidu-map.js",
