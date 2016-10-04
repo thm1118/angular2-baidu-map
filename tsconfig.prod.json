@@ -8,6 +8,7 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": false,
+        "lib": ["es6", "dom"],
         "declaration": true,
         "outDir": "./"
     },
@@ -15,23 +16,8 @@
     "compileOnSave": false,
     "exclude": [
         "node_modules",
-        "demo"
-    ],
-    "atom": {
-        "rewriteTsconfig": true,
-        "formatOnSave": true
-    },
-    "formatCodeOptions": {
-        "indentSize": 4,
-        "tabSize": 4,
-        "convertTabsToSpaces": true,
-        "insertSpaceAfterCommaDelimiter": true,
-        "insertSpaceAfterSemicolonInForStatements": true,
-        "insertSpaceBeforeAndAfterBinaryOperators": true,
-        "insertSpaceAfterKeywordsInControlFlowStatements": true,
-        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
-        "placeOpenBraceOnNewLineForFunctions": false,
-        "placeOpenBraceOnNewLineForControlBlocks": false
-    }
+        "demo",
+        "build",
+        "dist"
+    ]
 }

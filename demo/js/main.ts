@@ -1,10 +1,19 @@
-import 'es6-shim';
 import 'reflect-metadata';
 import 'zone.js/dist/zone';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import { NgModule, enableProdMode }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import {MainApp} from './demo.app';
-import {enableProdMode} from '@angular/core';
 import {Splash} from 'splash-screen';
+
+import { BaiduMap } from '../../dist/angular2-baidu-map';
+
+@NgModule({
+  imports:      [ BrowserModule ],
+  declarations: [ MainApp, BaiduMap ],
+  bootstrap:    [ MainApp ]
+})
+class AppModule { }
 
 class App {
 
@@ -24,7 +33,7 @@ class App {
     }
 
     launch() {
-        bootstrap(MainApp);
+        platformBrowserDynamic().bootstrapModule(AppModule);
     }
 
     run(): void {

@@ -1,7 +1,7 @@
 'use strict';
 
 import { Component, Input, OnInit, AfterContentInit } from '@angular/core';
-import { BaiduMap, OfflineOptions, ControlAnchor, NavigationControlType } from '../../';
+import { OfflineOptions, ControlAnchor, NavigationControlType } from '../../';
 
 var tpl = <string>require('./demo.app.tpl');
 var style = <string>require('./demo.app.style');
@@ -34,8 +34,7 @@ var markers2 = [{
 @Component({
     selector: 'map-presentation',
     template: tpl,
-    styles: [style],
-    directives: [BaiduMap]
+    styles: [style]
 })
 export class MainApp implements OnInit, AfterContentInit {
 
