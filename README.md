@@ -32,8 +32,7 @@ import {BaiduMap, OfflineOptions, ControlAnchor, NavigationControlType} from 'an
             height: 400px;
             display: block;
         }
-    `],
-    directives: [BaiduMap]
+    `]
 })
 export class MainApp implements OnInit {
 
