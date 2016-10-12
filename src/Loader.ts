@@ -3,7 +3,7 @@ import {MapStatus} from './enum/MapStatus';
 import {OfflineOptions} from './interfaces/Options';
 
 export const loader = function(ak: string, offlineOpts: OfflineOptions, callback: Function) {
-    let MAP_URL: string = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit`;
+    let MAP_URL: string = `//api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit&s=${location.protocol === 'https:' ? 1 : 0}`;
 
     let win: any = (<any>window);
 
