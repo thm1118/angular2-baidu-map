@@ -60,8 +60,7 @@ import &#123;BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
             height: 400px;
             display: block;
         }
-    `],
-    directives: [BaiduMap]
+    `]
 })
 export class MainApp implements OnInit &#123;
 
@@ -125,8 +124,7 @@ export class MainApp implements OnInit &#123;
         &lt;baidu-map ak="put your ak here" [options]="opts"&gt;&lt;/baidu-map&gt;
         &lt;button (click)="updateCoordinate($event)"&gt;Update Coordinate&lt;button&gt;
     `,
-    styles: [...],
-    directives: [BaiduMap]
+    styles: [...]
 })
 export class MainApp implements OnInit &#123;
 
