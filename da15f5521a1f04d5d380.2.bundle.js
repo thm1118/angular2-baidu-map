@@ -38590,7 +38590,7 @@ webpackJsonp([2,1,3],[
 		"use strict";
 		var MapStatus_1 = __webpack_require__(2);
 		exports.loader = function (ak, offlineOpts, callback) {
-		    var MAP_URL = "http://api.map.baidu.com/api?v=2.0&ak=" + ak + "&callback=baidumapinit";
+		    var MAP_URL = "//api.map.baidu.com/api?v=2.0&ak=" + ak + "&callback=baidumapinit&s=" + (location.protocol === 'https:' ? 1 : 0);
 		    var win = window;
 		    var baiduMap = win['baiduMap'];
 		    if (baiduMap && baiduMap.status === MapStatus_1.MapStatus.LOADING) {
