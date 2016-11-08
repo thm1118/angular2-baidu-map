@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@angular/core"));
-	else if(typeof define === 'function' && define.amd)
-		define(["@angular/core"], factory);
-	else {
-		var a = typeof exports === 'object' ? factory(require("@angular/core")) : factory(root["@angular/core"]);
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
-return /******/ (function(modules) { // webpackBootstrap
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -146,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+	module.exports = require("@angular/core");
 
 /***/ },
 /* 2 */
@@ -245,12 +236,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	exports.createInstance = function (opts, element) {
 	    var BMap = window['BMap'];
+	    // create map instance
 	    var map = new BMap.Map(element);
+	    // init map, set central location and zoom level
 	    map.centerAndZoom(new BMap.Point(opts.center.longitude, opts.center.latitude), opts.zoom);
 	    NavigationControl_1.setNavigationCtrl(map, opts);
 	    ScaleControl_1.setScaleCtrl(map, opts);
 	    OverviewMapControl_1.setOverviewMapCtrl(map, opts);
 	    if (opts.enableScrollWheelZoom) {
+	        //enable scroll wheel zoom
 	        map.enableScrollWheelZoom();
 	    }
 	    GeoControl_1.setGeoCtrl(map, opts);
@@ -278,6 +272,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    opts.markers.forEach(function (marker) {
 	        var marker2 = exports.createMarker(marker, new BMap.Point(marker.longitude, marker.latitude));
+	        // add marker to the map
 	        map.addOverlay(marker2);
 	        var previousMarker = { marker: marker2, listeners: [] };
 	        previousMarkers.push(previousMarker);
@@ -312,6 +307,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	exports.setGeoCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
+	    //enable GeolocationControl
 	    var geoOpts = {};
 	    if (typeof opts.geolocationCtrl !== 'boolean') {
 	        var ctrl = opts.geolocationCtrl;
@@ -345,6 +341,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	exports.setScaleCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
+	    //enable ScaleControl
 	    var scaleOpts = {};
 	    if (typeof opts.scaleCtrl !== 'boolean') {
 	        var ctrl = opts.scaleCtrl;
@@ -369,6 +366,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	exports.setOverviewMapCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
+	    //enable OverviewMapControl
 	    var overviewOpts = {};
 	    if (typeof opts.overviewCtrl !== 'boolean') {
 	        var ctrl = opts.overviewCtrl;
@@ -400,6 +398,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	exports.setNavigationCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
+	    //enable NavigationControl
 	    var navOpts = {};
 	    if (typeof opts.navCtrl !== 'boolean') {
 	        var ctrl = opts.navCtrl;
@@ -456,6 +455,4 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }
-/******/ ])
-});
-;
+/******/ ]);

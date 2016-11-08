@@ -1,7 +1,7 @@
 'use strict';
 
 import { Component, Input, OnInit, AfterContentInit } from '@angular/core';
-import { OfflineOptions, ControlAnchor, NavigationControlType } from '../../';
+import { OfflineOptions, ControlAnchor, NavigationControlType } from '../../src';
 
 var tpl = <string>require('./demo.app.tpl');
 var style = <string>require('./demo.app.style');

@@ -1,23 +1,25 @@
 {
     "compilerOptions": {
-        "noImplicitAny": true,
-        "removeComments": true,
-        "module": "commonjs",
         "target": "es5",
-        "moduleResolution" : "node",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "sourceMap": false,
+        "removeComments": false,
+        "noImplicitAny": false,
         "lib": ["es6", "dom"],
         "declaration": true,
-        "outDir": "./"
+        "outDir": "./",
+        "types": [
+        ]
     },
     "buildOnSave": false,
     "compileOnSave": false,
-    "exclude": [
-        "node_modules",
-        "demo",
-        "build",
-        "dist"
+    "include": [
+        "dist/**/*",
+        "src/**/*",
+        "Object.t.ts",
+        "require.d.ts"
     ]
 }

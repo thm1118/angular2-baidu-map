@@ -9,14 +9,16 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'angular2-baidu-map.min.js',
-        libraryTarget: 'umd'
+        library: true,
+        libraryTarget: 'commonjs2'
     },
+    target: 'node',
     module: {
         loaders: [
             {
                 test: /\.ts$/,
                 loader: 'ts',
-                exclude: /(typings)/
+                exclude: /(node_modules)/
             }
         ]
     },
