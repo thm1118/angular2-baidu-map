@@ -12,6 +12,7 @@
     "buildOnSave": false,
     "compileOnSave": false,
     "include": [
+        "demo/**/*",
         "dist/**/*",
         "src/**/*",
         "Object.t.ts",
