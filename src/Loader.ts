@@ -2,8 +2,9 @@ import {MapObjct} from './interfaces/MapObjct';
 import {MapStatus} from './enum/MapStatus';
 import {OfflineOptions} from './interfaces/Options';
 
-export const loader = function(ak: string, offlineOpts: OfflineOptions, callback: Function) {
-    let MAP_URL: string = `//api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit&s=${location.protocol === 'https:' ? 1 : 0}`;
+export const loader = function(ak: string, offlineOpts: OfflineOptions, callback: Function, protocol: string) {
+    let realProtocol = protocol || location.protocol;
+    let MAP_URL: string = `${realProtocol}//api.map.baidu.com/api?v=2.0&ak=${ak}&callback=baidumapinit&s=${realProtocol === 'https:' ? 1 : 0}`;
 
     let win: any = (<any>window);
 

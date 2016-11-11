@@ -173,6 +173,11 @@ export class MainApp implements OnInit &#123;
             <td>ak that should be applied in <a href="http://lbsyun.baidu.com/apiconsole/key" target="_blank">Baidu Developer</a></td>
           </tr>
           <tr>
+            <td>protocol</td>
+            <td><span class="string-type">string</span></td>
+            <td>protocol that you want to specify how Baidu-Map loaded. Available choices: <code>http:</code>, <code>https:</code></td>
+          </tr>
+          <tr>
               <td>options</td>
               <td><span class="object-type">MapOptions</span></td>
               <td>options used to draw the map</td>

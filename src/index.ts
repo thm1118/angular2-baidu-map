@@ -36,6 +36,7 @@ import { reCenter, reZoom, redrawMarkers, createInstance } from './CoreOperation
 export class BaiduMap implements OnInit, OnChanges {
 
     @Input() ak: string;
+    @Input() protocol: string;
     @Input() options: MapOptions;
     @Input('offline') offlineOpts: OfflineOptions;
     @Output() onMapLoaded = new EventEmitter();
@@ -50,7 +51,7 @@ export class BaiduMap implements OnInit, OnChanges {
     ngOnInit() {
         let offlineOpts: OfflineOptions = Object.assign({}, defaultOfflineOpts, this.offlineOpts);
         this.offlineWords = offlineOpts.txt;
-        loader(this.ak, offlineOpts, this._draw.bind(this));
+        loader(this.ak, offlineOpts, this._draw.bind(this), this.protocol);
     }
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
