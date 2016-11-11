@@ -73,7 +73,7 @@ module.exports =
 	    BaiduMap.prototype.ngOnInit = function () {
 	        var offlineOpts = Object.assign({}, defaults_1.defaultOfflineOpts, this.offlineOpts);
 	        this.offlineWords = offlineOpts.txt;
-	        Loader_1.loader(this.ak, offlineOpts, this._draw.bind(this));
+	        Loader_1.loader(this.ak, offlineOpts, this._draw.bind(this), this.protocol);
 	    };
 	    BaiduMap.prototype.ngOnChanges = function (changes) {
 	        var baiduMap = window['baiduMap'];
@@ -98,6 +98,10 @@ module.exports =
 	        core_1.Input(), 
 	        __metadata('design:type', String)
 	    ], BaiduMap.prototype, "ak", void 0);
+	    __decorate([
+	        core_1.Input(), 
+	        __metadata('design:type', String)
+	    ], BaiduMap.prototype, "protocol", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
@@ -177,8 +181,9 @@ module.exports =
 
 	"use strict";
 	var MapStatus_1 = __webpack_require__(2);
-	exports.loader = function (ak, offlineOpts, callback) {
-	    var MAP_URL = "//api.map.baidu.com/api?v=2.0&ak=" + ak + "&callback=baidumapinit&s=" + (location.protocol === 'https:' ? 1 : 0);
+	exports.loader = function (ak, offlineOpts, callback, protocol) {
+	    var realProtocol = protocol || location.protocol;
+	    var MAP_URL = realProtocol + "//api.map.baidu.com/api?v=2.0&ak=" + ak + "&callback=baidumapinit&s=" + (realProtocol === 'https:' ? 1 : 0);
 	    var win = window;
 	    var baiduMap = win['baiduMap'];
 	    if (baiduMap && baiduMap.status === MapStatus_1.MapStatus.LOADING) {

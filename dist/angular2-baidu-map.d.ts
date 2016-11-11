@@ -8,6 +8,7 @@ declare module 'angular2-baidu-map' {
     import { PreviousMarker } from 'angular2-baidu-map/interfaces/PreviousMarker';
     export class BaiduMap implements OnInit, OnChanges {
         ak: string;
+        protocol: string;
         options: MapOptions;
         offlineOpts: OfflineOptions;
         onMapLoaded: EventEmitter<{}>;
