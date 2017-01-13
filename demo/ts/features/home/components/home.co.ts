@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MapOptions } from '../../../../../src/';
+import { MapOptions, Point, MarkerOptions } from '../../../../../src/';
 
 @Component({
     selector: 'home',
     template: `
     <h1 class="page-title">angular2-baidu-map</h1>
-    <baidu-map [options]="opts">fucking you</baidu-map>
+    <baidu-map [options]="opts">
+        <marker [point]="point" [options]="markerOpts"></marker>
+    </baidu-map>
     <github></github>
     `,
     styles: [
@@ -32,15 +34,23 @@ import { MapOptions } from '../../../../../src/';
         `
     ]
 })
-export class Home implements OnInit {
+export class Home {
     opts: MapOptions;
-    ngOnInit() {
+    point: Point;
+    markerOpts: MarkerOptions;
+
+    constructor() {
         this.opts = {
             centerAndZoom: {
                 lng: 121.506191,
                 lat: 31.245554,
                 zoom: 15
             }
+        };
+
+        this.point = {
+            lng: 121.506191,
+            lat: 31.245554
         };
     }
 }

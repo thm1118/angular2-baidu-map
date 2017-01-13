@@ -9,9 +9,7 @@ import { Github } from './components/subs/github.co';
 import { BaiduMapModule } from '../../../../src';
 
 @NgModule({
-    imports: [RouterModule.forChild(routes), BaiduMapModule.forRoot({
-        ak: 'gd0GyxGUxSCoAbmdyQBhyhrZ'
-    })],
+    imports: [RouterModule.forChild(routes), BaiduMapModule.forRoot({ ak: 'gd0GyxGUxSCoAbmdyQBhyhrZ' })],
     declarations: [
         Home,
         About,

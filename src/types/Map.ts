@@ -1,4 +1,6 @@
 import { Point } from './Point';
+import { Control } from './Control';
+import { Overlay } from './Overlay';
 
 export interface MapConstructor {
     new (el: HTMLElement | String, opts: MapOptions): Map;
@@ -25,6 +27,12 @@ export interface Map {
 
     disablePinchToZoom(): void;
     enablePinchToZoom(): void;
+
+    addControl(control: Control): void;
+    removeControl(control: Control): void;
+
+    addOverlay(control: Overlay): void;
+    removeOverlay(control: Overlay): void;
 
     setDefaultCursor(cursor: String): void;
     setDraggingCursor(draggingCursor: String): void;

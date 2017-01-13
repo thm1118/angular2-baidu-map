@@ -1,18 +1,15 @@
-import { Inject, Injectable, OpaqueToken } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
-export const LAZY_MAP_API_CONFIG = new OpaqueToken('angular2-baidu-map LAZY_MAP_API_CONFIG');
-
-
-export interface LazyMapAPILoaderConfig {
-    ak?: string;
+export class ScriptLoaderConfig {
+    ak: String = '';
 }
 
 @Injectable()
-export class LazyMapAPILoader {
+export class ScriptLoader {
     private _scriptLoadingPromise: Promise<void>;
-    private _config: LazyMapAPILoaderConfig;
+    private _config: ScriptLoaderConfig;
 
-    constructor( @Inject(LAZY_MAP_API_CONFIG) config: LazyMapAPILoaderConfig) {
+    constructor( @Inject(ScriptLoaderConfig) config: ScriptLoaderConfig) {
         if (!config.ak) {
             throw new Error('ak must be provided');
         }

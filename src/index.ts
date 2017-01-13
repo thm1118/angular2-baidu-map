@@ -1,23 +1,31 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { LAZY_MAP_API_CONFIG, LazyMapAPILoaderConfig } from './providers/mapLoader';
+import { ScriptLoaderConfig, ScriptLoader } from './providers/scriptLoader';
+
 import { BaiduMapComponent } from './components/map.co';
+import { MarkerComponent } from './components/marker.co';
 
 @NgModule({
     declarations: [
-        BaiduMapComponent
+        BaiduMapComponent,
+        MarkerComponent
     ],
-    exports: [BaiduMapComponent]
+    exports: [
+        BaiduMapComponent,
+        MarkerComponent
+    ]
 })
 export class BaiduMapModule {
-    static forRoot(_config?: LazyMapAPILoaderConfig): ModuleWithProviders {
+    static forRoot(_config?: ScriptLoaderConfig): ModuleWithProviders {
         return {
             ngModule: BaiduMapModule,
             providers: [
-                { provide: LAZY_MAP_API_CONFIG, useValue: _config }
-            ],
+                { provide: ScriptLoader, useClass: ScriptLoader },
+                { provide: ScriptLoaderConfig, useValue: _config }
+            ]
         };
     }
 }
 
 export { Map, MapOptions } from './types/Map';
 export * from './types/Point';
+export { MarkerOptions } from './types/Marker';
