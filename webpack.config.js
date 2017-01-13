@@ -1,63 +1,51 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var autoprefixer = require('autoprefixer');
+const {resolve} = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './demo/js/index.ts'
+        polyfills: resolve(__dirname, 'demo', 'ts', 'core', 'ext', 'polyfills.ts'),
+        vendor: resolve(__dirname, 'demo', 'ts', 'core', 'ext', 'vendor.ts'),
+        demo: resolve(__dirname, 'demo', 'ts', 'index.ts')
     },
     output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: '[hash].[name].bundle.js',
-        chunkFilename: '[hash].[id].bundle.js',
+        path: resolve(__dirname, 'build'),
+        filename: '[name].bundle.js',
+        chunkFilename: '[id].bundle.js',
         publicPath: '/'
+    },
+    devtool: '#eval',
+    devServer: {
+        historyApiFallback: false,
+        stats: 'minimal'
+    },
+    resolve: {
+        extensions: ['', '.ts', '.js']
     },
     module: {
         loaders: [
             {
-                test: /\.css$/,
-                loader: 'style/useable!css!postcss'
-            },
-            {
                 test: /\.ts$/,
-                loader: 'ts',
-                exclude: /(typings)/
+                loader: 'awesome-typescript!tslint'
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2)\w*/,
-                loader: 'file'
-            },
-            {
-                test: /(\.tpl|\.style)$/,
-                loader: 'raw'
+                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+                loader: 'file?name=assets/[name].[hash].[ext]'
             }
         ]
     },
-    postcss: function() {
-        return [
-            autoprefixer({browsers: ['last 5 versions']})
-        ];
-    },
-    resolve: {
-        root: [
-            path.resolve(__dirname)
-        ],
-        extensions: [
-            '',
-            '.js',
-            '.ts'
-        ]
-    },
+
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('[hash].common.bundle.js'),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['demo', 'vendor', 'polyfills']
+        }),
+
         new HtmlWebpackPlugin({
-            title: 'angular2-baidu-map',
             filename: 'index.html',
             inject: 'body',
-            template: 'demo/index.ejs',
-            hash: false,
-            favicon: 'demo/img/favicon.ico'
+            template: resolve(__dirname, 'demo', 'index.html'),
+            favicon: resolve(__dirname, 'demo', 'img', 'favicon.ico'),
+            hash: false
         })
     ]
 };

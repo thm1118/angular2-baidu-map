@@ -5,12 +5,5 @@ npm-debug.log
 #mac
 .DS_Store
 
-#js
-
-src/**/*.js
-
-#demo
+#build
 build/
-
-#typings
-typings/
