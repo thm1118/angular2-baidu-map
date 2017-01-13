@@ -38,6 +38,9 @@ export interface Map {
     setDraggingCursor(draggingCursor: String): void;
     setCurrentCity(city: String): void;
     centerAndZoom(center: Point, zoom: Number): void;
+
+    addEventListener(event: String, handler: Function): void;
+    removeEventListener(event: String, handler: Function): void;
 }
 
 export interface MapOptions {

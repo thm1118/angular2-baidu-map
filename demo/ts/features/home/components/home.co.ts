@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MapOptions, Point, MarkerOptions } from '../../../../../src/';
+import { Component } from '@angular/core';
+import { Map, MapOptions, Point, MarkerOptions } from '../../../../../src/';
 
 @Component({
     selector: 'home',
     template: `
     <h1 class="page-title">angular2-baidu-map</h1>
-    <baidu-map [options]="opts">
-        <marker [point]="point" [options]="markerOpts"></marker>
+    <baidu-map [options]="opts" (loaded)="onMapLoad($event)">
+        <marker [point]="point" (clicked)="onClickMarker($event)"></marker>
     </baidu-map>
     <github></github>
     `,
@@ -52,5 +52,13 @@ export class Home {
             lng: 121.506191,
             lat: 31.245554
         };
+    }
+
+    onMapLoad(map: Map) {
+        console.log('map loaded', map);
+    }
+
+    onClickMarker(e: any) {
+        console.log('e', e);
     }
 }
