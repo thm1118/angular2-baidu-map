@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+
 import { isNull } from '../helpers/object';
 import { ScriptLoader } from './scriptLoader';
 import { Map, MapOptions } from '../types/Map';
@@ -6,10 +9,11 @@ import { BMap } from '../types/BMap';
 
 @Injectable()
 export class MapService {
+
     private _map: Promise<Map>;
     private _mapResolver: (value: Map) => void;
 
-    constructor(private _loader: ScriptLoader) {
+    constructor(private _loader: ScriptLoader, private _zone: NgZone) {
         this._map = new Promise<Map>((resolve: () => void) => {
             this._mapResolver = resolve;
         });
@@ -64,6 +68,15 @@ export class MapService {
                 map.centerAndZoom(point, opts.centerAndZoom.zoom);
             });
         }
+    }
+
+
+    createObservable<T>(target: any, event: String): Observable<T> {
+        return Observable.create((observer: Observer<T>) => {
+            target.addEventListener(event, (e: T) => {
+                return this._zone.run(() => observer.next(e));
+            });
+        });
     }
 
     getNativeMap(): Promise<Map> {

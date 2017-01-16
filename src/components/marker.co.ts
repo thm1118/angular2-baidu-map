@@ -20,11 +20,10 @@ export class MarkerComponent implements OnInit, OnDestroy {
     @Output() clicked = new EventEmitter();
 
     marker: Marker;
-    private _observableSubscriptions: Subscription[] = [];
 
-    constructor(private _service: MapService, private _zone: NgZone) {
+    private _subscriber: Subscription;
 
-    }
+    constructor(private _service: MapService) { }
 
     ngOnInit() {
         nullCheck(this.point, 'point is required for <marker>');
@@ -40,8 +39,9 @@ export class MarkerComponent implements OnInit, OnDestroy {
     }
 
     addListener(marker: Marker, map: Map) {
-        const cs = this
-            .createEventObservable(marker)
+        this._subscriber = this
+            ._service
+            .createObservable(marker, 'click')
             .subscribe(e => {
                 this.clicked.emit({
                     e,
@@ -49,16 +49,6 @@ export class MarkerComponent implements OnInit, OnDestroy {
                     map
                 });
             });
-        this._observableSubscriptions.push(cs);
-    }
-
-    createEventObservable<T>(marker: Marker): Observable<T> {
-        return Observable.create((observer: Observer<T>) => {
-            marker.addEventListener('click', (e: T) => {
-                console.log('click', e);
-                return this._zone.run(() => observer.next(e));
-            });
-        });
     }
 
     ngOnDestroy() {
@@ -68,6 +58,6 @@ export class MarkerComponent implements OnInit, OnDestroy {
             .then(map => {
                 map.removeOverlay(this.marker);
             });
-        this._observableSubscriptions.forEach((s) => s.unsubscribe());
+        this._subscriber.unsubscribe();
     }
 }

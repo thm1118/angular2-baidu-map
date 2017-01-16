@@ -1,7 +1,5 @@
-import { NgZone, Component, EventEmitter, ElementRef, OnInit, OnChanges, Input, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, ElementRef, OnInit, OnChanges, Input, Output, SimpleChange } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 
 import { Map, MapOptions } from '../types/Map';
 import { MapService } from '../providers/mapService';
@@ -55,9 +53,9 @@ export class BaiduMapComponent implements OnInit, OnChanges {
     @Output() loaded = new EventEmitter();
     @Output() clicked = new EventEmitter();
 
-    private _observableSubscriptions: Subscription[] = [];
+    _subscriber: Subscription;
 
-    constructor(private _el: ElementRef, private _service: MapService, private _zone: NgZone) { }
+    constructor(private _el: ElementRef, private _service: MapService) { }
 
     ngOnInit() {
         this
@@ -73,19 +71,10 @@ export class BaiduMapComponent implements OnInit, OnChanges {
     }
 
     addListener(map: Map) {
-        const cs = this.createEventObservable(map)
+        this._subscriber = this._service.createObservable(map, 'click')
             .subscribe(e => {
                 this.clicked.emit(e);
             });
-        this._observableSubscriptions.push(cs);
-    }
-
-    createEventObservable<T>(map: Map): Observable<T> {
-        return Observable.create((observer: Observer<T>) => {
-            map.addEventListener('click', (e: T) => {
-                return this._zone.run(() => observer.next(e));
-            });
-        });
     }
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
@@ -94,6 +83,6 @@ export class BaiduMapComponent implements OnInit, OnChanges {
     }
 
     ngOnDestroy() {
-        this._observableSubscriptions.forEach((s) => s.unsubscribe());
+        this._subscriber.unsubscribe();
     }
 }
