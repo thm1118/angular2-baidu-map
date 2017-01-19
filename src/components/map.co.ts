@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Map, MapOptions } from '../types/Map';
 import { MapService } from '../providers/mapService';
+import { ScriptLoader } from '../providers/scriptLoader';
 
 @Component({
     selector: 'baidu-map',
@@ -44,7 +45,7 @@ import { MapService } from '../providers/mapService';
         `
     ],
     providers: [
-        MapService
+        MapService, ScriptLoader
     ]
 })
 export class BaiduMapComponent implements OnInit, OnChanges {

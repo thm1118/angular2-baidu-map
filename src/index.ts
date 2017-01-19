@@ -19,7 +19,6 @@ export class BaiduMapModule {
         return {
             ngModule: BaiduMapModule,
             providers: [
-                { provide: ScriptLoader, useClass: ScriptLoader },
                 { provide: ScriptLoaderConfig, useValue: _config }
             ]
         };

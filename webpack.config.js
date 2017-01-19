@@ -26,7 +26,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.ts$/,
-                loader: 'awesome-typescript!tslint'
+                loader: 'ts!tslint'
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
