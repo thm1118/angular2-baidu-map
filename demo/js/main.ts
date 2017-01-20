@@ -1,4 +1,6 @@
-import 'reflect-metadata';
+import 'core-js/es6';
+import 'core-js/es7/reflect';
+import 'rxjs';
 import 'zone.js/dist/zone';
 import { NgModule, enableProdMode }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
