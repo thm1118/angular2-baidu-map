@@ -20,7 +20,7 @@ export class ScriptLoader {
         if (this._scriptLoadingPromise) {
             return this._scriptLoadingPromise;
         }
-        const MAP_URL = `//api.map.baidu.com/api?v=2.0&ak=${this._config.ak}&callback=baidumapinit&s=${location.protocol === 'https:' ? 1 : 0}`;
+        const MAP_URL = `//api.map.baidu.com/api?v=2.0&ak=${this._config.ak}&callback=baidumapinit&s=${window.location.protocol === 'https:' ? 1 : 0}`;
 
         return this._scriptLoadingPromise = new Promise<void>((resolve, reject) => {
             window['baidumapinit'] = resolve;

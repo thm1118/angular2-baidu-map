@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { ScriptLoaderConfig, ScriptLoader } from './providers/scriptLoader';
+import { ScriptLoaderConfig } from './providers/scriptLoader';
 
 import { BaiduMapComponent } from './components/map.co';
 import { MarkerComponent } from './components/marker.co';

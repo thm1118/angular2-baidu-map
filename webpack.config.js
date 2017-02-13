@@ -20,17 +20,23 @@ module.exports = {
         stats: 'minimal'
     },
     resolve: {
-        extensions: ['', '.ts', '.js']
+        extensions: ['.ts', '.js']
     },
     module: {
-        loaders: [
+        exprContextCritical: false,
+        rules: [
             {
                 test: /\.ts$/,
-                loader: 'ts!tslint'
+                use: ['ts-loader', 'tslint-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file?name=assets/[name].[hash].[ext]'
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[hash].[ext]'
+                    }
+                }]
             }
         ]
     },

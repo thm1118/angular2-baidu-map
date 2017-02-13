@@ -1,6 +1,4 @@
-import { NgZone, Directive, EventEmitter, OnInit, OnDestroy, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+import { Directive, EventEmitter, OnInit, OnDestroy, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { nullCheck } from '../helpers/validate';
