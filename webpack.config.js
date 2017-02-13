@@ -14,7 +14,7 @@ module.exports = {
         chunkFilename: '[id].bundle.js',
         publicPath: '/'
     },
-    devtool: '#eval',
+    devtool: '#source-map',
     devServer: {
         historyApiFallback: false,
         stats: 'minimal'
