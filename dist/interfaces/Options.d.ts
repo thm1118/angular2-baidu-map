@@ -1,12 +1,7 @@
-import {Size} from './Size';
-import {Icon} from './Icon';
-import {ControlAnchor} from '../enum/ControlAnchor';
-
-import {ScaleControlOptions} from '../controls/ScaleControl';
-import {GeolocationControlOptions} from '../controls/GeoControl';
-import {OverviewMapControlOptions} from '../controls/OverviewMapControl';
-import {NavigationControlOptions} from '../controls/NavigationControl';
-
+import { ScaleControlOptions } from '../controls/ScaleControl';
+import { GeolocationControlOptions } from '../controls/GeoControl';
+import { OverviewMapControlOptions } from '../controls/OverviewMapControl';
+import { NavigationControlOptions } from '../controls/NavigationControl';
 export interface MarkerOptions {
     longitude: number;
     latitude: number;
@@ -19,7 +14,6 @@ export interface MarkerOptions {
     autoDisplayInfoWindow?: boolean;
     enableDragging?: boolean;
 }
-
 export interface MapDefaultOptions {
     navCtrl?: boolean | NavigationControlOptions;
     scaleCtrl?: boolean | ScaleControlOptions;
@@ -28,13 +22,14 @@ export interface MapDefaultOptions {
     geolocationCtrl?: boolean | GeolocationControlOptions;
     zoom?: number;
 }
-
 export interface MapOptions extends MapDefaultOptions {
-    center: { longitude: number, latitude: number };
+    center: {
+        longitude: number;
+        latitude: number;
+    };
     markers?: MarkerOptions[];
 }
-
 export interface OfflineOptions {
-    retryInterval?: number,
-    txt?: string
+    retryInterval?: number;
+    txt?: string;
 }

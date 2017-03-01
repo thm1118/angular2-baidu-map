@@ -17,5 +17,8 @@
         "src/**/*",
         "Object.t.ts",
         "require.d.ts"
+    ],
+    "exclude": [
+        "./node_modules/"
     ]
 }

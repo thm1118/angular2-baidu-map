@@ -11,8 +11,7 @@
         "lib": ["es6", "dom"],
         "declaration": true,
         "outDir": "./",
-        "types": [
-        ]
+        "types": []
     },
     "buildOnSave": false,
     "compileOnSave": false,
@@ -21,5 +20,8 @@
         "src/**/*",
         "Object.t.ts",
         "require.d.ts"
+    ],
+    "exclude": [
+        "./node_modules/"
     ]
 }

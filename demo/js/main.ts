@@ -8,8 +8,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import {MainApp} from './demo.app';
 import {Splash} from 'splash-screen';
 
-import { BaiduMap } from '../../src';
-
+import { BaiduMap } from '../../';
 @NgModule({
   imports:      [ BrowserModule ],
   declarations: [ MainApp, BaiduMap ],

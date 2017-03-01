@@ -58,6 +58,7 @@ module.exports =
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
+	Object.defineProperty(exports, "__esModule", { value: true });
 	var core_1 = __webpack_require__(1);
 	var MapStatus_1 = __webpack_require__(2);
 	var defaults_1 = __webpack_require__(3);
@@ -94,41 +95,41 @@ module.exports =
 	        this.onMapLoaded.emit(this.map);
 	        CoreOperations_1.redrawMarkers.bind(this)(this.map, this.previousMarkers, options);
 	    };
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', String)
-	    ], BaiduMap.prototype, "ak", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', String)
-	    ], BaiduMap.prototype, "protocol", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Object)
-	    ], BaiduMap.prototype, "options", void 0);
-	    __decorate([
-	        core_1.Input('offline'), 
-	        __metadata('design:type', Object)
-	    ], BaiduMap.prototype, "offlineOpts", void 0);
-	    __decorate([
-	        core_1.Output(), 
-	        __metadata('design:type', Object)
-	    ], BaiduMap.prototype, "onMapLoaded", void 0);
-	    __decorate([
-	        core_1.Output(), 
-	        __metadata('design:type', Object)
-	    ], BaiduMap.prototype, "onMarkerClicked", void 0);
-	    BaiduMap = __decorate([
-	        core_1.Component({
-	            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-	            selector: 'baidu-map',
-	            styles: ["\n        .offlinePanel{\n            width: 100%;\n            height: 100%;\n            background-color: #E6E6E6;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            opacity: 0;\n        }\n    ", "\n        .offlineLabel{\n            font-size: 30px;\n        }\n    "],
-	            template: "\n        <div class=\"offlinePanel\">\n            <label class=\"offlineLabel\">{{ offlineWords }}</label>\n        </div>\n    "
-	        }), 
-	        __metadata('design:paramtypes', [core_1.ElementRef])
-	    ], BaiduMap);
 	    return BaiduMap;
 	}());
+	__decorate([
+	    core_1.Input(),
+	    __metadata("design:type", String)
+	], BaiduMap.prototype, "ak", void 0);
+	__decorate([
+	    core_1.Input(),
+	    __metadata("design:type", String)
+	], BaiduMap.prototype, "protocol", void 0);
+	__decorate([
+	    core_1.Input(),
+	    __metadata("design:type", Object)
+	], BaiduMap.prototype, "options", void 0);
+	__decorate([
+	    core_1.Input('offline'),
+	    __metadata("design:type", Object)
+	], BaiduMap.prototype, "offlineOpts", void 0);
+	__decorate([
+	    core_1.Output(),
+	    __metadata("design:type", Object)
+	], BaiduMap.prototype, "onMapLoaded", void 0);
+	__decorate([
+	    core_1.Output(),
+	    __metadata("design:type", Object)
+	], BaiduMap.prototype, "onMarkerClicked", void 0);
+	BaiduMap = __decorate([
+	    core_1.Component({
+	        changeDetection: core_1.ChangeDetectionStrategy.OnPush,
+	        selector: 'baidu-map',
+	        styles: ["\n        .offlinePanel{\n            width: 100%;\n            height: 100%;\n            background-color: #E6E6E6;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            opacity: 0;\n        }\n    ", "\n        .offlineLabel{\n            font-size: 30px;\n        }\n    "],
+	        template: "\n        <div class=\"offlinePanel\">\n            <label class=\"offlineLabel\">{{ offlineWords }}</label>\n        </div>\n    "
+	    }),
+	    __metadata("design:paramtypes", [core_1.ElementRef])
+	], BaiduMap);
 	exports.BaiduMap = BaiduMap;
 	var ControlAnchor_1 = __webpack_require__(10);
 	exports.ControlAnchor = ControlAnchor_1.ControlAnchor;
@@ -148,11 +149,12 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var MapStatus;
 	(function (MapStatus) {
 	    MapStatus[MapStatus["LOADING"] = 0] = "LOADING";
 	    MapStatus[MapStatus["LOADED"] = 1] = "LOADED";
-	})(exports.MapStatus || (exports.MapStatus = {}));
-	var MapStatus = exports.MapStatus;
+	})(MapStatus = exports.MapStatus || (exports.MapStatus = {}));
 	;
 
 
@@ -161,6 +163,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.defaultOpts = {
 	    navCtrl: true,
 	    scaleCtrl: true,
@@ -180,6 +183,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	var MapStatus_1 = __webpack_require__(2);
 	exports.loader = function (ak, offlineOpts, callback, protocol) {
 	    var realProtocol = protocol || location.protocol;
@@ -224,6 +228,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	var GeoControl_1 = __webpack_require__(6);
 	var ScaleControl_1 = __webpack_require__(7);
 	var OverviewMapControl_1 = __webpack_require__(8);
@@ -257,11 +262,15 @@ module.exports =
 	};
 	exports.createMarker = function (marker, pt) {
 	    var BMap = window['BMap'];
+	    var opts = {};
 	    if (marker.icon) {
 	        var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
-	        return new BMap.Marker(pt, { icon: icon });
+	        opts[icon] = icon;
 	    }
-	    return new BMap.Marker(pt);
+	    if (marker.enableDragging) {
+	        opts['enableDragging'] = true;
+	    }
+	    return new BMap.Marker(pt, opts);
 	};
 	exports.redrawMarkers = function (map, previousMarkers, opts) {
 	    var BMap = window['BMap'];
@@ -310,6 +319,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.setGeoCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
 	    //enable GeolocationControl
@@ -344,6 +354,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.setScaleCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
 	    //enable ScaleControl
@@ -369,6 +380,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.setOverviewMapCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
 	    //enable OverviewMapControl
@@ -401,6 +413,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.setNavigationCtrl = function (map, opts) {
 	    var BMap = window['BMap'];
 	    //enable NavigationControl
@@ -436,13 +449,14 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var ControlAnchor;
 	(function (ControlAnchor) {
 	    ControlAnchor[ControlAnchor["BMAP_ANCHOR_TOP_LEFT"] = 0] = "BMAP_ANCHOR_TOP_LEFT";
 	    ControlAnchor[ControlAnchor["BMAP_ANCHOR_TOP_RIGHT"] = 1] = "BMAP_ANCHOR_TOP_RIGHT";
 	    ControlAnchor[ControlAnchor["BMAP_ANCHOR_BOTTOM_LEFT"] = 2] = "BMAP_ANCHOR_BOTTOM_LEFT";
 	    ControlAnchor[ControlAnchor["BMAP_ANCHOR_BOTTOM_RIGHT"] = 3] = "BMAP_ANCHOR_BOTTOM_RIGHT";
-	})(exports.ControlAnchor || (exports.ControlAnchor = {}));
-	var ControlAnchor = exports.ControlAnchor;
+	})(ControlAnchor = exports.ControlAnchor || (exports.ControlAnchor = {}));
 
 
 /***/ },
@@ -450,13 +464,14 @@ module.exports =
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var NavigationControlType;
 	(function (NavigationControlType) {
 	    NavigationControlType[NavigationControlType["BMAP_NAVIGATION_CONTROL_LARGE"] = 0] = "BMAP_NAVIGATION_CONTROL_LARGE";
 	    NavigationControlType[NavigationControlType["BMAP_NAVIGATION_CONTROL_SMALL"] = 1] = "BMAP_NAVIGATION_CONTROL_SMALL";
 	    NavigationControlType[NavigationControlType["BMAP_NAVIGATION_CONTROL_PAN"] = 2] = "BMAP_NAVIGATION_CONTROL_PAN";
 	    NavigationControlType[NavigationControlType["BMAP_NAVIGATION_CONTROL_ZOOM"] = 3] = "BMAP_NAVIGATION_CONTROL_ZOOM";
-	})(exports.NavigationControlType || (exports.NavigationControlType = {}));
-	var NavigationControlType = exports.NavigationControlType;
+	})(NavigationControlType = exports.NavigationControlType || (exports.NavigationControlType = {}));
 
 
 /***/ }

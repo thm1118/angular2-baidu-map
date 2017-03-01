@@ -40,12 +40,15 @@ export const createInstance = function(opts: MapOptions, element: any) {
 
 export const createMarker = function(marker: MarkerOptions, pt: any) {
     var BMap: any = (<any>window)['BMap'];
+    var opts: any = {};
     if (marker.icon) {
         var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
-        return new BMap.Marker(pt, { icon: icon });
+        opts[icon] = icon;
     }
-    return new BMap.Marker(pt);
-
+    if (marker.enableDragging) {
+        opts['enableDragging'] = true;
+    }
+    return new BMap.Marker(pt, opts);
 };
 
 export const redrawMarkers = function(map: any, previousMarkers: PreviousMarker[], opts: MapOptions) {

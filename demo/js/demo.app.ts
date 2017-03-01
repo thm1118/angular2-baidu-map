@@ -28,7 +28,8 @@ var markers1 = [{
 
 var markers2 = [{
     longitude: 121.500885,
-    latitude: 31.190032
+    latitude: 31.190032,
+    enableDragging: true
 }];
 
 @Component({
@@ -94,7 +95,7 @@ export class MainApp implements OnInit, AfterContentInit {
     }
 
     clickMarker(marker: any) {
-        console.log('The clicked marker is', marker);
+        console.log('The clicked marker is', marker.getPosition());
     }
 
     toggleDisplay(e: MouseEvent) {
