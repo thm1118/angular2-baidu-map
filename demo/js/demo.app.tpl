@@ -78,7 +78,8 @@ export class MainApp implements OnInit &#123;
                 longitude: 121.506191,
                 latitude: 31.245554,
                 title: 'Where',
-                content: 'Put description here'
+                content: 'Put description here',
+                enableDragging: true
             }],
             geolocationCtrl: &#123;
                 anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
@@ -393,6 +394,14 @@ export class MainApp implements OnInit &#123;
             <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
             <td class="hide-on-small-only">No</td>
             <td>Whether to display the BMap.InfoWindow along with the Marker</td>
+            <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">true</code></pre></td>
+          </tr>
+
+          <tr>
+            <td>enableDragging</td>
+            <td class="hide-on-small-only"><span class="boolean-type">Boolean</span></td>
+            <td class="hide-on-small-only">No</td>
+            <td>Whether to enable draggable function for the marker</td>
             <td class="hide-on-small-only" style="padding: 0;"><pre style="margin: 0;padding-top: 5px; padding-bottom: 5px;"><code class="language-javascript">true</code></pre></td>
           </tr>
         </tbody>
