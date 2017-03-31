@@ -265,7 +265,7 @@ module.exports =
 	    var opts = {};
 	    if (marker.icon) {
 	        var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
-	        opts[icon] = icon;
+	        opts['icon'] = icon;
 	    }
 	    if (marker.enableDragging) {
 	        opts['enableDragging'] = true;
