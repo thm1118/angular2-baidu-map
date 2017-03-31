@@ -25,7 +25,7 @@ module.exports = {
                 exclude: /(typings)/
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+                test: /\.(eot|svg|ttf|woff|woff2|png)\w*/,
                 loader: 'file'
             },
             {

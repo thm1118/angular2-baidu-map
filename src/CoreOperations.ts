@@ -43,7 +43,7 @@ export const createMarker = function(marker: MarkerOptions, pt: any) {
     var opts: any = {};
     if (marker.icon) {
         var icon = new BMap.Icon(marker.icon, new BMap.Size(marker.width, marker.height));
-        opts[icon] = icon;
+        opts['icon'] = icon;
     }
     if (marker.enableDragging) {
         opts['enableDragging'] = true;
