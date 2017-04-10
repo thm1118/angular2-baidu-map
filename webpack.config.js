@@ -55,7 +55,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('[hash].common.bundle.js'),
+        new webpack.optimize.CommonsChunkPlugin('common.bundle.js'),
         new HtmlWebpackPlugin({
             title: 'angular2-baidu-map',
             filename: 'index.html',
