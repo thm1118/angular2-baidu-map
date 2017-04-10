@@ -1,6 +1,6 @@
-var path = require('path');
-var webpack = require('webpack');
-var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -9,28 +9,30 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'angular2-baidu-map.min.js',
-        library: true,
-        libraryTarget: 'commonjs2'
+        library: 'BaiduMapModule',
+        libraryTarget: 'umd'
     },
     target: 'node',
     module: {
-        loaders: [
+        exprContextCritical: false,
+        rules: [
             {
-                test: /\.ts$/,
-                loader: 'ts',
-                exclude: /(node_modules)/
+                test: /\.ts/,
+                use: [{
+                    loader: 'ts-loader',
+                    options: {
+                        configFileName: 'tsconfig.prod.json'
+                    }
+                }]
             }
         ]
     },
-    ts: {
-        configFileName: 'tsconfig.prod.json'
-    },
     resolve: {
-        root: [
-            path.resolve(__dirname)
+        modules: [
+            path.resolve(__dirname),
+            path.resolve(__dirname, 'node_modules')
         ],
         extensions: [
-            '',
             '.js',
             '.ts'
         ]
