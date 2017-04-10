@@ -37,8 +37,19 @@
     <h5 class="title">ES2015</h5>
 
     <pre class="line-numbers"><code class="language-javascript"><!--
-    -->import &#123;BaiduMap} from 'angular2-baidu-map';<!--
-    --></code></pre>
+    -->import &#123; NgModule }      from '@angular/core';
+import &#123; BrowserModule } from '@angular/platform-browser';
+
+import &#123; BaiduMapModule } from 'angular2-baidu-map';//import BaiduMapModule
+
+import &#123; MainApp } from './demo.app';
+
+@NgModule(&#123;
+    imports:      [ BrowserModule, BaiduMapModule ],
+    declarations: [ MainApp ],
+    bootstrap:    [ MainApp ]
+})
+class AppModule &#123; }</code></pre>
     <br/>
 
     <h4>Usage</h4>
@@ -46,7 +57,7 @@
 
     <pre class="line-numbers"><code class="language-javascript"><!--
     -->import &#123;Component, OnInit} from '@angular/core';
-import &#123;BaiduMap, OfflineOptions, ControlAnchor} from 'angular2-baidu-map';
+import &#123; OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
 
 @Component(&#123;
     selector: 'map-presentation',
