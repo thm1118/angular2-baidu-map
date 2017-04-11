@@ -1,11 +1,11 @@
 {
   "name": "angular2-baidu-map",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Angular2 component for Baidu map",
-  "main": "./dist/angular2-baidu-map.js",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dist": "rm -rf dist && webpack --config webpack.config.prod.js",
+    "dist": "rm -rf dist && ngc -p tsconfig.prod.json",
     "start": "webpack-dev-server --content-base demo/ --hot",
     "demo": "rm -rf build && webpack --output-public-path /angular2-baidu-map/",
     "deploy": "npm run demo && git checkout gh-pages && rm -f *.* && mv build/* ."
@@ -38,6 +38,7 @@
   "devDependencies": {
     "@angular/common": "~4.0.1",
     "@angular/compiler": "~4.0.1",
+    "@angular/compiler-cli": "^4.0.1",
     "@angular/core": "~4.0.1",
     "@angular/platform-browser": "~4.0.1",
     "@angular/platform-browser-dynamic": "~4.0.1",
