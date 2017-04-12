@@ -98,6 +98,10 @@ export class MainApp implements OnInit, AfterContentInit {
         console.log('The clicked marker is', marker.getPosition());
     }
 
+    clickmap(e: any) {
+        console.log(`Map clicked with coordinate: ${e.point.lng}, ${e.point.lat}`);
+    }
+
     toggleDisplay(e: MouseEvent) {
         if (!this.display) {
             this.opts = {

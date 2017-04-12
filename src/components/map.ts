@@ -41,6 +41,7 @@ export class BaiduMap implements OnInit, OnChanges {
     @Input('offline') offlineOpts: OfflineOptions;
     @Output() onMapLoaded = new EventEmitter();
     @Output() onMarkerClicked = new EventEmitter();
+    @Output() onClicked = new EventEmitter();
 
     map: any;
     offlineWords: string;
@@ -71,6 +72,9 @@ export class BaiduMap implements OnInit, OnChanges {
     _draw() {
         let options: MapOptions = Object.assign({}, defaultOpts, this.options);
         this.map = createInstance(options, this.el.nativeElement);
+        this.map.addEventListener('click', e => {
+            this.onClicked.emit(e);
+        });
         this.onMapLoaded.emit(this.map);
         redrawMarkers.bind(this)(this.map, this.previousMarkers, options);
     }

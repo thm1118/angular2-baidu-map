@@ -8,7 +8,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import {MainApp} from './demo.app';
 import '../css/main.css';
 
-import { BaiduMapModule } from '../../';
+import { BaiduMapModule } from '../../src/';
 @NgModule({
   imports:      [ BrowserModule, BaiduMapModule ],
   declarations: [ MainApp ],

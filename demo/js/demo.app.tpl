@@ -12,7 +12,7 @@
 
     <h4>Demonstration</h4>
     <br/>
-    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)" *ngIf="display"></baidu-map>
+    <baidu-map ak="5XO4WhIyUWAkSu9dvBq21mgc" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)" (onClicked)="clickmap($event)" *ngIf="display"></baidu-map>
     <br/>
     <div class="center-align">
         <a class="btn-floating blue" (click)="updateCoordinate($event)"><i class="icon-globe"></i></a>
@@ -63,7 +63,7 @@ import &#123; OfflineOptions, ControlAnchor, NavigationControlType } from 'angul
     selector: 'map-presentation',
     template: `
         &lt;h1&gt;Test Baidu-Map&lt;h1&gt;
-        &lt;baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)"&gt;&lt;/baidu-map&gt;
+        &lt;baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)" (onClicked)="clickmap($event)" &gt;&lt;/baidu-map&gt;
     `,
     styles: [`
         baidu-map&#123;
@@ -116,8 +116,12 @@ export class MainApp implements OnInit &#123;
         console.log('map instance here', map);
     }
 
-    clickMarker(marker: any)&#123;
+    clickMarker(marker: any) &#123;
         console.log('The clicked marker is', marker);
+    }
+
+    clickmap(e: any) &#123;
+        console.log(`Map clicked with coordinate: $&#123;e.point.lng}, $&#123;e.point.lat}`);
     }
 }<!--
     --></code></pre>
@@ -208,6 +212,11 @@ export class MainApp implements OnInit &#123;
               <td>onMarkerClicked</td>
               <td><span class="expression-type">Expression</span></td>
               <td>Expression to evaluate upon callback, (Event object is available as the marker instance)</td>
+          </tr>
+          <tr>
+              <td>onClicked</td>
+              <td><span class="expression-type">Expression</span></td>
+              <td>Expression to evaluate upon callback, (Event object is map clicked event instance)</td>
           </tr>
         </tbody>
     </table>
