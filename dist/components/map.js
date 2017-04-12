@@ -8,6 +8,7 @@ var BaiduMap = (function () {
         this.el = el;
         this.onMapLoaded = new EventEmitter();
         this.onMarkerClicked = new EventEmitter();
+        this.onClicked = new EventEmitter();
         this.previousMarkers = [];
     }
     BaiduMap.prototype.ngOnInit = function () {
@@ -29,8 +30,12 @@ var BaiduMap = (function () {
         redrawMarkers.bind(this)(this.map, this.previousMarkers, opts);
     };
     BaiduMap.prototype._draw = function () {
+        var _this = this;
         var options = Object.assign({}, defaultOpts, this.options);
         this.map = createInstance(options, this.el.nativeElement);
+        this.map.addEventListener('click', function (e) {
+            _this.onClicked.emit(e);
+        });
         this.onMapLoaded.emit(this.map);
         redrawMarkers.bind(this)(this.map, this.previousMarkers, options);
     };
@@ -56,4 +61,5 @@ BaiduMap.propDecorators = {
     'offlineOpts': [{ type: Input, args: ['offline',] },],
     'onMapLoaded': [{ type: Output },],
     'onMarkerClicked': [{ type: Output },],
+    'onClicked': [{ type: Output },],
 };
