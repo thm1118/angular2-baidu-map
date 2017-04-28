@@ -16,7 +16,7 @@ npm install angular2-baidu-map
 
 ## Usage ##
 
-Create `AppModule.ts`
+Import in your `AppModule.ts`
 
 ```javascript
 import { NgModule }      from '@angular/core';
