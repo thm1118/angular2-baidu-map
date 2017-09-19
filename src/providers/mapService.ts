@@ -1,6 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+import { Injectable } from '@angular/core';
 
 import { isNull } from '../helpers/object';
 import { ScriptLoader } from './scriptLoader';
@@ -13,22 +11,23 @@ export class MapService {
     private _map: Promise<Map>;
     private _mapResolver: (value: Map) => void;
 
-    constructor(private _loader: ScriptLoader, private _zone: NgZone) {
+    constructor(private _loader: ScriptLoader) {
         this._map = new Promise<Map>((resolve: () => void) => {
             this._mapResolver = resolve;
         });
     }
 
     createMap(el: HTMLElement, mapOptions: MapOptions): Promise<Map> {
-        return this
-            ._loader
-            .load()
-            .then(() => {
-                const map = new (<BMap>window['BMap']).Map(el, mapOptions);
-                this.setOptions(mapOptions);
-                this._mapResolver(map);
-                return this._map;
-            });
+        return new Promise(resolve => {
+            this
+                ._loader
+                .load(() => {
+                    const map = new (<BMap>window['BMap']).Map(el, mapOptions);
+                    this.setOptions(mapOptions);
+                    this._mapResolver(map);
+                    resolve(map);
+                });
+        });
     }
 
     setOptions(opts: MapOptions): void {
@@ -68,15 +67,6 @@ export class MapService {
                 map.centerAndZoom(point, opts.centerAndZoom.zoom);
             });
         }
-    }
-
-
-    createObservable<T>(target: any, event: String): Observable<T> {
-        return Observable.create((observer: Observer<T>) => {
-            target.addEventListener(event, (e: T) => {
-                return this._zone.run(() => observer.next(e));
-            });
-        });
     }
 
     getNativeMap(): Promise<Map> {

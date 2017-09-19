@@ -1,5 +1,4 @@
 import { Directive, EventEmitter, OnInit, OnDestroy, Input, Output } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 
 import { nullCheck } from '../helpers/validate';
 import { BMap } from '../types/BMap';
@@ -19,8 +18,6 @@ export class MarkerComponent implements OnInit, OnDestroy {
 
     marker: Marker;
 
-    private _subscriber: Subscription;
-
     constructor(private _service: MapService) { }
 
     ngOnInit() {
@@ -37,16 +34,16 @@ export class MarkerComponent implements OnInit, OnDestroy {
     }
 
     addListener(marker: Marker, map: Map) {
-        this._subscriber = this
-            ._service
-            .createObservable(marker, 'click')
-            .subscribe(e => {
-                this.clicked.emit({
-                    e,
-                    marker,
-                    map
-                });
+        console.log('addeventlistener', marker);
+
+        marker.addEventListener('click', (e: any) => {
+            console.log('asdfadsfsa');
+            this.clicked.emit({
+                e,
+                marker,
+                map
             });
+        });
     }
 
     ngOnDestroy() {
@@ -56,6 +53,5 @@ export class MarkerComponent implements OnInit, OnDestroy {
             .then(map => {
                 map.removeOverlay(this.marker);
             });
-        this._subscriber.unsubscribe();
     }
 }

@@ -1,5 +1,4 @@
-import { Component, EventEmitter, ElementRef, OnInit, OnChanges, Input, Output, SimpleChange } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { ViewChild, Component, EventEmitter, ElementRef, OnInit, OnChanges, Input, Output, SimpleChange } from '@angular/core';
 
 import { Map, MapOptions } from '../types/Map';
 import { MapService } from '../providers/mapService';
@@ -8,7 +7,7 @@ import { ScriptLoader } from '../providers/scriptLoader';
 @Component({
     selector: 'baidu-map',
     template: `
-    <div class="baidu-map-instance"></div>
+    <div #mapinstance class="baidu-map-instance"></div>
     <div class="baidu-map-offline">
         <label>{{ 'NO_NETWORK' }}</label>
     </div>
@@ -26,7 +25,7 @@ import { ScriptLoader } from '../providers/scriptLoader';
         .baidu-map-offline {
             width: 100%;
             height: 100%;
-            backgroundColor: #E6E6E6;
+            background-color: #E6E6E6;
             position: relative;
             display: none;
         }
@@ -54,14 +53,15 @@ export class BaiduMapComponent implements OnInit, OnChanges {
     @Output() loaded = new EventEmitter();
     @Output() clicked = new EventEmitter();
 
-    _subscriber: Subscription;
+    @ViewChild('mapinstance') mapInstance: ElementRef;
 
-    constructor(private _el: ElementRef, private _service: MapService) { }
+
+    constructor(private _service: MapService) { }
 
     ngOnInit() {
         this
             ._service
-            .createMap(this._el.nativeElement, this.options)
+            .createMap(this.mapInstance.nativeElement, this.options)
             .then(map => {
                 this.loaded.emit(map);
                 return map;
@@ -72,10 +72,9 @@ export class BaiduMapComponent implements OnInit, OnChanges {
     }
 
     addListener(map: Map) {
-        this._subscriber = this._service.createObservable(map, 'click')
-            .subscribe(e => {
-                this.clicked.emit(e);
-            });
+        map.addEventListener('click', (e: any) => {
+            this.clicked.emit(e);
+        });
     }
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
@@ -84,6 +83,5 @@ export class BaiduMapComponent implements OnInit, OnChanges {
     }
 
     ngOnDestroy() {
-        this._subscriber.unsubscribe();
     }
 }
