@@ -47,15 +47,15 @@ export class HomeComponent {
     constructor() {
         this.opts = {
             centerAndZoom: {
-                lng: 121.506191,
-                lat: 31.245554,
+                lng: 121.486668,
+                lat: 31.230912,
                 zoom: 15
             }
         };
 
         this.point = {
-            lng: 121.506191,
-            lat: 31.245554
+            lng: 121.486668,
+            lat: 31.230912
         };
     }
 

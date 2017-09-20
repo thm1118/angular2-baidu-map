@@ -27,17 +27,18 @@ export class MarkerComponent implements OnInit, OnDestroy {
             ._service
             .getNativeMap()
             .then(map => {
-                const marker = this.marker = new (<BMap>window['BMap']).Marker(this.point, this.options);
+                const marker = this.marker = new (<BMap>window['BMap']).Marker(null, this.options);
                 map.addOverlay(marker);
                 this.addListener(marker, map);
+                return marker;
+            })
+            .then(marker => {
+                marker.setPosition(new (<BMap>window['BMap']).Point(this.point.lng, this.point.lat));
             });
     }
 
     addListener(marker: Marker, map: Map) {
-        console.log('addeventlistener', marker);
-
         marker.addEventListener('click', (e: any) => {
-            console.log('asdfadsfsa');
             this.clicked.emit({
                 e,
                 marker,

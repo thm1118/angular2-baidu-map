@@ -4,7 +4,7 @@ import { Size } from './Size';
 import { Icon } from './Icon';
 
 export interface MarkerConstructor {
-    new (point: Point, options: MarkerOptions): any;
+    new(point: Point, options?: MarkerOptions): any;
 }
 
 export interface Marker extends Overlay {
