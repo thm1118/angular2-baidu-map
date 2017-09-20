@@ -25,6 +25,7 @@ import { Map, MapOptions, Point, MarkerOptions } from '../../../src';
         baidu-map {
             width: 800px;
             height: 290px;
+            display: block;
         }
         .home-desc {
             width: 800px;
