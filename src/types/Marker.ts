@@ -10,6 +10,7 @@ export interface MarkerConstructor {
 export interface Marker extends Overlay {
     addEventListener(event: String, handler: Function): void;
     removeEventListener(event: String, handler: Function): void;
+    setPosition(position: Point): void;
 }
 
 

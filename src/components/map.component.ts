@@ -47,7 +47,7 @@ import { ScriptLoader } from '../providers/scriptLoader';
         MapService, ScriptLoader
     ]
 })
-export class BaiduMapComponent implements OnInit, OnChanges {
+export class MapComponent implements OnInit, OnChanges {
     @Input() options: MapOptions;
 
     @Output() loaded = new EventEmitter();

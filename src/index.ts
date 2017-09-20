@@ -1,16 +1,16 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ScriptLoaderConfig } from './providers/scriptLoader';
 
-import { BaiduMapComponent } from './components/map.co';
-import { MarkerComponent } from './components/marker.co';
+import { MapComponent } from './components/map.component';
+import { MarkerComponent } from './components/marker.component';
 
 @NgModule({
     declarations: [
-        BaiduMapComponent,
+        MapComponent,
         MarkerComponent
     ],
     exports: [
-        BaiduMapComponent,
+        MapComponent,
         MarkerComponent
     ]
 })

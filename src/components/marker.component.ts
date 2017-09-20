@@ -33,6 +33,7 @@ export class MarkerComponent implements OnInit, OnDestroy {
                 return marker;
             })
             .then(marker => {
+                //workaround: it's weird that postion is set while constructing phase will make click event not working
                 marker.setPosition(new (<BMap>window['BMap']).Point(this.point.lng, this.point.lat));
             });
     }
