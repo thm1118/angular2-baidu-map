@@ -4,11 +4,11 @@ import { Component } from '@angular/core';
     selector: 'apidoc',
     template: `
     <div class="container">
-        <h1 class="page-title">Quickstart</h1>
-        <p style="margin-bottom: 15px;">To start using <code>angular2-baidu-map</code>, follow these simple steps for module setup. Afterwards, read <a href="#!/apidoc">API documentation</a> to learn about advanced usage.</p>
-        <install class="section"></install>
-        <import class="section"></import>
-        <usage class="section"></usage>
+        <h1 class="page-title">API Documentation</h1>
+        <div class="doc">
+            
+            <router-outlet></router-outlet>
+        </div>
     </div>
     `,
     styles: [
@@ -16,26 +16,35 @@ import { Component } from '@angular/core';
         :host {
             width: 100%;
             display: flex;
+            justify-content: center;
+        }
+        
+        :host .container {
+            width: 1200px;
+            display: flex;
             flex-direction: column;
             align-items: center;
         }
-        baidu-map {
-            width: 800px;
-            height: 290px;
+        
+        :host .container .doc {
+            display: flex;
+            width: 100%;
+            flex-grow: 2;
         }
-        .home-desc {
-            width: 800px;
+        
+        :host .container .doc api-sidebar {
+            flex-shrink: 0;
         }
-        @media screen and (max-width: 800px) {
-            baidu-map,
-            .home-desc {
+        
+        @media screen and (max-width: 1200px) {
+            :host .container {
                 width: 100%;
             }
         }
         `
     ]
 })
-export class QuickstartComponent {
+export class ApidocComponent {
 
     constructor() {
 

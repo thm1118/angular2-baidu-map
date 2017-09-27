@@ -8,13 +8,15 @@ import { MenuComponent } from './components/menu.component';
 
 import { HomeModule } from './components/home/index.module';
 import { QuickstartModule } from './components/quickstart/index.module';
+import { ApidocModule } from './components/apidoc/index.module';
 
 @NgModule({
     imports: [
         BrowserModule,
         RouteModule,
         HomeModule,
-        QuickstartModule
+        QuickstartModule,
+        ApidocModule
     ],
     declarations: [
         DemoComponent,
