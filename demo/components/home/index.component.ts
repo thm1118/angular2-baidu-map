@@ -40,9 +40,8 @@ import { Map, MapOptions, Point, MarkerOptions } from '../../../src';
     ]
 })
 export class HomeComponent {
-    opts: MapOptions;
-    point: Point;
-    markerOpts: MarkerOptions;
+    private opts: MapOptions;
+    private point: Point;
 
     constructor() {
         this.opts = {
@@ -59,15 +58,15 @@ export class HomeComponent {
         };
     }
 
-    onMapLoad(map: Map) {
+    private onMapLoad(map: Map) {
         console.log('map loaded', map);
     }
 
-    onClickMarker(e: any) {
+    private onClickMarker(e: any) {
         console.log('e', e);
     }
 
-    onClickMap(e: any) {
+    private onClickMap(e: any) {
         console.log('map e', e);
     }
 }

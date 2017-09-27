@@ -11,16 +11,16 @@ import { MapService } from '../providers/mapService';
     selector: 'marker'
 })
 export class MarkerComponent implements OnInit, OnDestroy {
-    @Input() point: Point;
-    @Input() options: MarkerOptions;
+    @Input() private point: Point;
+    @Input() private options: MarkerOptions;
 
-    @Output() clicked = new EventEmitter();
+    @Output() private clicked = new EventEmitter();
 
-    marker: Marker;
+    private marker: Marker;
 
     constructor(private _service: MapService) { }
 
-    ngOnInit() {
+    public ngOnInit() {
         nullCheck(this.point, 'point is required for <marker>');
 
         this
@@ -38,7 +38,16 @@ export class MarkerComponent implements OnInit, OnDestroy {
             });
     }
 
-    addListener(marker: Marker, map: Map) {
+    public ngOnDestroy() {
+        this
+            ._service
+            .getNativeMap()
+            .then(map => {
+                map.removeOverlay(this.marker);
+            });
+    }
+
+    private addListener(marker: Marker, map: Map) {
         marker.addEventListener('click', (e: any) => {
             this.clicked.emit({
                 e,
@@ -46,14 +55,5 @@ export class MarkerComponent implements OnInit, OnDestroy {
                 map
             });
         });
-    }
-
-    ngOnDestroy() {
-        this
-            ._service
-            .getNativeMap()
-            .then(map => {
-                map.removeOverlay(this.marker);
-            });
     }
 }

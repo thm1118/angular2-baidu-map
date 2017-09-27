@@ -30,7 +30,16 @@ module.exports = function(env = {}) {
             rules: [
                 {
                     test: /\.ts$/,
-                    use: ['ts-loader', 'tslint-loader']
+                    use: [
+                        'ts-loader',
+                        {
+                            loader: 'tslint-loader',
+                            options: {
+                                typeCheck: true
+                            }
+                        }
+                    ],
+                    exclude: [resolve(__dirname, 'node_modules')]
                 },
                 {
                     test: /\.css$/,
@@ -43,7 +52,8 @@ module.exports = function(env = {}) {
                         options: {
                             name: '[name].[hash].[ext]'
                         }
-                    }]
+                    }],
+                    exclude: [resolve(__dirname, 'node_modules')]
                 }
             ]
         },

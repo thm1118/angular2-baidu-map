@@ -48,17 +48,17 @@ import { ScriptLoader } from '../providers/scriptLoader';
     ]
 })
 export class MapComponent implements OnInit, OnChanges {
-    @Input() options: MapOptions;
+    @Input() private options: MapOptions;
 
-    @Output() loaded = new EventEmitter();
-    @Output() clicked = new EventEmitter();
+    @Output() private loaded = new EventEmitter();
+    @Output() private clicked = new EventEmitter();
 
-    @ViewChild('mapinstance') mapInstance: ElementRef;
+    @ViewChild('mapinstance') private mapInstance: ElementRef;
 
 
     constructor(private _service: MapService) { }
 
-    ngOnInit() {
+    public ngOnInit() {
         this
             ._service
             .createMap(this.mapInstance.nativeElement, this.options)
@@ -71,17 +71,16 @@ export class MapComponent implements OnInit, OnChanges {
             });
     }
 
-    addListener(map: Map) {
-        map.addEventListener('click', (e: any) => {
-            this.clicked.emit(e);
-        });
-    }
-
-    ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+    public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         const opts = <MapOptions>changes['options'].currentValue;
         this._service.setOptions(opts);
     }
 
-    ngOnDestroy() {
+    public ngOnDestroy() { }
+
+    private addListener(map: Map) {
+        map.addEventListener('click', (e: any) => {
+            this.clicked.emit(e);
+        });
     }
 }

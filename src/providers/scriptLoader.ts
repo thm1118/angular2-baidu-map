@@ -1,9 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
+import { nullCheck } from '../helpers/validate';
 
 type LOADING_STATE = 'NON' | 'LOADED' | 'LOADING';
 
 export class ScriptLoaderConfig {
-    ak: String = '';
+    public ak: String = '';
 }
 
 @Injectable()
@@ -13,13 +14,12 @@ export class ScriptLoader {
     private _config: ScriptLoaderConfig;
 
     constructor( @Inject(ScriptLoaderConfig) config: ScriptLoaderConfig) {
-        if (!config.ak) {
-            throw new Error('ak must be provided');
-        }
+        nullCheck(config.ak, 'ak must be provided');
+
         this._config = config;
     }
 
-    load(cb: Function): void {
+    public load(cb: Function): void {
         if (this._scriptLoadState === 'LOADED') {
             return cb();
         }
@@ -33,12 +33,8 @@ export class ScriptLoader {
 
         window['baidumapinit'] = () => {
             this._scriptLoadState = 'LOADED';
-            Array.prototype
-                .slice
-                .call(document.querySelectorAll('baidu-map .baidu-map-instance'))
-                .forEach(function (node: HTMLElement) {
-                    node.style.display = 'block';
-                });
+            switchDisplay('baidu-map .baidu-map-instance', 'block');
+            switchDisplay('baidu-map .baidu-map-offline', 'none');
             this._loadingCallbacks.forEach(c => {
                 c();
             });
@@ -51,14 +47,9 @@ function appendScriptTag(url: string) {
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = url;
-    script.onerror = function () {
-
-        Array.prototype
-            .slice
-            .call(document.querySelectorAll('baidu-map .baidu-map-offline'))
-            .forEach(function (node: HTMLElement) {
-                node.style.display = 'block';
-            });
+    script.onerror = () => {
+        switchDisplay('baidu-map .baidu-map-offline', 'block');
+        switchDisplay('baidu-map .baidu-map-instance', 'none');
         document.body.removeChild(script);
 
         setTimeout(() => {
@@ -66,4 +57,13 @@ function appendScriptTag(url: string) {
         }, 30000);
     };
     document.body.appendChild(script);
+}
+
+function switchDisplay(selector: string, state: string) {
+    Array.prototype
+        .slice
+        .call(document.querySelectorAll(selector))
+        .forEach((node: HTMLElement) => {
+            node.style.display = state;
+        });
 }

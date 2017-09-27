@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { QuickstartComponent } from './components/quickstart/index.component';
-
 const routes: Routes = [
-    {
-        path: 'quickstart',
-        component: QuickstartComponent
-    },
     {
         path: '',
         redirectTo: '/home',

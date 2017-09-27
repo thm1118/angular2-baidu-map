@@ -15,7 +15,7 @@ import { MarkerComponent } from './components/marker.component';
     ]
 })
 export class BaiduMapModule {
-    static forRoot(_config?: ScriptLoaderConfig): ModuleWithProviders {
+    public static forRoot(_config?: ScriptLoaderConfig): ModuleWithProviders {
         return {
             ngModule: BaiduMapModule,
             providers: [

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { isNull } from '../helpers/object';
+import { isNull, isBoolean } from '../helpers/object';
 import { ScriptLoader } from './scriptLoader';
 import { Map, MapOptions } from '../types/Map';
 import { BMap } from '../types/BMap';
@@ -17,7 +17,7 @@ export class MapService {
         });
     }
 
-    createMap(el: HTMLElement, mapOptions: MapOptions): Promise<Map> {
+    public createMap(el: HTMLElement, mapOptions: MapOptions): Promise<Map> {
         return new Promise(resolve => {
             this
                 ._loader
@@ -30,27 +30,30 @@ export class MapService {
         });
     }
 
-    setOptions(opts: MapOptions): void {
-        if (!isNull(opts.disableDragging)) {
-            this._map.then(map => map[(opts.disableDragging ? 'disable' : 'enable') + 'Dragging']());
+    public setOptions(opts: MapOptions): void {
+        const { disableDragging, enableScrollWheelZoom, disableDoubleClickZoom,
+            enableKeyboard, enableInertialDragging, enableContinuousZoom, disablePinchToZoom } = opts;
+
+        if (isBoolean(disableDragging)) {
+            this._map.then(map => map[(disableDragging ? 'disable' : 'enable') + 'Dragging']());
         }
-        if (!isNull(opts.enableScrollWheelZoom)) {
-            this._map.then(map => map[(opts.enableScrollWheelZoom ? 'enable' : 'disable') + 'ScrollWheelZoom']());
+        if (isBoolean(enableScrollWheelZoom)) {
+            this._map.then(map => map[(enableScrollWheelZoom ? 'enable' : 'disable') + 'ScrollWheelZoom']());
         }
-        if (!isNull(opts.disableDoubleClickZoom)) {
-            this._map.then(map => map[(opts.disableDoubleClickZoom ? 'disable' : 'enable') + 'DoubleClickZoom']());
+        if (isBoolean(disableDoubleClickZoom)) {
+            this._map.then(map => map[(disableDoubleClickZoom ? 'disable' : 'enable') + 'DoubleClickZoom']());
         }
-        if (!isNull(opts.enableKeyboard)) {
-            this._map.then(map => map[(opts.enableKeyboard ? 'enable' : 'disable') + 'Keyboard']());
+        if (isBoolean(enableKeyboard)) {
+            this._map.then(map => map[(enableKeyboard ? 'enable' : 'disable') + 'Keyboard']());
         }
-        if (!isNull(opts.enableInertialDragging)) {
-            this._map.then(map => map[(opts.enableInertialDragging ? 'enable' : 'disable') + 'InertialDragging']());
+        if (isBoolean(enableInertialDragging)) {
+            this._map.then(map => map[(enableInertialDragging ? 'enable' : 'disable') + 'InertialDragging']());
         }
-        if (!isNull(opts.enableContinuousZoom)) {
-            this._map.then(map => map[(opts.enableContinuousZoom ? 'enable' : 'disable') + 'ContinuousZoom']());
+        if (isBoolean(enableContinuousZoom)) {
+            this._map.then(map => map[(enableContinuousZoom ? 'enable' : 'disable') + 'ContinuousZoom']());
         }
-        if (!isNull(opts.disablePinchToZoom)) {
-            this._map.then(map => map[(opts.disablePinchToZoom ? 'disable' : 'enable') + 'PinchToZoom']());
+        if (isBoolean(disablePinchToZoom)) {
+            this._map.then(map => map[(disablePinchToZoom ? 'disable' : 'enable') + 'PinchToZoom']());
         }
         if (!isNull(opts.cursor)) {
             this._map.then(map => map.setDefaultCursor(opts.cursor));
@@ -69,7 +72,7 @@ export class MapService {
         }
     }
 
-    getNativeMap(): Promise<Map> {
+    public getNativeMap(): Promise<Map> {
         return this._map;
     }
 

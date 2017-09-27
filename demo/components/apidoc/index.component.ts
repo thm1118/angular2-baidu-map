@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'quickstart',
+    selector: 'apidoc',
     template: `
     <div class="container">
         <h1 class="page-title">Quickstart</h1>
-        <p style="margin-bottom: 15px;">
-        To start using <code>angular2-baidu-map</code>, 
-        follow these simple steps for module setup. Afterwards, read <a href="#!/apidoc">API documentation</a> to learn about advanced usage.
-        </p>
+        <p style="margin-bottom: 15px;">To start using <code>angular2-baidu-map</code>, follow these simple steps for module setup. Afterwards, read <a href="#!/apidoc">API documentation</a> to learn about advanced usage.</p>
         <install class="section"></install>
         <import class="section"></import>
         <usage class="section"></usage>
