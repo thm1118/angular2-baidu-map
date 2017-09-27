@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { HighlightDirective } from '../../directives/highlight';
+
 import { QuickstartRouteModule } from './route.module';
 
 import { QuickstartComponent } from './index.component';
@@ -22,7 +24,8 @@ import { UsageComponent } from './usage.component';
         QuickstartComponent,
         InstallComponent,
         ImportComponent,
-        UsageComponent
+        UsageComponent,
+        HighlightDirective
     ]
 })
 export class QuickstartModule { }
