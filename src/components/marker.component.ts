@@ -25,26 +25,23 @@ export class MarkerComponent implements OnInit, OnDestroy {
 
         this
             ._service
-            .getNativeMap()
-            .then(map => {
-                const marker = this.marker = new (<BMap>window['BMap']).Marker(null, this.options);
-                map.addOverlay(marker);
-                this.addListener(marker, map);
-                return marker;
+            .addOverlay((map: Map) => {
+                return this.marker = new (<BMap>window['BMap']).Marker(this.point, this.options);
             })
-            .then(marker => {
+            .then(({ map }) => {
+                this.addListener(this.marker, map);
+            })
+            .then(() => {
                 //workaround: it's weird that postion is set while constructing phase will make click event not working
-                marker.setPosition(new (<BMap>window['BMap']).Point(this.point.lng, this.point.lat));
+                this.marker.setPosition(new (<BMap>window['BMap']).Point(this.point.lng, this.point.lat));
             });
     }
 
     public ngOnDestroy() {
+
         this
             ._service
-            .getNativeMap()
-            .then(map => {
-                map.removeOverlay(this.marker);
-            });
+            .removeOverlay(this.marker);
     }
 
     private addListener(marker: Marker, map: Map) {

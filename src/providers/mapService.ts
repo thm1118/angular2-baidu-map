@@ -4,6 +4,7 @@ import { isNull, isBoolean } from '../helpers/object';
 import { ScriptLoader } from './scriptLoader';
 import { Map, MapOptions } from '../types/Map';
 import { BMap } from '../types/BMap';
+import { Overlay } from '../types/Overlay';
 
 @Injectable()
 export class MapService {
@@ -70,6 +71,21 @@ export class MapService {
                 map.centerAndZoom(point, opts.centerAndZoom.zoom);
             });
         }
+    }
+
+    public addOverlay(cb: { (map: Map): Overlay }): Promise<{ map: Map; overlay: Overlay }> {
+        return this._map.then((map: Map) => {
+
+            const overlay = cb(map);
+            map.addOverlay(overlay);
+            return { map, overlay };
+        });
+    }
+
+    public removeOverlay(overlay: Overlay): Promise<void> {
+        return this._map.then((map: Map) => {
+            map.removeOverlay(overlay);
+        })
     }
 
     public getNativeMap(): Promise<Map> {

@@ -1,16 +1,23 @@
 import { Inject, Injectable } from '@angular/core';
 import { nullCheck } from '../helpers/validate';
 
-type LOADING_STATE = 'NON' | 'LOADED' | 'LOADING';
+
+enum LOADING_STATE {
+    'NON',
+    'LOADED',
+    'LOADING'
+}
 
 export class ScriptLoaderConfig {
     public ak: String = '';
 }
 
+window['_scriptLoadState'] = LOADING_STATE.NON;
+window['_loadingCallbacks'] = [];
+
 @Injectable()
 export class ScriptLoader {
-    private _scriptLoadState: LOADING_STATE = 'NON';
-    private _loadingCallbacks: Array<Function> = [];
+
     private _config: ScriptLoaderConfig;
 
     constructor( @Inject(ScriptLoaderConfig) config: ScriptLoaderConfig) {
@@ -20,22 +27,24 @@ export class ScriptLoader {
     }
 
     public load(cb: Function): void {
-        if (this._scriptLoadState === 'LOADED') {
+        if (window['_scriptLoadState'] === LOADING_STATE.LOADED) {
+            switchDisplay('baidu-map .baidu-map-instance', 'block');
+            switchDisplay('baidu-map .baidu-map-offline', 'none');
             return cb();
         }
-        if (this._scriptLoadState === 'LOADING') {
-            this._loadingCallbacks.push(cb);
+        if (window['_scriptLoadState'] === LOADING_STATE.LOADING) {
+            window['_loadingCallbacks'].push(cb);
             return;
         }
-        this._scriptLoadState = 'LOADING';
-        this._loadingCallbacks.push(cb);
+        window['_scriptLoadState'] = LOADING_STATE.LOADING;
+        window['_loadingCallbacks'].push(cb);
         const MAP_URL = `//api.map.baidu.com/api?v=2.0&ak=${this._config.ak}&callback=baidumapinit&s=${window.location.protocol === 'https:' ? 1 : 0}`;
 
         window['baidumapinit'] = () => {
-            this._scriptLoadState = 'LOADED';
+            window['_scriptLoadState'] = LOADING_STATE.LOADED;
             switchDisplay('baidu-map .baidu-map-instance', 'block');
             switchDisplay('baidu-map .baidu-map-offline', 'none');
-            this._loadingCallbacks.forEach(c => {
+            window['_loadingCallbacks'].forEach((c: Function) => {
                 c();
             });
         };

@@ -76,7 +76,9 @@ export class MapComponent implements OnInit, OnChanges {
         this._service.setOptions(opts);
     }
 
-    public ngOnDestroy() { }
+    public ngOnDestroy() {
+        console.log('on map destroy');
+    }
 
     private addListener(map: Map) {
         map.addEventListener('click', (e: any) => {
