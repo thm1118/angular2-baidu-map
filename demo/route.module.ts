@@ -2,22 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-    {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-    }
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/home'
+  }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(
-            routes,
-            { enableTracing: false, useHash: true } // <-- debugging purposes only
-        )
-    ],
-    exports: [
-        RouterModule
-    ]
+  exports: [RouterModule],
+  imports: [
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: false, useHash: true } // <-- debugging purposes only
+    )
+  ]
 })
-export class RouteModule { }
+export class RouteModule {}

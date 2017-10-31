@@ -4,18 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuickstartComponent } from './index.component';
 
 const routes: Routes = [
-    {
-        path: 'quickstart',
-        component: QuickstartComponent
-    }
+  {
+    component: QuickstartComponent,
+    path: 'quickstart'
+  }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(routes)
-    ],
-    exports: [
-        RouterModule
-    ]
+  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
-export class QuickstartRouteModule { }
+export class QuickstartRouteModule {}

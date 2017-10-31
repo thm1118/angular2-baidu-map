@@ -1,9 +1,8 @@
-
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'usage',
-    template: `
+  selector: 'usage',
+  template: `
     <h1>Usage</h1>
     <ul class="menu" highlight>
         <li>
@@ -64,6 +63,6 @@ export class DemoComponent &#123;
             </div>
         </li>
     </ul>
-    `,
+    `
 })
-export class UsageComponent { }
+export class UsageComponent {}

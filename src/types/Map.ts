@@ -1,70 +1,70 @@
-import { Point } from './Point';
 import { Control } from './Control';
 import { Overlay } from './Overlay';
+import { Point } from './Point';
 
 export interface MapConstructor {
-    new (el: HTMLElement | String, opts: MapOptions): Map;
+  new (el: HTMLElement | string, opts: MapOptions): Map;
 }
 
 export interface Map {
-    disableDragging(): void;
-    enableDragging(): void;
+  disableDragging(): void;
+  enableDragging(): void;
 
-    disableScrollWheelZoom(): void;
-    enableScrollWheelZoom(): void;
+  disableScrollWheelZoom(): void;
+  enableScrollWheelZoom(): void;
 
-    disableDoubleClickZoom(): void;
-    enableDoubleClickZoom(): void;
+  disableDoubleClickZoom(): void;
+  enableDoubleClickZoom(): void;
 
-    disableKeyboard(): void;
-    enableKeyboard(): void;
+  disableKeyboard(): void;
+  enableKeyboard(): void;
 
-    disableInertialDragging(): void;
-    enableInertialDragging(): void;
+  disableInertialDragging(): void;
+  enableInertialDragging(): void;
 
-    disableContinuousZoom(): void;
-    enableContinuousZoom(): void;
+  disableContinuousZoom(): void;
+  enableContinuousZoom(): void;
 
-    disablePinchToZoom(): void;
-    enablePinchToZoom(): void;
+  disablePinchToZoom(): void;
+  enablePinchToZoom(): void;
 
-    addControl(control: Control): void;
-    removeControl(control: Control): void;
+  addControl(control: Control): void;
+  removeControl(control: Control): void;
 
-    addOverlay(control: Overlay): void;
-    removeOverlay(control: Overlay): void;
+  addOverlay(control: Overlay): void;
+  removeOverlay(control: Overlay): void;
 
-    setDefaultCursor(cursor: String): void;
-    setDraggingCursor(draggingCursor: String): void;
-    setCurrentCity(city: String): void;
-    centerAndZoom(center: Point, zoom: Number): void;
+  setDefaultCursor(cursor: string): void;
+  setDraggingCursor(draggingCursor: string): void;
+  setCurrentCity(city: string): void;
+  centerAndZoom(center: Point, zoom: number): void;
 
-    addEventListener(event: String, handler: Function): void;
-    removeEventListener(event: String, handler: Function): void;
+  addEventListener(event: string, handler: (e: any) => void): void;
+  removeEventListener(event: string, handler: () => void): void;
 }
 
 export interface MapOptions {
-    minZoom?: Number;
-    maxZoom?: Number;
-    mapType?: Object;
-    enableHighResolution?: Boolean;
-    enableAutoResize?: Boolean;
-    enableMapClick?: Boolean;
+  minZoom?: number;
+  maxZoom?: number;
+  mapType?: object;
+  enableHighResolution?: boolean;
+  enableAutoResize?: boolean;
+  enableMapClick?: boolean;
 
-    disableDragging?: Boolean;
-    enableScrollWheelZoom?: Boolean;
-    disableDoubleClickZoom?: Boolean;
-    enableKeyboard?: Boolean;
-    enableInertialDragging?: Boolean;
-    enableContinuousZoom?: Boolean;
-    disablePinchToZoom?: Boolean;
+  disableDragging?: boolean;
+  enableScrollWheelZoom?: boolean;
+  disableDoubleClickZoom?: boolean;
+  enableKeyboard?: boolean;
+  enableInertialDragging?: boolean;
+  enableContinuousZoom?: boolean;
+  disablePinchToZoom?: boolean;
 
-    cursor?: String;
-    draggingCursor?: String;
-    currentCity?: String;
-    centerAndZoom?: CenterAndZoom;
+  cursor?: string;
+  draggingCursor?: string;
+  currentCity?: string;
+  centerAndZoom?: CenterAndZoom;
 }
 
 export interface CenterAndZoom extends Point {
-    zoom: Number;
+  zoom: number;
 }

@@ -6,4 +6,5 @@ npm-debug.log
 .DS_Store
 
 #build
-build/
+out-tsc/
+dist/

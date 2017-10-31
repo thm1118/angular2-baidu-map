@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'about',
-    template: `
+  selector: 'about',
+  template: `
     <h1>About</h1>
     <p>
     <code>angular2-baidu-map</code> 
@@ -13,6 +13,6 @@ import { Component } from '@angular/core';
     It is based on the <a href="http://lbsyun.baidu.com/" target="_blank">百度地图</a> 
     Javascript API version 2.0, and <a href="https://angular.io" target="_blank">Angular</a> ^version 4.4.1
     </p>
-    `,
+    `
 })
-export class AboutComponent { }
+export class AboutComponent {}

@@ -1,9 +1,8 @@
-
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'install',
-    template: `
+  selector: 'install',
+  template: `
     <h1>Install</h1>
     <ul class="menu" highlight>
         <li>
@@ -15,6 +14,6 @@ import { Component } from '@angular/core';
             </div>
         </li>
     </ul>
-    `,
+    `
 })
-export class InstallComponent { }
+export class InstallComponent {}

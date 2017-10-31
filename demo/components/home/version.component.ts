@@ -1,9 +1,8 @@
-
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'version',
-    template: `
+  selector: 'version',
+  template: `
     <h1>Version</h1>
     <p>
     There are 3 major versions available, and each of them is not backwards compatible. 
@@ -15,6 +14,6 @@ import { Component } from '@angular/core';
         <li><a href="https://github.com/leftstick/angular2-baidu-map/tree/3.x" target="_blank">version 2.x</a></li>
         <li><a href="https://github.com/leftstick/angular2-baidu-map/tree/3.x" target="_blank">version 3.x</a></li>
     </ul>
-    `,
+    `
 })
-export class VersionComponent { }
+export class VersionComponent {}

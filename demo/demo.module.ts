@@ -3,25 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { RouteModule } from './route.module';
 
-import { DemoComponent } from './demo.component';
 import { MenuComponent } from './components/menu.component';
+import { DemoComponent } from './demo.component';
 
+import { ApidocModule } from './components/apidoc/index.module';
 import { HomeModule } from './components/home/index.module';
 import { QuickstartModule } from './components/quickstart/index.module';
-import { ApidocModule } from './components/apidoc/index.module';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        RouteModule,
-        HomeModule,
-        QuickstartModule,
-        ApidocModule
-    ],
-    declarations: [
-        DemoComponent,
-        MenuComponent
-    ],
-    bootstrap: [DemoComponent]
+  bootstrap: [DemoComponent],
+  declarations: [DemoComponent, MenuComponent],
+  imports: [
+    BrowserModule,
+    RouteModule,
+    HomeModule,
+    QuickstartModule,
+    ApidocModule
+  ]
 })
-export class DemoModule { }
+export class DemoModule {}

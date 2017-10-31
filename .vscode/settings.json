@@ -1,9 +1,10 @@
-// Place your settings in this file to overwrite default and user settings.
 {
-    "editor.formatOnSave": true,
-    "html.format.enable": false,
-    "eslint.enable": false,
-    "tslint.enable": true,
-    "tslint.run": "onSave",
-    "javascript.validate.enable": false
+  // Place your settings in this file to overwrite default and user settings.
+  "editor.formatOnSave": true,
+  "html.format.enable": false,
+  "eslint.enable": true,
+  "tslint.enable": true,
+  "tslint.run": "onType",
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false
 }

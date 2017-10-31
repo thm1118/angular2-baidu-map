@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'demo',
-    template: `
-        <menu></menu>
-        <div class="page-content">
-            <router-outlet></router-outlet>
-        </div>
-    `,
-    styles: [`
+  selector: 'demo',
+  styles: [
+    `
     :host {
         width: 100%;
         display: flex;
@@ -89,6 +84,13 @@ import { Component } from '@angular/core';
     >>> .matrix .label.required {
         background-color: #f04124;
     }
-    `]
+    `
+  ],
+  template: `
+        <menu></menu>
+        <div class="page-content">
+            <router-outlet></router-outlet>
+        </div>
+    `
 })
-export class DemoComponent { }
+export class DemoComponent {}

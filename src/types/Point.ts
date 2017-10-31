@@ -1,8 +1,8 @@
 export interface PointConstructor {
-    new (lng: Number, lat: Number): any;
+  new (lng: number, lat: number): any;
 }
 
 export interface Point {
-    lng: Number;
-    lat: Number;
+  lng: number;
+  lat: number;
 }

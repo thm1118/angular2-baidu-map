@@ -1,18 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'apidoc',
-    template: `
-    <div class="container">
-        <h1 class="page-title">API Documentation</h1>
-        <div class="doc">
-            
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-    `,
-    styles: [
-        `
+  selector: 'apidoc',
+  styles: [
+    `
         :host {
             width: 100%;
             display: flex;
@@ -42,13 +33,17 @@ import { Component } from '@angular/core';
             }
         }
         `
-    ]
+  ],
+  template: `
+    <div class="container">
+        <h1 class="page-title">API Documentation</h1>
+        <div class="doc">
+            
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    `
 })
 export class ApidocComponent {
-
-    constructor() {
-
-    }
-
-
+  constructor() {}
 }

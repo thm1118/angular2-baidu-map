@@ -1,8 +1,8 @@
 export interface SizeConstructor {
-    new (width: Number, height: Number): any;
+  new (width: number, height: number): any;
 }
 
 export interface Size {
-    width: Number;
-    height: Number;
+  width: number;
+  height: number;
 }

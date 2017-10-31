@@ -1,22 +1,24 @@
-import { ViewChild, Component, EventEmitter, ElementRef, OnInit, OnChanges, Input, Output, SimpleChange } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChange,
+  ViewChild
+} from '@angular/core';
 
-import { Map, MapOptions } from '../types/Map';
 import { MapService } from '../providers/mapService';
 import { ScriptLoader } from '../providers/scriptLoader';
+import { Map, MapOptions } from '../types/Map';
 
 @Component({
-    selector: 'baidu-map',
-    template: `
-    <div #mapinstance class="baidu-map-instance"></div>
-    <div class="baidu-map-offline">
-        <label>{{ 'NO_NETWORK' }}</label>
-    </div>
-    <div class="tranclude-content">
-        <ng-content></ng-content>
-    </div>
-    `,
-    styles: [
-        `
+  providers: [MapService, ScriptLoader],
+  selector: 'baidu-map',
+  styles: [
+    `
         .baidu-map-instance {
             width: 100%;
             height: 100%;
@@ -42,47 +44,51 @@ import { ScriptLoader } from '../providers/scriptLoader';
             display: none;
         }
         `
-    ],
-    providers: [
-        MapService, ScriptLoader
-    ]
+  ],
+  template: `
+    <div #mapinstance class="baidu-map-instance"></div>
+    <div class="baidu-map-offline">
+        <label>{{ 'NO_NETWORK' }}</label>
+    </div>
+    <div class="tranclude-content">
+        <ng-content></ng-content>
+    </div>
+    `
 })
 export class MapComponent implements OnInit, OnChanges {
-    @Input() private options: MapOptions;
+  @Input() private options: MapOptions;
 
-    @Output() private loaded = new EventEmitter();
-    @Output() private clicked = new EventEmitter();
+  @Output() private loaded = new EventEmitter();
+  @Output() private clicked = new EventEmitter();
 
-    @ViewChild('mapinstance') private mapInstance: ElementRef;
+  @ViewChild('mapinstance') private mapInstance: ElementRef;
 
+  constructor(private _service: MapService) {}
 
-    constructor(private _service: MapService) { }
+  public ngOnInit() {
+    this._service
+      .createMap(this.mapInstance.nativeElement, this.options)
+      .then(map => {
+        this.loaded.emit(map);
+        return map;
+      })
+      .then(map => {
+        this.addListener(map);
+      });
+  }
 
-    public ngOnInit() {
-        this
-            ._service
-            .createMap(this.mapInstance.nativeElement, this.options)
-            .then(map => {
-                this.loaded.emit(map);
-                return map;
-            })
-            .then(map => {
-                this.addListener(map);
-            });
-    }
+  public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+    const opts = changes.options.currentValue as MapOptions;
+    this._service.setOptions(opts);
+  }
 
-    public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
-        const opts = <MapOptions>changes['options'].currentValue;
-        this._service.setOptions(opts);
-    }
+  public ngOnDestroy() {
+    console.log('on map destroy');
+  }
 
-    public ngOnDestroy() {
-        console.log('on map destroy');
-    }
-
-    private addListener(map: Map) {
-        map.addEventListener('click', (e: any) => {
-            this.clicked.emit(e);
-        });
-    }
+  private addListener(map: Map) {
+    map.addEventListener('click', (e: any) => {
+      this.clicked.emit(e);
+    });
+  }
 }

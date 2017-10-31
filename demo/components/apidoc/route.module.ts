@@ -4,18 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ApidocComponent } from './index.component';
 
 const routes: Routes = [
-    {
-        path: 'apidoc',
-        component: ApidocComponent
-    }
+  {
+    component: ApidocComponent,
+    path: 'apidoc'
+  }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(routes)
-    ],
-    exports: [
-        RouterModule
-    ]
+  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
-export class ApidocRouteModule { }
+export class ApidocRouteModule {}

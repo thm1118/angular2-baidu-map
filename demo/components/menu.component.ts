@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'menu',
-    template: `
-        <a routerLink="/home" routerLinkActive="active">HOME</a>
-        <a routerLink="/quickstart" routerLinkActive="active">QUICK START</a>
-        <a routerLink="/apidoc" routerLinkActive="active">API DOCUMENTATION</a>
-    `,
-    styles: [`
+  selector: 'menu',
+  styles: [
+    `
     :host {
         width: 100%;
         height: 50px;
@@ -31,6 +27,12 @@ import { Component } from '@angular/core';
             padding: 15px 5px 15px 5px;
         }
     }
-    `]
+    `
+  ],
+  template: `
+        <a routerLink="/home" routerLinkActive="active">HOME</a>
+        <a routerLink="/quickstart" routerLinkActive="active">QUICK START</a>
+        <a routerLink="/apidoc" routerLinkActive="active">API DOCUMENTATION</a>
+    `
 })
-export class MenuComponent { }
+export class MenuComponent {}

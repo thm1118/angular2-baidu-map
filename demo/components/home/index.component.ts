@@ -1,21 +1,9 @@
 import { Component } from '@angular/core';
-import { Map, MapOptions, Point, MarkerOptions } from '../../../src';
+import { Map, MapOptions, MarkerOptions, Point } from '../../../src';
 
 @Component({
-    template: `
-    <h1 class="page-title">angular2-baidu-map</h1>
-    <baidu-map [options]="opts" (loaded)="onMapLoad($event)">
-        <marker [point]="point" (clicked)="onClickMarker($event)"></marker>
-    </baidu-map>
-    <github class="section"></github>
-    <div class="home-desc">
-        <about class="section"></about>
-        <version class="section"></version>
-        <contribute class="section"></contribute>
-    </div>
-    `,
-    styles: [
-        `
+  styles: [
+    `
         :host {
             width: 100%;
             display: flex;
@@ -37,36 +25,48 @@ import { Map, MapOptions, Point, MarkerOptions } from '../../../src';
             }
         }
         `
-    ]
+  ],
+  template: `
+    <h1 class="page-title">angular2-baidu-map</h1>
+    <baidu-map [options]="opts" (loaded)="onMapLoad($event)">
+        <marker [point]="point" (clicked)="onClickMarker($event)"></marker>
+    </baidu-map>
+    <github class="section"></github>
+    <div class="home-desc">
+        <about class="section"></about>
+        <version class="section"></version>
+        <contribute class="section"></contribute>
+    </div>
+    `
 })
 export class HomeComponent {
-    private opts: MapOptions;
-    private point: Point;
+  private opts: MapOptions;
+  private point: Point;
 
-    constructor() {
-        this.opts = {
-            centerAndZoom: {
-                lng: 121.486668,
-                lat: 31.230912,
-                zoom: 15
-            }
-        };
+  constructor() {
+    this.opts = {
+      centerAndZoom: {
+        lat: 31.230912,
+        lng: 121.486668,
+        zoom: 15
+      }
+    };
 
-        this.point = {
-            lng: 121.486668,
-            lat: 31.230912
-        };
-    }
+    this.point = {
+      lat: 31.230912,
+      lng: 121.486668
+    };
+  }
 
-    private onMapLoad(map: Map) {
-        console.log('map loaded', map);
-    }
+  private onMapLoad(map: Map) {
+    console.log('map loaded', map);
+  }
 
-    private onClickMarker(e: any) {
-        console.log('e', e);
-    }
+  private onClickMarker(e: any) {
+    console.log('e', e);
+  }
 
-    private onClickMap(e: any) {
-        console.log('map e', e);
-    }
+  private onClickMap(e: any) {
+    console.log('map e', e);
+  }
 }
