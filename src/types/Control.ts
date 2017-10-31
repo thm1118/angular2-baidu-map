@@ -1,7 +1,7 @@
-import { Size } from './Size';
+import { Size } from './Size'
 
 export interface ControlConstructor {
-  new (opts: ControlOptions): any;
+  new (opts: ControlOptions): any
 }
 
 export interface Control {}

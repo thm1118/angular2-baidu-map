@@ -46,7 +46,7 @@
  * Evergreen browsers require these.
  */
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
-import 'core-js/es7/reflect';
+import 'core-js/es7/reflect'
 
 /**
  * Required to support Web Animations `@angular/platform-browser/animations`.
@@ -57,7 +57,7 @@ import 'core-js/es7/reflect';
 /***************************************************************************************************
  * Zone JS is required by Angular itself.
  */
-import 'zone.js/dist/zone'; // Included with Angular CLI.
+import 'zone.js/dist/zone' // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
@@ -73,14 +73,14 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  */
 // import 'intl/locale-data/jsonp/en';
 
-import { LOADING_STATE } from '../src/providers/scriptLoader';
-import { BMap } from '../src/types/BMap';
+import { LOADING_STATE } from '../src/providers/scriptLoader'
+import { BMap } from '../src/types/BMap'
 
 declare global {
   interface Window {
-    _scriptLoadState: LOADING_STATE;
-    BMap: BMap;
-    _loadingCallbacks: Array<() => void>;
-    baidumapinit: () => void;
+    _scriptLoadState: LOADING_STATE
+    BMap: BMap
+    _loadingCallbacks: Array<() => void>
+    baidumapinit: () => void
   }
 }

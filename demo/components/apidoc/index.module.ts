@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
 
-import { BaiduMapModule } from '../../../src';
+import { BaiduMapModule } from '../../../src'
 
-import { ApidocRouteModule } from './route.module';
+import { ApidocRouteModule } from './route.module'
 
-import { ApidocComponent } from './index.component';
+import { ApidocComponent } from './index.component'
 
 @NgModule({
   declarations: [ApidocComponent],

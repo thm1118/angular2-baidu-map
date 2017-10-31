@@ -8,11 +8,11 @@ import {
   Output,
   SimpleChange,
   ViewChild
-} from '@angular/core';
+} from '@angular/core'
 
-import { MapService } from '../providers/mapService';
-import { ScriptLoader } from '../providers/scriptLoader';
-import { Map, MapOptions } from '../types/Map';
+import { MapService } from '../providers/mapService'
+import { ScriptLoader } from '../providers/scriptLoader'
+import { Map, MapOptions } from '../types/Map'
 
 @Component({
   providers: [MapService, ScriptLoader],
@@ -56,12 +56,12 @@ import { Map, MapOptions } from '../types/Map';
     `
 })
 export class MapComponent implements OnInit, OnChanges {
-  @Input() private options: MapOptions;
+  @Input() private options: MapOptions
 
-  @Output() private loaded = new EventEmitter();
-  @Output() private clicked = new EventEmitter();
+  @Output() private loaded = new EventEmitter()
+  @Output() private clicked = new EventEmitter()
 
-  @ViewChild('mapinstance') private mapInstance: ElementRef;
+  @ViewChild('mapinstance') private mapInstance: ElementRef
 
   constructor(private _service: MapService) {}
 
@@ -69,26 +69,26 @@ export class MapComponent implements OnInit, OnChanges {
     this._service
       .createMap(this.mapInstance.nativeElement, this.options)
       .then(map => {
-        this.loaded.emit(map);
-        return map;
+        this.loaded.emit(map)
+        return map
       })
       .then(map => {
-        this.addListener(map);
-      });
+        this.addListener(map)
+      })
   }
 
   public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
-    const opts = changes.options.currentValue as MapOptions;
-    this._service.setOptions(opts);
+    const opts = changes.options.currentValue as MapOptions
+    this._service.setOptions(opts)
   }
 
   public ngOnDestroy() {
-    console.log('on map destroy');
+    console.log('on map destroy')
   }
 
   private addListener(map: Map) {
     map.addEventListener('click', (e: any) => {
-      this.clicked.emit(e);
-    });
+      this.clicked.emit(e)
+    })
   }
 }

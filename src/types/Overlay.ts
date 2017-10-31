@@ -1,5 +1,5 @@
 export interface OverlayConstructor {
-  new (opts: OverlayOptions): any;
+  new (opts: OverlayOptions): any
 }
 
 export interface Overlay {}

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
 const routes: Routes = [
   {
@@ -7,7 +7,7 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: '/home'
   }
-];
+]
 
 @NgModule({
   exports: [RouterModule],

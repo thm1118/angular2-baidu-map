@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Map, MapOptions, MarkerOptions, Point } from '../../../src';
+import { Component } from '@angular/core'
+import { Map, MapOptions, MarkerOptions, Point } from '../../../src'
 
 @Component({
   styles: [
@@ -40,8 +40,8 @@ import { Map, MapOptions, MarkerOptions, Point } from '../../../src';
     `
 })
 export class HomeComponent {
-  private opts: MapOptions;
-  private point: Point;
+  private opts: MapOptions
+  private point: Point
 
   constructor() {
     this.opts = {
@@ -50,23 +50,23 @@ export class HomeComponent {
         lng: 121.486668,
         zoom: 15
       }
-    };
+    }
 
     this.point = {
       lat: 31.230912,
       lng: 121.486668
-    };
+    }
   }
 
   private onMapLoad(map: Map) {
-    console.log('map loaded', map);
+    console.log('map loaded', map)
   }
 
   private onClickMarker(e: any) {
-    console.log('e', e);
+    console.log('e', e)
   }
 
   private onClickMap(e: any) {
-    console.log('map e', e);
+    console.log('map e', e)
   }
 }
