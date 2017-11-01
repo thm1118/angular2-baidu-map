@@ -13,11 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/leftstick/angular2-baidu-map.git"
   },
-  "keywords": [
-    "angular2",
-    "baidu",
-    "map"
-  ],
+  "keywords": ["angular2", "baidu", "map"],
   "author": "Howard.Zuo",
   "license": "GPL-3.0",
   "bugs": {

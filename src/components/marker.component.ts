@@ -32,10 +32,7 @@ export class MarkerComponent implements OnInit, OnDestroy {
 
     this._service
       .addOverlay((map: Map) => {
-        return (this.marker = new (window.BMap as BMap).Marker(
-          this.point,
-          this.options
-        ))
+        return (this.marker = new window.BMap.Marker(this.point, this.options))
       })
       .then(({ map }) => {
         this.addListener(this.marker, map)
@@ -43,7 +40,7 @@ export class MarkerComponent implements OnInit, OnDestroy {
       .then(() => {
         // workaround: it's weird that postion is set while constructing phase will make click event not working
         this.marker.setPosition(
-          new (window.BMap as BMap).Point(this.point.lng, this.point.lat)
+          new window.BMap.Point(this.point.lng, this.point.lat)
         )
       })
   }

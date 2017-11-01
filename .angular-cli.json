@@ -13,7 +13,7 @@
       "polyfills": "polyfills.ts",
       "tsconfig": "tsconfig.demo.json",
       "prefix": "demo",
-      "styles": [],
+      "styles": ["../node_modules/highlight.js/styles/darcula.css"],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -29,6 +29,8 @@
   ],
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "build": {
+      "baseHref": "/"
+    }
   }
 }
