@@ -1,9 +1,9 @@
-const { resolve } = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = function(env = {}) {
-  const isProd = !!env.isProd;
+  const isProd = !!env.isProd
 
   return {
     entry: {
@@ -74,5 +74,5 @@ module.exports = function(env = {}) {
         base: isProd ? '/angular2-baidu-map/' : '/'
       })
     ]
-  };
-};
+  }
+}

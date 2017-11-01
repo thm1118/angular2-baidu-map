@@ -1,8 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core'
-import { ScriptLoaderConfig } from './providers/scriptLoader'
 
 import { MapComponent } from './components/map.component'
 import { MarkerComponent } from './components/marker.component'
+import { ScriptLoaderConfig } from './providers/scriptLoader'
 
 @NgModule({
   declarations: [MapComponent, MarkerComponent],

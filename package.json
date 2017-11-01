@@ -5,7 +5,7 @@
   "main": "./dist/angular2-baidu-map.js",
   "types": "./dist/angular2-baidu-map.d.ts",
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --hmr",
     "lint": "ng lint"
   },
   "files": [],

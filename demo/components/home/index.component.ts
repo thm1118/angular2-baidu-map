@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+
 import { Map, MapOptions, MarkerOptions, Point } from '../../../src'
 
 @Component({

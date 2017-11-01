@@ -11,6 +11,14 @@
     "max-classes-per-file": false,
     "no-empty-interface": false,
     "no-submodule-imports": false,
-    "semicolon": [true, "never"]
+    "semicolon": [true, "never"],
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "lowercase-first",
+        "named-imports-order": "lowercase-first",
+        "grouped-imports": true
+      }
+    ]
   }
 }

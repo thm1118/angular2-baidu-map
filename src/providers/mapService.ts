@@ -4,6 +4,7 @@ import { isBoolean, isNull } from '../helpers/object'
 import { BMap } from '../types/BMap'
 import { Map, MapOptions } from '../types/Map'
 import { Overlay } from '../types/Overlay'
+
 import { ScriptLoader } from './scriptLoader'
 
 @Injectable()

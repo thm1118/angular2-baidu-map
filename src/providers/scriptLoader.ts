@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core'
+
 import { nullCheck } from '../helpers/validate'
 
 export enum LOADING_STATE {

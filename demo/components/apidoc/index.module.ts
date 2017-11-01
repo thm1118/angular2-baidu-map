@@ -6,10 +6,18 @@ import { BaiduMapModule } from '../../../src'
 
 import { ApidocRouteModule } from './route.module'
 
+import { DocBaidumapComponent } from './docBaidumap.component'
+import { DocMarkerComponent } from './docMarker.component'
 import { ApidocComponent } from './index.component'
+import { SidebarComponent } from './sidebar.component'
 
 @NgModule({
-  declarations: [ApidocComponent],
+  declarations: [
+    ApidocComponent,
+    SidebarComponent,
+    DocBaidumapComponent,
+    DocMarkerComponent
+  ],
   exports: [RouterModule],
   imports: [
     CommonModule,
