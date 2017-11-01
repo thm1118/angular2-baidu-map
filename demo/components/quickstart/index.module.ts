@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 
-import { HighlightDirective } from '../../directives/highlight'
+import { SharedModule } from '../../shared/index.module'
 
 import { QuickstartRouteModule } from './route.module'
 
@@ -16,10 +16,9 @@ import { UsageComponent } from './usage.component'
     QuickstartComponent,
     InstallComponent,
     ImportComponent,
-    UsageComponent,
-    HighlightDirective
+    UsageComponent
   ],
   exports: [RouterModule],
-  imports: [CommonModule, QuickstartRouteModule]
+  imports: [CommonModule, SharedModule, QuickstartRouteModule]
 })
 export class QuickstartModule {}

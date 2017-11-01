@@ -9,6 +9,11 @@ const routes: Routes = [
   {
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'baidu-map'
+      },
+      {
         component: DocBaidumapComponent,
         path: 'baidu-map'
       },
@@ -19,11 +24,6 @@ const routes: Routes = [
     ],
     component: ApidocComponent,
     path: 'apidoc'
-  },
-  {
-    path: 'apidoc',
-    pathMatch: 'full',
-    redirectTo: '/apidoc/baidu-map'
   }
 ]
 

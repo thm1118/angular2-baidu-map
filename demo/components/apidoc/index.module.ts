@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 
 import { BaiduMapModule } from '../../../src'
+import { SharedModule } from '../../shared/index.module'
 
 import { ApidocRouteModule } from './route.module'
 
@@ -21,6 +22,7 @@ import { SidebarComponent } from './sidebar.component'
   exports: [RouterModule],
   imports: [
     CommonModule,
+    SharedModule,
     BaiduMapModule.forRoot({ ak: 'gd0GyxGUxSCoAbmdyQBhyhrZ' }),
     ApidocRouteModule
   ]
