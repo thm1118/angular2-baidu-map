@@ -1,3 +1,9 @@
+import {
+  BNavigationControlOptions,
+  BOverviewMapControlOptions,
+  NavigationControlOptions,
+  OverviewMapControlOptions
+} from '../types/Control'
 import { BIconConstructor, IconOptions } from '../types/Icon'
 import { BMarkerOptions, MarkerOptions } from '../types/Marker'
 import { BPointConstructor, Point } from '../types/Point'
@@ -82,5 +88,57 @@ export function toMarkerOptions(options: MarkerOptions): BMarkerOptions {
     )
   }
 
+  return opts
+}
+
+export function toNavigationControlOptions(
+  options: NavigationControlOptions
+): BNavigationControlOptions {
+  const opts: BNavigationControlOptions = {}
+
+  if (!options) {
+    return opts
+  }
+
+  if (!isNull(options.anchor)) {
+    opts.anchor = options.anchor
+  }
+  if (!isNull(options.enableGeolocation)) {
+    opts.enableGeolocation = options.enableGeolocation
+  }
+  if (!isNull(options.offset)) {
+    opts.offset = toSize(options.offset)
+  }
+  if (!isNull(options.showZoomInfo)) {
+    opts.showZoomInfo = options.showZoomInfo
+  }
+
+  if (!isNull(options.type)) {
+    opts.type = options.type
+  }
+  return opts
+}
+
+export function toOverviewMapControlOptions(
+  options: OverviewMapControlOptions
+): BOverviewMapControlOptions {
+  const opts: BOverviewMapControlOptions = {}
+
+  if (!options) {
+    return opts
+  }
+
+  if (!isNull(options.anchor)) {
+    opts.anchor = options.anchor
+  }
+  if (!isNull(options.isOpen)) {
+    opts.isOpen = options.isOpen
+  }
+  if (!isNull(options.offset)) {
+    opts.offset = toSize(options.offset)
+  }
+  if (!isNull(options.size)) {
+    opts.size = toSize(options.size)
+  }
   return opts
 }

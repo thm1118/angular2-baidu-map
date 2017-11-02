@@ -22,6 +22,7 @@ export class BaiduMapModule {
 export { BMapInstance, MapOptions } from './types/Map'
 export * from './types/Point'
 export { MarkerOptions } from './types/Marker'
+export { ControlType } from './types/Control'
 export { BInfoWindowConstructor, BInfoWindowOptions } from './types/InfoWindow'
 
 declare global {

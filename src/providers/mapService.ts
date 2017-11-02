@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { isBoolean, isNull } from '../helpers/object'
+import { BControl } from '../types/Control'
 import { BMapInstance, MapOptions } from '../types/Map'
 import { Overlay } from '../types/Overlay'
 
@@ -116,6 +117,22 @@ export class MapService {
   public removeOverlay(overlay: Overlay): Promise<void> {
     return this._map.then((map: BMapInstance) => {
       map.removeOverlay(overlay)
+    })
+  }
+
+  public addControl(
+    cb: (map: BMapInstance) => BControl
+  ): Promise<{ map: BMapInstance; control: BControl }> {
+    return this._map.then((map: BMapInstance) => {
+      const control = cb(map)
+      map.addControl(control)
+      return { map, control }
+    })
+  }
+
+  public removeControl(control: BControl): Promise<void> {
+    return this._map.then((map: BMapInstance) => {
+      map.removeControl(control)
     })
   }
 

@@ -1,4 +1,4 @@
-import { Control } from './Control'
+import { BControl } from './Control'
 import { Overlay } from './Overlay'
 import { Point } from './Point'
 
@@ -28,8 +28,8 @@ export interface BMapInstance {
   disablePinchToZoom(): void
   enablePinchToZoom(): void
 
-  addControl(control: Control): void
-  removeControl(control: Control): void
+  addControl(control: BControl): void
+  removeControl(control: BControl): void
 
   addOverlay(control: Overlay): void
   removeOverlay(control: Overlay): void
