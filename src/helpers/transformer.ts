@@ -1,8 +1,14 @@
 import {
+  BGeolocationControlOptions,
+  BMapTypeControlOptions,
   BNavigationControlOptions,
   BOverviewMapControlOptions,
+  BScaleControlOptions,
+  GeolocationControlOptions,
+  MapTypeControlOptions,
   NavigationControlOptions,
-  OverviewMapControlOptions
+  OverviewMapControlOptions,
+  ScaleControlOptions
 } from '../types/Control'
 import { BIconConstructor, IconOptions } from '../types/Icon'
 import { BMarkerOptions, MarkerOptions } from '../types/Marker'
@@ -139,6 +145,69 @@ export function toOverviewMapControlOptions(
   }
   if (!isNull(options.size)) {
     opts.size = toSize(options.size)
+  }
+  return opts
+}
+
+export function toScaleControlOptions(
+  options: ScaleControlOptions
+): BScaleControlOptions {
+  const opts: BScaleControlOptions = {}
+
+  if (!options) {
+    return opts
+  }
+
+  if (!isNull(options.anchor)) {
+    opts.anchor = options.anchor
+  }
+  if (!isNull(options.offset)) {
+    opts.offset = toSize(options.offset)
+  }
+  return opts
+}
+
+export function toMapTypeControlOptions(
+  options: MapTypeControlOptions
+): BMapTypeControlOptions {
+  const opts: BMapTypeControlOptions = {}
+
+  if (!options) {
+    return opts
+  }
+
+  if (!isNull(options.type)) {
+    opts.type = options.type
+  }
+  return opts
+}
+export function toGeolocationOptions(
+  options: GeolocationControlOptions
+): BGeolocationControlOptions {
+  const opts: BGeolocationControlOptions = {}
+
+  if (!options) {
+    return opts
+  }
+
+  if (!isNull(options.anchor)) {
+    opts.anchor = options.anchor
+  }
+  if (!isNull(options.offset)) {
+    opts.offset = toSize(options.offset)
+  }
+  if (!isNull(options.enableAutoLocation)) {
+    opts.enableAutoLocation = options.enableAutoLocation
+  }
+  if (!isNull(options.locationIcon)) {
+    opts.locationIcon = toIcon(
+      options.locationIcon.imageUrl,
+      options.locationIcon.size,
+      options.locationIcon
+    )
+  }
+  if (!isNull(options.showAddressBar)) {
+    opts.showAddressBar = options.showAddressBar
   }
   return opts
 }

@@ -8,8 +8,11 @@ import {
 } from '@angular/core'
 
 import {
+  toGeolocationOptions,
+  toMapTypeControlOptions,
   toNavigationControlOptions,
-  toOverviewMapControlOptions
+  toOverviewMapControlOptions,
+  toScaleControlOptions
 } from '../helpers/transformer'
 import { nullCheck } from '../helpers/validate'
 import { MapService } from '../providers/mapService'
@@ -54,6 +57,15 @@ export class ControlComponent implements OnInit, OnDestroy {
       return new window.BMap.OverviewMapControl(
         toOverviewMapControlOptions(options)
       )
+    }
+    if (type === 'scale') {
+      return new window.BMap.ScaleControl(toScaleControlOptions(options))
+    }
+    if (type === 'maptype') {
+      return new window.BMap.MapTypeControl(toMapTypeControlOptions(options))
+    }
+    if (type === 'geolocation') {
+      return new window.BMap.GeolocationControl(toGeolocationOptions(options))
     }
     return null
   }

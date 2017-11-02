@@ -3,9 +3,13 @@ import { Component, OnInit } from '@angular/core'
 import {
   ControlAnchor,
   MapOptions,
+  MapTypeControlOptions,
+  MapTypeControlType,
   NavigationControlOptions,
   NavigationControlType,
-  Point
+  OverviewMapControlOptions,
+  Point,
+  ScaleControlOptions
 } from '../../../src'
 
 @Component({
@@ -45,7 +49,7 @@ import {
         <td><span class="label required">string</span></td>
         <td>
           <p class="line-text">
-            What kind of control to be added to the map. Available options: <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b2" target="_blank">navigation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b7" target="_blank">overviewmap</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b9" target="_blank">scale</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b15" target="_blank">maptype</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b12" target="_blank">copyright</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b5" target="_blank">geolocation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b18" target="_blank">panorama</a>
+            What kind of control to be added to the map. Available options: <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b2" target="_blank">navigation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b7" target="_blank">overviewmap</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b9" target="_blank">scale</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b15" target="_blank">maptype</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b5" target="_blank">geolocation</a>, <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a2b18" target="_blank">panorama</a>
           </p>
         </td>
       </tr>
@@ -62,12 +66,19 @@ import {
   <h2 class="title">Example</h2>
   <baidu-map [options]="opts">
       <control type="navigation" [options]="controlOpts"></control>
+      <control type="overviewmap" [options]="overviewmapOpts"></control>
+      <control type="scale" [options]="scaleOpts"></control>
+      <control type="maptype" [options]="mapTypeOpts"></control>
+      <control type="geolocation" [options]="geolocationOpts"></control>
   </baidu-map>
 
   <div class="snippet" highlight>
     <pre><code class="html">
     &lt;baidu-map [options]="opts"&gt;
       &lt;control type="navigation" [options]="controlOpts"&gt;&lt;/control&gt;
+      &lt;control type="overviewmap" [options]="overviewmapOpts"&gt;&lt;/control&gt;
+      &lt;control type="scale" [options]="scaleOpts"&gt;&lt;/control&gt;
+      &lt;control type="maptype" [options]="mapTypeOpts"&gt;&lt;/control&gt;
     &lt;/baidu-map&gt;
   </code></pre>
   </div>
@@ -78,6 +89,9 @@ import {
   export class DemoComponent &#123;
     public opts: MapOptions
     public controlOpts: NavigationControlOptions
+    public overviewmapOpts: OverviewMapControlOptions
+    public scaleOpts: ScaleControlOptions
+    public mapTypeOpts: MapTypeControlOptions
   
     constructor() &#123;
       this.opts = &#123;
@@ -89,9 +103,23 @@ import {
       &#125;
   
       this.controlOpts = &#123;
-        anchor: ControlAnchor.BMAP_ANCHOR_TOP_RIGHT,
+        anchor: ControlAnchor.BMAP_ANCHOR_TOP_LEFT,
         type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
       &#125;
+      
+      this.overviewmapOpts = &#123;
+        anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT,
+        isOpen: true
+      &#125;
+
+      this.scaleOpts = &#123;
+        anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_LEFT
+      &#125;
+
+      this.mapTypeOpts = &#123;
+        type: MapTypeControlType.BMAP_MAPTYPE_CONTROL_HORIZONTAL
+      &#125;
+
     &#125;
   
   &#125;  
@@ -103,6 +131,9 @@ import {
 export class DocControlComponent {
   public opts: MapOptions
   public controlOpts: NavigationControlOptions
+  public overviewmapOpts: OverviewMapControlOptions
+  public scaleOpts: ScaleControlOptions
+  public mapTypeOpts: MapTypeControlOptions
 
   constructor() {
     this.opts = {
@@ -114,8 +145,21 @@ export class DocControlComponent {
     }
 
     this.controlOpts = {
-      anchor: ControlAnchor.BMAP_ANCHOR_TOP_RIGHT,
+      anchor: ControlAnchor.BMAP_ANCHOR_TOP_LEFT,
       type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
+    }
+
+    this.overviewmapOpts = {
+      anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT,
+      isOpen: true
+    }
+
+    this.scaleOpts = {
+      anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_LEFT
+    }
+
+    this.mapTypeOpts = {
+      type: MapTypeControlType.BMAP_MAPTYPE_CONTROL_HORIZONTAL
     }
   }
 }

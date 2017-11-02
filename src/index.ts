@@ -21,13 +21,18 @@ export class BaiduMapModule {
 }
 
 export { BMapInstance, MapOptions } from './types/Map'
-export * from './types/Point'
+export { Point } from './types/Point'
 export { MarkerOptions } from './types/Marker'
 export {
   ControlType,
   ControlAnchor,
+  GeolocationControlOptions,
   NavigationControlOptions,
-  NavigationControlType
+  NavigationControlType,
+  OverviewMapControlOptions,
+  ScaleControlOptions,
+  MapTypeControlOptions,
+  MapTypeControlType
 } from './types/Control'
 export { BInfoWindowConstructor, BInfoWindowOptions } from './types/InfoWindow'
 

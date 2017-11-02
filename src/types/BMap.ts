@@ -1,6 +1,9 @@
 import {
+  BGeolocationConstructor,
+  BMapTypeControlConstructor,
   BNavigationControlConstructor,
-  BOverviewMapControlConstructor
+  BOverviewMapControlConstructor,
+  BScaleControlConstructor
 } from './Control'
 import { BIconConstructor } from './Icon'
 import { BInfoWindowConstructor } from './InfoWindow'
@@ -18,4 +21,7 @@ export interface BMap {
   InfoWindow: BInfoWindowConstructor
   NavigationControl: BNavigationControlConstructor
   OverviewMapControl: BOverviewMapControlConstructor
+  ScaleControl: BScaleControlConstructor
+  MapTypeControl: BMapTypeControlConstructor
+  GeolocationControl: BGeolocationConstructor
 }
