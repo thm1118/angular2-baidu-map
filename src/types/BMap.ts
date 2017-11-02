@@ -1,4 +1,7 @@
-import { BNavigationControlConstructor } from './Control'
+import {
+  BNavigationControlConstructor,
+  BOverviewMapControlConstructor
+} from './Control'
 import { BIconConstructor } from './Icon'
 import { BInfoWindowConstructor } from './InfoWindow'
 import { BMapConstructor } from './Map'

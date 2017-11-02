@@ -7,7 +7,10 @@ import {
   Output
 } from '@angular/core'
 
-import { toNavigationControlOptions } from '../helpers/transformer'
+import {
+  toNavigationControlOptions,
+  toOverviewMapControlOptions
+} from '../helpers/transformer'
 import { nullCheck } from '../helpers/validate'
 import { MapService } from '../providers/mapService'
 import { BMap } from '../types/BMap'
@@ -18,8 +21,8 @@ import { BMapInstance } from '../types/Map'
   selector: 'control'
 })
 export class ControlComponent implements OnInit, OnDestroy {
-  @Input private type: ControlType
-  @Input private options: { [key: string]: any }
+  @Input() private type: ControlType
+  @Input() private options: { [key: string]: any }
 
   private control: BControl
 

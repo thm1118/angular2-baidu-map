@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
 import { DocBaidumapComponent } from './docBaidumap.component'
+import { DocControlComponent } from './docControl.component'
 import { DocMarkerComponent } from './docMarker.component'
 import { ApidocComponent } from './index.component'
 
@@ -20,6 +21,14 @@ const routes: Routes = [
       {
         component: DocMarkerComponent,
         path: 'marker'
+      },
+      {
+        component: DocControlComponent,
+        path: 'control'
+      },
+      {
+        path: '**',
+        redirectTo: 'baidu-map'
       }
     ],
     component: ApidocComponent,

@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/index.module'
 import { ApidocRouteModule } from './route.module'
 
 import { DocBaidumapComponent } from './docBaidumap.component'
+import { DocControlComponent } from './docControl.component'
 import { DocMarkerComponent } from './docMarker.component'
 import { ApidocComponent } from './index.component'
 import { SidebarComponent } from './sidebar.component'
@@ -17,7 +18,8 @@ import { SidebarComponent } from './sidebar.component'
     ApidocComponent,
     SidebarComponent,
     DocBaidumapComponent,
-    DocMarkerComponent
+    DocMarkerComponent,
+    DocControlComponent
   ],
   exports: [RouterModule],
   imports: [
