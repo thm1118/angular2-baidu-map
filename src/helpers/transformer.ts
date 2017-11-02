@@ -42,6 +42,10 @@ export function toIcon(
 export function toMarkerOptions(options: MarkerOptions): BMarkerOptions {
   const opts: BMarkerOptions = {}
 
+  if (!options) {
+    return opts
+  }
+
   if (options.offset) {
     opts.offset = toSize(options.offset)
   }

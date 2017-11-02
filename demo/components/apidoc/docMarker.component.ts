@@ -71,9 +71,9 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
   <div class="snippet" highlight>
   <pre><code class="typescript">
   export class DemoComponent &#123;
-    private opts: MapOptions
-    private point: Point
-    private markerOpts: MarkerOptions
+    public opts: MapOptions
+    public point: Point
+    public markerOpts: MarkerOptions
   
     constructor() &#123;
       this.opts = &#123;
@@ -100,13 +100,10 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
       &#125;
     &#125;
   
-    private showWindow(&#123; e, marker, map &#125;): void &#123;
+    public showWindow(&#123; e, marker, map &#125;: any): void &#123;
       map.openInfoWindow(
-        new BMap.InfoWindow('地址：浦东南路360号', &#123;
-          offset: &#123;
-            height: -30,
-            width: 0
-          &#125;,
+        new window.BMap.InfoWindow('地址：浦东南路360号', &#123;
+          offset: new window.BMap.Size(0, -30),
           title: '新上海国际大厦'
         &#125;),
         marker.getPosition()
@@ -119,9 +116,9 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
     `
 })
 export class DocMarkerComponent {
-  private opts: MapOptions
-  private point: Point
-  private markerOpts: MarkerOptions
+  public opts: MapOptions
+  public point: Point
+  public markerOpts: MarkerOptions
 
   constructor() {
     this.opts = {
@@ -148,7 +145,7 @@ export class DocMarkerComponent {
     }
   }
 
-  private showWindow({ e, marker, map }: any): void {
+  public showWindow({ e, marker, map }: any): void {
     map.openInfoWindow(
       new window.BMap.InfoWindow('地址：浦东南路360号', {
         offset: new window.BMap.Size(0, -30),

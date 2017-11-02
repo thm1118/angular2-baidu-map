@@ -41,8 +41,8 @@ import { BMapInstance, MapOptions, MarkerOptions, Point } from '../../../src'
     `
 })
 export class HomeComponent {
-  private opts: MapOptions
-  private point: Point
+  public opts: MapOptions
+  public point: Point
 
   constructor() {
     this.opts = {
@@ -59,15 +59,15 @@ export class HomeComponent {
     }
   }
 
-  private onMapLoad(map: BMapInstance) {
+  public onMapLoad(map: BMapInstance) {
     console.log('map loaded', map)
   }
 
-  private onClickMarker(e: any) {
+  public onClickMarker(e: any) {
     console.log('e', e)
   }
 
-  private onClickMap(e: any) {
+  public onClickMap(e: any) {
     console.log('map e', e)
   }
 }

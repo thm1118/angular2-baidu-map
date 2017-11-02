@@ -61,7 +61,7 @@ import { MapOptions } from '../../../src'
 
   <div class="snippet" highlight>
   <pre><code class="javascript">export class DemoComponent &#123;
-  private opts: MapOptions
+  public opts: MapOptions
 
   constructor() &#123;
     this.opts = &#123;
@@ -74,7 +74,7 @@ import { MapOptions } from '../../../src'
     &#125;
   &#125;
 
-  private mapClick(e: any) &#123;
+  public mapClick(e: any) &#123;
     alert(\`The coordinate you chose is: \$&#123;e.point.lng&#125; : \$&#123;e.point.lat&#125;\`)
   &#125;
 &#125;</code></pre>
@@ -82,7 +82,7 @@ import { MapOptions } from '../../../src'
     `
 })
 export class DocBaidumapComponent {
-  private opts: MapOptions
+  public opts: MapOptions
 
   constructor() {
     this.opts = {
@@ -95,7 +95,7 @@ export class DocBaidumapComponent {
     }
   }
 
-  private mapClick(e: any) {
+  public mapClick(e: any) {
     alert(`The coordinate you chose is: ${e.point.lng} : ${e.point.lat}`)
   }
 }

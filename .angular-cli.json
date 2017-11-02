@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "demo",
-      "outDir": "dist",
+      "outDir": "demodist",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "index.ts",
@@ -17,7 +17,8 @@
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
-        "dev": "environments/environment.ts"
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
       }
     }
   ],

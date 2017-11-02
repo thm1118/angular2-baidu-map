@@ -53,7 +53,7 @@ import { Component, Input } from '@angular/core'
     `
 })
 export class SidebarComponent {
-  @Input() private api: string
+  @Input() public api: string
 
   constructor() {}
 }

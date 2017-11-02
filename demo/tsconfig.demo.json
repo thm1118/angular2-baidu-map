@@ -1,9 +1,18 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/demo",
     "baseUrl": "./",
-    "module": "es2015"
+    "module": "es2015",
+    "allowJs": false,
+    "target": "es5",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": ["../node_modules/@types"]
   },
-  "exclude": ["test.ts", "**/*.spec.ts"]
+  "include": ["./**/*.ts"]
 }

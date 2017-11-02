@@ -45,7 +45,7 @@ import &#123; MapOptions &#125; from 'angular2-baidu-map';
     ]
 &#125;)
 export class DemoComponent &#123;
-    opts: MapOptions;
+    public opts: MapOptions;
 
     constructor() &#123;
         this.opts = &#123;

@@ -99,8 +99,8 @@ import { Subscription } from 'rxjs'
     `
 })
 export class ApidocComponent implements OnInit, OnDestroy {
-  private api: string
-  private routeChangeSub: Subscription
+  public api: string
+  public routeChangeSub: Subscription
   constructor(private router: Router) {}
 
   public ngOnInit(): void {

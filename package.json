@@ -6,18 +6,16 @@
   "types": "./dist/angular2-baidu-map.d.ts",
   "scripts": {
     "start": "ng serve",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "build": "ng build --environment prod --aot --sourcemaps false",
+    "dist": "rm -rf dist && ngc -p tsconfig.json"
   },
   "files": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leftstick/angular2-baidu-map.git"
   },
-  "keywords": [
-    "angular2",
-    "baidu",
-    "map"
-  ],
+  "keywords": ["angular2", "baidu", "map"],
   "author": "Howard.Zuo",
   "license": "GPL-3.0",
   "bugs": {
