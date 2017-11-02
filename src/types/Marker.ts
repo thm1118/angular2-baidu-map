@@ -1,16 +1,16 @@
-import { Icon } from './Icon'
+import { BIconConstructor, Icon } from './Icon'
 import { Overlay } from './Overlay'
-import { Point } from './Point'
-import { Size } from './Size'
+import { BPointConstructor, Point } from './Point'
+import { BSizeConstructor, Size } from './Size'
 
-export interface MarkerConstructor {
-  new (point: Point, options?: MarkerOptions): any
+export interface BMarkerConstructor {
+  new (point: BPointConstructor, options?: BMarkerOptions): BMarker
 }
 
-export interface Marker extends Overlay {
+export interface BMarker extends Overlay {
   addEventListener(event: string, handler: (e: any) => void): void
   removeEventListener(event: string, handler: () => void): void
-  setPosition(position: Point): void
+  setPosition(position: BPointConstructor): void
 }
 
 export interface MarkerOptions {
@@ -23,5 +23,18 @@ export interface MarkerOptions {
   draggingCursor?: string
   rotation?: number
   shadow?: Icon
+  title?: string
+}
+
+export interface BMarkerOptions {
+  offset?: BSizeConstructor
+  icon?: BIconConstructor
+  enableMassClear?: boolean
+  enableDragging?: boolean
+  enableClicking?: boolean
+  raiseOnDrag?: boolean
+  draggingCursor?: string
+  rotation?: number
+  shadow?: BIconConstructor
   title?: string
 }

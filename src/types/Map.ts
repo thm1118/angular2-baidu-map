@@ -2,11 +2,11 @@ import { Control } from './Control'
 import { Overlay } from './Overlay'
 import { Point } from './Point'
 
-export interface MapConstructor {
-  new (el: HTMLElement | string, opts: MapOptions): Map
+export interface BMapConstructor {
+  new (el: HTMLElement | string, opts: MapOptions): BMapInstance
 }
 
-export interface Map {
+export interface BMapInstance {
   disableDragging(): void
   enableDragging(): void
 

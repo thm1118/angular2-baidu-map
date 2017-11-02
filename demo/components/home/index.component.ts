@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 
-import { Map, MapOptions, MarkerOptions, Point } from '../../../src'
+import { BMapInstance, MapOptions, MarkerOptions, Point } from '../../../src'
 
 @Component({
   styles: [
@@ -59,7 +59,7 @@ export class HomeComponent {
     }
   }
 
-  private onMapLoad(map: Map) {
+  private onMapLoad(map: BMapInstance) {
     console.log('map loaded', map)
   }
 

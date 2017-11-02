@@ -7,11 +7,12 @@ import {
   Output
 } from '@angular/core'
 
+import { toMarkerOptions, toPoint } from '../helpers/transformer'
 import { nullCheck } from '../helpers/validate'
 import { MapService } from '../providers/mapService'
 import { BMap } from '../types/BMap'
-import { Map } from '../types/Map'
-import { Marker, MarkerOptions } from '../types/Marker'
+import { BMapInstance } from '../types/Map'
+import { BMarker, MarkerOptions } from '../types/Marker'
 import { Point } from '../types/Point'
 
 @Directive({
@@ -23,7 +24,7 @@ export class MarkerComponent implements OnInit, OnDestroy {
 
   @Output() private clicked = new EventEmitter()
 
-  private marker: Marker
+  private marker: BMarker
 
   constructor(private _service: MapService) {}
 
@@ -31,8 +32,11 @@ export class MarkerComponent implements OnInit, OnDestroy {
     nullCheck(this.point, 'point is required for <marker>')
 
     this._service
-      .addOverlay((map: Map) => {
-        return (this.marker = new window.BMap.Marker(this.point, this.options))
+      .addOverlay((map: BMapInstance) => {
+        return (this.marker = new window.BMap.Marker(
+          toPoint(this.point),
+          toMarkerOptions(this.options)
+        ))
       })
       .then(({ map }) => {
         this.addListener(this.marker, map)
@@ -49,7 +53,7 @@ export class MarkerComponent implements OnInit, OnDestroy {
     this._service.removeOverlay(this.marker)
   }
 
-  private addListener(marker: Marker, map: Map) {
+  private addListener(marker: BMarker, map: BMapInstance) {
     marker.addEventListener('click', (e: any) => {
       this.clicked.emit({
         e,

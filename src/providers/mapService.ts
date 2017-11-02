@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core'
 
 import { isBoolean, isNull } from '../helpers/object'
-import { BMap } from '../types/BMap'
-import { Map, MapOptions } from '../types/Map'
+import { BMapInstance, MapOptions } from '../types/Map'
 import { Overlay } from '../types/Overlay'
 
 import { ScriptLoader } from './scriptLoader'
 
 @Injectable()
 export class MapService {
-  private _map: Promise<Map>
-  private _mapResolver: (value: Map) => void
+  private _map: Promise<BMapInstance>
+  private _mapResolver: (value: BMapInstance) => void
 
   constructor(private _loader: ScriptLoader) {
-    this._map = new Promise<Map>((resolve: () => void) => {
+    this._map = new Promise<BMapInstance>((resolve: () => void) => {
       this._mapResolver = resolve
     })
   }
 
-  public createMap(el: HTMLElement, mapOptions: MapOptions): Promise<Map> {
+  public createMap(
+    el: HTMLElement,
+    mapOptions: MapOptions
+  ): Promise<BMapInstance> {
     return new Promise(resolve => {
       this._loader.load(() => {
-        const map = new (window.BMap as BMap).Map(el, mapOptions)
+        const map = new window.BMap.Map(el, mapOptions)
         this.setOptions(mapOptions)
         this._mapResolver(map)
         resolve(map)
@@ -92,7 +94,7 @@ export class MapService {
     }
     if (!isNull(opts.centerAndZoom)) {
       this._map.then(map => {
-        const point = new (window.BMap as BMap).Point(
+        const point = new window.BMap.Point(
           opts.centerAndZoom.lng,
           opts.centerAndZoom.lat
         )
@@ -102,9 +104,9 @@ export class MapService {
   }
 
   public addOverlay(
-    cb: (map: Map) => Overlay
-  ): Promise<{ map: Map; overlay: Overlay }> {
-    return this._map.then((map: Map) => {
+    cb: (map: BMapInstance) => Overlay
+  ): Promise<{ map: BMapInstance; overlay: Overlay }> {
+    return this._map.then((map: BMapInstance) => {
       const overlay = cb(map)
       map.addOverlay(overlay)
       return { map, overlay }
@@ -112,12 +114,12 @@ export class MapService {
   }
 
   public removeOverlay(overlay: Overlay): Promise<void> {
-    return this._map.then((map: Map) => {
+    return this._map.then((map: BMapInstance) => {
       map.removeOverlay(overlay)
     })
   }
 
-  public getNativeMap(): Promise<Map> {
+  public getNativeMap(): Promise<BMapInstance> {
     return this._map
   }
 }

@@ -1,11 +1,11 @@
 import { Size } from './Size'
 
-export interface ControlConstructor {
-  new (opts: ControlOptions): any
+export interface BControlConstructor {
+  new (opts: NavigationControlOptions): any
 }
 
 export interface Control {}
 
 export interface NavigationControl extends Control {}
 
-export interface ControlOptions {}
+export interface NavigationControlOptions {}

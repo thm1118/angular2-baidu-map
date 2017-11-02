@@ -72,15 +72,3 @@ import 'zone.js/dist/zone' // Included with Angular CLI.
  * Need to import at least one locale-data with intl.
  */
 // import 'intl/locale-data/jsonp/en';
-
-import { LOADING_STATE } from '../src/providers/scriptLoader'
-import { BMap } from '../src/types/BMap'
-
-declare global {
-  interface Window {
-    _scriptLoadState: LOADING_STATE
-    BMap: BMap
-    _loadingCallbacks: Array<() => void>
-    baidumapinit: () => void
-  }
-}

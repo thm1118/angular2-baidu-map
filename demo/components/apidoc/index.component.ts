@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { NavigationEnd, ParamMap, Router } from '@angular/router'
 
-import 'rxjs/add/operator/switchMap'
-
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -57,7 +55,7 @@ import { Subscription } from 'rxjs'
             margin: 5px 0 5px 0;
         }
         
-        .api-content .api-introduction baidu-map {
+        .api-content .api-introduction >>> baidu-map {
             width: 100%;
             height: 300px;
             display: block;
@@ -103,11 +101,11 @@ import { Subscription } from 'rxjs'
 export class ApidocComponent implements OnInit, OnDestroy {
   private api: string
   private routeChangeSub: Subscription
-  constructor(private router: Router) {
-    this.api = 'baidu-map'
-  }
+  constructor(private router: Router) {}
 
   public ngOnInit(): void {
+    this.api = this.router.url.substr(this.router.url.lastIndexOf('/') + 1)
+
     this.routeChangeSub = this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.api = val.url.substr(val.url.lastIndexOf('/') + 1)

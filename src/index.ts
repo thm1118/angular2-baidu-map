@@ -2,7 +2,9 @@ import { ModuleWithProviders, NgModule } from '@angular/core'
 
 import { MapComponent } from './components/map.component'
 import { MarkerComponent } from './components/marker.component'
-import { ScriptLoaderConfig } from './providers/scriptLoader'
+import { LOADING_STATE, ScriptLoaderConfig } from './providers/scriptLoader'
+
+import { BMap } from './types/BMap'
 
 @NgModule({
   declarations: [MapComponent, MarkerComponent],
@@ -17,6 +19,16 @@ export class BaiduMapModule {
   }
 }
 
-export { Map, MapOptions } from './types/Map'
+export { BMapInstance, MapOptions } from './types/Map'
 export * from './types/Point'
 export { MarkerOptions } from './types/Marker'
+export { BInfoWindowConstructor, BInfoWindowOptions } from './types/InfoWindow'
+
+declare global {
+  interface Window {
+    _scriptLoadState: LOADING_STATE
+    BMap: BMap
+    _loadingCallbacks: Array<() => void>
+    baidumapinit: () => void
+  }
+}

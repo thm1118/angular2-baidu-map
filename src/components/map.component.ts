@@ -12,7 +12,7 @@ import {
 
 import { MapService } from '../providers/mapService'
 import { ScriptLoader } from '../providers/scriptLoader'
-import { Map, MapOptions } from '../types/Map'
+import { BMapInstance, MapOptions } from '../types/Map'
 
 @Component({
   providers: [MapService, ScriptLoader],
@@ -86,7 +86,7 @@ export class MapComponent implements OnInit, OnChanges {
     console.log('on map destroy')
   }
 
-  private addListener(map: Map) {
+  private addListener(map: BMapInstance) {
     map.addEventListener('click', (e: any) => {
       this.clicked.emit(e)
     })

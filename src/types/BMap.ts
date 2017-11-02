@@ -1,16 +1,15 @@
-import { ControlConstructor } from './Control'
-import { IconConstructor } from './Icon'
-import { MapConstructor } from './Map'
-import { MarkerConstructor } from './Marker'
-import { OverlayConstructor } from './Overlay'
-import { PointConstructor } from './Point'
-import { SizeConstructor } from './Size'
+import { BIconConstructor } from './Icon'
+import { BInfoWindowConstructor } from './InfoWindow'
+import { BMapConstructor } from './Map'
+import { BMarkerConstructor } from './Marker'
+import { BPointConstructor } from './Point'
+import { BSizeConstructor } from './Size'
 
 export interface BMap {
-  Map: MapConstructor
-  Marker: MarkerConstructor
-  Point: PointConstructor
-  Size: SizeConstructor
-  Icon: IconConstructor
-  NavigationControl: ControlConstructor
+  Map: BMapConstructor
+  Marker: BMarkerConstructor
+  Point: BPointConstructor
+  Size: BSizeConstructor
+  Icon: BIconConstructor
+  InfoWindow: BInfoWindowConstructor
 }

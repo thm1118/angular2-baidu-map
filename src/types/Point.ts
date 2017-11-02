@@ -1,5 +1,5 @@
-export interface PointConstructor {
-  new (lng: number, lat: number): any
+export interface BPointConstructor {
+  new (lng?: number, lat?: number): any
 }
 
 export interface Point {
