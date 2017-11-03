@@ -2,15 +2,15 @@
   "name": "angular2-baidu-map",
   "version": "4.0.0",
   "description": "Angular2 component for Baidu map",
-  "main": "./dist/angular2-baidu-map.js",
-  "types": "./dist/angular2-baidu-map.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "start": "ng serve",
     "lint": "ng lint",
     "build": "ng build --environment prod --aot --sourcemaps false",
     "dist": "rm -rf dist && ngc -p tsconfig.json"
   },
-  "files": [],
+  "files": ["dist/"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leftstick/angular2-baidu-map.git"

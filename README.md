@@ -6,9 +6,18 @@ angular2-baidu-map
 ![][dt-url]
 ![][license-url]
 
-Angular2 component for Baidu map
+Baidu-Map module for Angular5
 
-## Install via npm ##
+Read full documentation here: [documentation](https://leftstick.github.io/angular2-baidu-map/)
+
+Read code example here: [example](https://github.com/leftstick/angular5-baidu-map-example)
+
+
+>Be aware that it is a totally rewrite version, therefore, backward compatibility is not considered
+
+>If you are using the previous version `3.x`, [read it here](https://github.com/leftstick/angular2-baidu-map/tree/6fb887d5b0a4397efc1531a174aa0d7d33c2f619)
+
+## Getting started ##
 
 ```bash
 npm install angular2-baidu-map
@@ -16,72 +25,63 @@ npm install angular2-baidu-map
 
 ## Usage ##
 
-```javascript
-import {Component, OnInit} from '@angular/core';
-import {BaiduMap, OfflineOptions, ControlAnchor, NavigationControlType} from 'angular2-baidu-map';
+**app.module.ts**
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+import { BaiduMapModule } from 'angular2-baidu-map';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BaiduMapModule.forRoot({ak: 'your ak'})
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+**app.component.ts**
+
+```typescript
+import { Component } from '@angular/core';
+
+import { MapOptions } from 'angular2-baidu-map';
 
 @Component({
-    selector: 'map-presentation',
-    template: `
-        <h1>Test Baidu-Map<h1>
-        <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)"></baidu-map>
-    `,
-    styles: [`
-        baidu-map{
-            width: 500px;
-            height: 400px;
-            display: block;
-        }
-    `]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: []
 })
-export class MainApp implements OnInit {
+export class AppComponent {
 
-    opts: any;
-    offlineOpts: OfflineOptions;
+  options: MapOptions;
 
-    ngOnInit() {
-        this.opts = {
-            center: {
-                longitude: 121.506191,
-                latitude: 31.245554
-            },
-            zoom: 17,
-            markers: [{
-                longitude: 121.506191,
-                latitude: 31.245554,
-                title: 'Where',
-                content: 'Put description here',
-                autoDisplayInfoWindow: true
-            }],
-            geolocationCtrl: {
-                anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
-            },
-            scaleCtrl: {
-                anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_LEFT
-            },
-            overviewCtrl: {
-                isOpen: true
-            },
-            navCtrl: {
-                type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
-            }
-        };
-
-        this.offlineOpts = {
-            retryInterval: 5000,
-            txt: 'NO-NETWORK'
-        };
-    }
-
-    loadMap(e: any) {
-        console.log(e);//e here is the instance of BMap.Map
-    }
-
-    clickMarker(marker: any){
-        console.log('The clicked marker is', marker);
-    }
-
+  constructor() {
+    this.options = {
+      centerAndZoom: {
+        lat: 39.920116,
+        lng: 116.403703,
+        zoom: 16
+      },
+      enableKeyboard: true
+    };
+  }
 }
+```
+
+**app.component.html**
+
+```html
+<baidu-map [options]="options" style="display: block; width: 550px; height: 350px;"></baidu-map>
 ```
 
 For more information, see [documentation](http://leftstick.github.io/angular2-baidu-map/)
