@@ -74,7 +74,9 @@ export class MarkerComponent implements OnInit, OnChanges, OnDestroy {
       this.marker.setOffset(toSize(options.offset))
     }
     if (!isNull(options.icon)) {
-      this.marker.setIcon(toIcon(options.icon))
+      this.marker.setIcon(
+        toIcon(options.icon.imageUrl, options.icon.size, options.icon)
+      )
     }
     if (!isNull(options.enableMassClear)) {
       this.marker[
@@ -90,7 +92,9 @@ export class MarkerComponent implements OnInit, OnChanges, OnDestroy {
       this.marker.setRotation(options.rotation)
     }
     if (!isNull(options.shadow)) {
-      this.marker.setShadow(toIcon(options.shadow))
+      this.marker.setShadow(
+        toIcon(options.shadow.imageUrl, options.shadow.size, options.shadow)
+      )
     }
     if (!isNull(options.title)) {
       this.marker.setTitle(options.title)
