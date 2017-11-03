@@ -3,7 +3,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 
 import { DemoModule } from './demo.module'
 
-if (process.env.ENV === 'production') {
+import { environment } from './environments/environment'
+
+if (environment.production) {
   enableProdMode()
 }
 

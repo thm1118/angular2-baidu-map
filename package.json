@@ -7,7 +7,7 @@
   "scripts": {
     "start": "ng serve",
     "lint": "ng lint",
-    "build": "ng build --environment prod --aot --sourcemaps false",
+    "build": "ng build --target=production --base-href=/angular2-baidu-map/",
     "dist": "rm -rf dist && ngc -p tsconfig.json"
   },
   "files": ["dist/"],

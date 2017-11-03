@@ -68,7 +68,6 @@ import {
       <control type="overviewmap" [options]="overviewmapOpts"></control>
       <control type="scale" [options]="scaleOpts"></control>
       <control type="maptype" [options]="mapTypeOpts"></control>
-      <control type="geolocation" [options]="geolocationOpts"></control>
   </baidu-map>
 
   <div class="snippet" highlight>
