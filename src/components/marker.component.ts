@@ -2,12 +2,20 @@ import {
   Directive,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
-  Output
+  Output,
+  SimpleChange
 } from '@angular/core'
 
-import { toMarkerOptions, toPoint } from '../helpers/transformer'
+import { isNull } from '../helpers/object'
+import {
+  toIcon,
+  toMarkerOptions,
+  toPoint,
+  toSize
+} from '../helpers/transformer'
 import { nullCheck } from '../helpers/validate'
 import { MapService } from '../providers/mapService'
 import { BMapInstance } from '../types/Map'
@@ -17,7 +25,7 @@ import { Point } from '../types/Point'
 @Directive({
   selector: 'marker'
 })
-export class MarkerComponent implements OnInit, OnDestroy {
+export class MarkerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() private point: Point
   @Input() private options: MarkerOptions
 
@@ -48,8 +56,45 @@ export class MarkerComponent implements OnInit, OnDestroy {
       })
   }
 
+  public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+    if (changes.point && !changes.point.isFirstChange()) {
+      this.marker.setPosition(toPoint(changes.point.currentValue))
+    }
+    if (changes.options && !changes.options.isFirstChange()) {
+      this.setOptions(changes.options.currentValue)
+    }
+  }
+
   public ngOnDestroy() {
     this._service.removeOverlay(this.marker)
+  }
+
+  private setOptions(options: MarkerOptions): void {
+    if (!isNull(options.offset)) {
+      this.marker.setOffset(toSize(options.offset))
+    }
+    if (!isNull(options.icon)) {
+      this.marker.setIcon(toIcon(options.icon))
+    }
+    if (!isNull(options.enableMassClear)) {
+      this.marker[
+        (options.enableMassClear ? 'enable' : 'disable') + 'MassClear'
+      ]()
+    }
+    if (!isNull(options.enableDragging)) {
+      this.marker[
+        (options.enableDragging ? 'enable' : 'disable') + 'Dragging'
+      ]()
+    }
+    if (!isNull(options.rotation)) {
+      this.marker.setRotation(options.rotation)
+    }
+    if (!isNull(options.shadow)) {
+      this.marker.setShadow(toIcon(options.shadow))
+    }
+    if (!isNull(options.title)) {
+      this.marker.setTitle(options.title)
+    }
   }
 
   private addListener(marker: BMarker, map: BMapInstance) {

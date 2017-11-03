@@ -157,6 +157,13 @@ export class DocMarkerComponent {
         }
       }
     ]
+
+    setTimeout(() => {
+      this.markers[0].point = {
+        lat: 31.246124,
+        lng: 121.51232
+      }
+    }, 5000)
   }
 
   public showWindow({ e, marker, map }: any): void {

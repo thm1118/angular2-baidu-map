@@ -112,7 +112,7 @@ export class ApidocComponent implements OnInit, OnDestroy {
 
     this.routeChangeSub = this.router.events
       .filter(e => e instanceof NavigationEnd)
-      .subscribe(val => {
+      .subscribe((val: NavigationEnd) => {
         this.name =
           this.activeRoute.firstChild.snapshot.data.name ||
           val.url.substr(val.url.lastIndexOf('/') + 1)

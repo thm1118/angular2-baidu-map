@@ -11,6 +11,17 @@ export interface BMarker extends Overlay {
   addEventListener(event: string, handler: (e: any) => void): void
   removeEventListener(event: string, handler: () => void): void
   setPosition(position: BPointConstructor): void
+  setOffset(offset: BSizeConstructor): void
+  setIcon(icon: BIconConstructor): void
+  enableMassClear(): void
+  disableMassClear(): void
+
+  enableDragging(): void
+  disableDragging(): void
+
+  setRotation(rotation: number): void
+  setShadow(icon: BIconConstructor): void
+  setTitle(title: string): void
 }
 
 export interface MarkerOptions {
