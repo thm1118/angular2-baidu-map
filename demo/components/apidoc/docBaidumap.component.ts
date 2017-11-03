@@ -60,7 +60,7 @@ import { MapOptions } from '../../../src'
   <br/>
 
   <div class="snippet" highlight>
-  <pre><code class="javascript">export class DemoComponent &#123;
+  <pre><code class="typescript">export class DemoComponent &#123;
   public opts: MapOptions
 
   constructor() &#123;

@@ -4,11 +4,7 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
 
 @Component({
   selector: 'doc-marker',
-  styles: [
-    `
-  
-    `
-  ],
+  styles: [],
   template: `
   <p>
     The <code>marker</code> component is sub-component of <code>baidu-map</code>. It is used to add <code>BMap.Marker</code> to the map.
@@ -56,13 +52,13 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
 
   <h2 class="title">Example</h2>
   <baidu-map [options]="opts">
-      <marker [point]="point" [options]="markerOpts" (clicked)="showWindow($event)"></marker>
+      <marker *ngFor="let marker of markers" [point]="marker.point" [options]="marker.options" (clicked)="showWindow($event)"></marker>
   </baidu-map>
 
   <div class="snippet" highlight>
     <pre><code class="html">
     &lt;baidu-map [options]="opts"&gt;
-      &lt;marker [point]="point" [options]="markerOpts" (clicked)="showWindow($event)"&gt;&lt;/marker&gt;
+      &lt;marker *ngFor="let marker of markers" [point]="marker.point" [options]="marker.options" (clicked)="showWindow($event)"&gt;&lt;/marker&gt;
     &lt;/baidu-map&gt;
   </code></pre>
   </div>
@@ -72,8 +68,7 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
   <pre><code class="typescript">
   export class DemoComponent &#123;
     public opts: MapOptions
-    public point: Point
-    public markerOpts: MarkerOptions
+    public markers: Array<&#123; point: Point; options?: MarkerOptions &#125;>
   
     constructor() &#123;
       this.opts = &#123;
@@ -84,20 +79,31 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
         &#125;
       &#125;
   
-      this.point = &#123;
-        lat: 31.244604,
-        lng: 121.51606
-      &#125;
-  
-      this.markerOpts = &#123;
-        icon: &#123;
-          imageUrl: '/assets/markericon.png',
-          size: &#123;
-            height: 60,
-            width: 50
+      this.markers = [
+        &#123;
+          options: &#123;
+            icon: &#123;
+              imageUrl: '/assets/markericon.png',
+              size: &#123;
+                height: 60,
+                width: 50
+              &#125;
+            &#125;
+          &#125;,
+          point: &#123;
+            lat: 31.244604,
+            lng: 121.51606
+          &#125;
+        &#125;,
+        &#123;
+          point: &#123;
+            lat: 31.246124,
+            lng: 121.51232
           &#125;
         &#125;
-      &#125;
+      ]
+
+
     &#125;
   
     public showWindow(&#123; e, marker, map &#125;: any): void &#123;
@@ -117,8 +123,7 @@ import { MapOptions, MarkerOptions, Point } from '../../../src'
 })
 export class DocMarkerComponent {
   public opts: MapOptions
-  public point: Point
-  public markerOpts: MarkerOptions
+  public markers: Array<{ point: Point; options?: MarkerOptions }>
 
   constructor() {
     this.opts = {
@@ -129,20 +134,29 @@ export class DocMarkerComponent {
       }
     }
 
-    this.point = {
-      lat: 31.244604,
-      lng: 121.51606
-    }
-
-    this.markerOpts = {
-      icon: {
-        imageUrl: '/assets/markericon.png',
-        size: {
-          height: 60,
-          width: 50
+    this.markers = [
+      {
+        options: {
+          icon: {
+            imageUrl: '/assets/markericon.png',
+            size: {
+              height: 60,
+              width: 50
+            }
+          }
+        },
+        point: {
+          lat: 31.244604,
+          lng: 121.51606
+        }
+      },
+      {
+        point: {
+          lat: 31.246124,
+          lng: 121.51232
         }
       }
-    }
+    ]
   }
 
   public showWindow({ e, marker, map }: any): void {

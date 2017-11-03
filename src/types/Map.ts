@@ -1,6 +1,6 @@
 import { BControl } from './Control'
 import { Overlay } from './Overlay'
-import { Point } from './Point'
+import { BPointConstructor, Point } from './Point'
 
 export interface BMapConstructor {
   new (el: HTMLElement | string, opts: MapOptions): BMapInstance
@@ -37,7 +37,7 @@ export interface BMapInstance {
   setDefaultCursor(cursor: string): void
   setDraggingCursor(draggingCursor: string): void
   setCurrentCity(city: string): void
-  centerAndZoom(center: Point, zoom: number): void
+  centerAndZoom(center: BPointConstructor, zoom: number): void
 
   addEventListener(event: string, handler: (e: any) => void): void
   removeEventListener(event: string, handler: () => void): void
@@ -46,7 +46,6 @@ export interface BMapInstance {
 export interface MapOptions {
   minZoom?: number
   maxZoom?: number
-  mapType?: object
   enableHighResolution?: boolean
   enableAutoResize?: boolean
   enableMapClick?: boolean

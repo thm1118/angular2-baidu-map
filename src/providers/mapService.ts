@@ -5,6 +5,8 @@ import { BControl } from '../types/Control'
 import { BMapInstance, MapOptions } from '../types/Map'
 import { Overlay } from '../types/Overlay'
 
+import { toPoint } from '../helpers/transformer'
+
 import { ScriptLoader } from './scriptLoader'
 
 @Injectable()
@@ -39,6 +41,7 @@ export class MapService {
       disableDoubleClickZoom,
       enableKeyboard,
       enableInertialDragging,
+      enableAutoResize,
       enableContinuousZoom,
       disablePinchToZoom
     } = opts
@@ -53,6 +56,11 @@ export class MapService {
         map[
           (enableScrollWheelZoom ? 'enable' : 'disable') + 'ScrollWheelZoom'
         ]()
+      )
+    }
+    if (isBoolean(enableAutoResize)) {
+      this._map.then(map =>
+        map[(enableAutoResize ? 'enable' : 'disable') + 'AutoResize']()
       )
     }
     if (isBoolean(disableDoubleClickZoom)) {
@@ -95,11 +103,7 @@ export class MapService {
     }
     if (!isNull(opts.centerAndZoom)) {
       this._map.then(map => {
-        const point = new window.BMap.Point(
-          opts.centerAndZoom.lng,
-          opts.centerAndZoom.lat
-        )
-        map.centerAndZoom(point, opts.centerAndZoom.zoom)
+        map.centerAndZoom(toPoint(opts.centerAndZoom), opts.centerAndZoom.zoom)
       })
     }
   }

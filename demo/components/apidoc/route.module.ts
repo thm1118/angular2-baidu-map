@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { DocBaidumapComponent } from './docBaidumap.component'
 import { DocControlComponent } from './docControl.component'
+import { DocMapOptionsComponent } from './docMapOptions.component'
 import { DocMarkerComponent } from './docMarker.component'
 import { ApidocComponent } from './index.component'
 
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         component: DocControlComponent,
         path: 'control'
+      },
+      {
+        component: DocMapOptionsComponent,
+        path: 'map-options'
       },
       {
         path: '**',

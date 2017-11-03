@@ -9,6 +9,7 @@ import { ApidocRouteModule } from './route.module'
 
 import { DocBaidumapComponent } from './docBaidumap.component'
 import { DocControlComponent } from './docControl.component'
+import { DocMapOptionsComponent } from './docMapOptions.component'
 import { DocMarkerComponent } from './docMarker.component'
 import { ApidocComponent } from './index.component'
 import { SidebarComponent } from './sidebar.component'
@@ -18,6 +19,7 @@ import { SidebarComponent } from './sidebar.component'
     ApidocComponent,
     SidebarComponent,
     DocBaidumapComponent,
+    DocMapOptionsComponent,
     DocMarkerComponent,
     DocControlComponent
   ],
