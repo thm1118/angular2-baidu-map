@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { NavigationEnd, Router } from '@angular/router'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 
 import { Subscription } from 'rxjs'
+import 'rxjs/add/operator/filter'
 
 @Component({
   selector: 'apidoc',
@@ -88,7 +89,7 @@ import { Subscription } from 'rxjs'
             
             <div class="api-content">
                 <div class="api-name">
-                    <h3>{{ api }}</h3>
+                    <h3>{{ name }}</h3>
                 </div>
                 <div class="api-introduction">
                     <router-outlet></router-outlet>
@@ -100,17 +101,22 @@ import { Subscription } from 'rxjs'
 })
 export class ApidocComponent implements OnInit, OnDestroy {
   public api: string
+  public name: string
   public routeChangeSub: Subscription
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activeRoute: ActivatedRoute) {}
 
   public ngOnInit(): void {
     this.api = this.router.url.substr(this.router.url.lastIndexOf('/') + 1)
 
-    this.routeChangeSub = this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        this.api = val.url.substr(val.url.lastIndexOf('/') + 1)
-      }
-    })
+    this.name = this.activeRoute.firstChild.snapshot.data.name || this.api
+
+    this.routeChangeSub = this.router.events
+      .filter(e => e instanceof NavigationEnd)
+      .subscribe(val => {
+        this.name =
+          this.activeRoute.firstChild.snapshot.data.name ||
+          val.url.substr(val.url.lastIndexOf('/') + 1)
+      })
   }
 
   public ngOnDestroy(): void {
