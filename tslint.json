@@ -19,6 +19,7 @@
         "named-imports-order": "lowercase-first",
         "grouped-imports": true
       }
-    ]
+    ],
+    "no-unused-variable": true
   }
 }

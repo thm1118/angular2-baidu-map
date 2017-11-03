@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 
-import { BMapInstance, MapOptions, MarkerOptions, Point } from '../../../src'
+import { BMapInstance, MapOptions, Point } from '../../../src'
 
 @Component({
   styles: [

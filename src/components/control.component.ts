@@ -1,11 +1,4 @@
-import {
-  Directive,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core'
+import { Directive, Input, OnDestroy, OnInit } from '@angular/core'
 
 import {
   toGeolocationOptions,
@@ -16,7 +9,6 @@ import {
 } from '../helpers/transformer'
 import { nullCheck } from '../helpers/validate'
 import { MapService } from '../providers/mapService'
-import { BMap } from '../types/BMap'
 import { BControl, ControlType } from '../types/Control'
 import { BMapInstance } from '../types/Map'
 
@@ -66,6 +58,9 @@ export class ControlComponent implements OnInit, OnDestroy {
     }
     if (type === 'geolocation') {
       return new window.BMap.GeolocationControl(toGeolocationOptions(options))
+    }
+    if (type === 'panorama') {
+      return new window.BMap.PanoramaControl()
     }
     return null
   }

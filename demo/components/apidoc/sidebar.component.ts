@@ -41,7 +41,6 @@ import { Component, Input } from '@angular/core'
         <div class="api-nav-item" [class.active]="api === 'baidu-map'"><a href="#/apidoc/baidu-map">baidu-map</a></div>
         <div class="api-nav-item" [class.active]="api === 'marker'"><a href="#/apidoc/marker">marker</a></div>
         <div class="api-nav-item" [class.active]="api === 'control'"><a href="#/apidoc/control">control</a></div>
-        <div class="api-nav-item" [class.active]="api === 'overlay'"><a href="#/apidoc/overlay">overlay</a></div>
         <div class="api-nav-header">Models</div>
         <div class="api-nav-item" [class.active]="api === 'map-options'"><a href="#/apidoc/map-options">mapOptions</a></div>
         <div class="api-nav-item" [class.active]="api === 'center-and-zoom'"><a href="#/apidoc/center-and-zoom">centerAndZoom</a></div>

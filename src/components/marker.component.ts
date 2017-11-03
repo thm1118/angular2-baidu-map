@@ -10,7 +10,6 @@ import {
 import { toMarkerOptions, toPoint } from '../helpers/transformer'
 import { nullCheck } from '../helpers/validate'
 import { MapService } from '../providers/mapService'
-import { BMap } from '../types/BMap'
 import { BMapInstance } from '../types/Map'
 import { BMarker, MarkerOptions } from '../types/Marker'
 import { Point } from '../types/Point'

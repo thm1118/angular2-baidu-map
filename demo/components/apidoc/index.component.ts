@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { NavigationEnd, ParamMap, Router } from '@angular/router'
+import { NavigationEnd, Router } from '@angular/router'
 
 import { Subscription } from 'rxjs'
 

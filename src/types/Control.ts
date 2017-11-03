@@ -27,6 +27,10 @@ export interface BGeolocationConstructor extends BControlConstructor {
   new (opts: BGeolocationControlOptions): BGeolocationControl
 }
 
+export interface BPanoramaControlConstructor extends BControlConstructor {
+  new (): BPanoramaControlControl
+}
+
 export interface BNavigationControl extends BControl {}
 
 export interface BOverviewMapControl extends BControl {}
@@ -36,6 +40,8 @@ export interface BScaleControl extends BControl {}
 export interface BMapTypeControl extends BControl {}
 
 export interface BGeolocationControl extends BControl {}
+
+export interface BPanoramaControlControl extends BControl {}
 
 export interface ControlOptions {
   anchor?: ControlAnchor

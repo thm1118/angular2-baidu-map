@@ -1,6 +1,6 @@
 import { BIconConstructor, Icon } from './Icon'
 import { Overlay } from './Overlay'
-import { BPointConstructor, Point } from './Point'
+import { BPointConstructor } from './Point'
 import { BSizeConstructor, Size } from './Size'
 
 export interface BMarkerConstructor {

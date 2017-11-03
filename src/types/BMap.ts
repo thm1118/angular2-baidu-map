@@ -3,6 +3,7 @@ import {
   BMapTypeControlConstructor,
   BNavigationControlConstructor,
   BOverviewMapControlConstructor,
+  BPanoramaControlConstructor,
   BScaleControlConstructor
 } from './Control'
 import { BIconConstructor } from './Icon'
@@ -24,4 +25,5 @@ export interface BMap {
   ScaleControl: BScaleControlConstructor
   MapTypeControl: BMapTypeControlConstructor
   GeolocationControl: BGeolocationConstructor
+  PanoramaControl: BPanoramaControlConstructor
 }
