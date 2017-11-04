@@ -11,7 +11,7 @@
     "deployDemo": "npm run build && git checkout gh-pages && rm -rf *.* assets && mv demodist/* .",
     "dist": "rm -rf dist && ngc -p tsconfig.json"
   },
-  "files": ["dist/"],
+  "files": ["dist/src/"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leftstick/angular2-baidu-map.git"

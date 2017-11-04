@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 
 import { MapOptions, MarkerOptions, Point } from '../../../src'
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'doc-marker',
@@ -138,7 +139,7 @@ export class DocMarkerComponent {
       {
         options: {
           icon: {
-            imageUrl: '/assets/markericon.png',
+            imageUrl: `${environment.baseUrl}assets/markericon.png`,
             size: {
               height: 60,
               width: 50
