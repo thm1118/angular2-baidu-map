@@ -15,7 +15,7 @@ Read code example here: [example](https://github.com/leftstick/angular5-baidu-ma
 
 >Be aware that it is a totally rewrite version, therefore, backward compatibility is not considered
 
->If you are using the previous version `3.x`, [read it here](https://github.com/leftstick/angular2-baidu-map/tree/6fb887d5b0a4397efc1531a174aa0d7d33c2f619)
+>If you are using the previous version `3.x`, [read it here](https://github.com/leftstick/angular2-baidu-map/tree/3.x)
 
 ## Getting started ##
 
@@ -89,7 +89,7 @@ For more information, see [documentation](http://leftstick.github.io/angular2-ba
 
 ## LICENSE ##
 
-[MIT License](https://raw.githubusercontent.com/leftstick/angular2-baidu-map/master/LICENSE)
+[GPL License](https://raw.githubusercontent.com/leftstick/angular2-baidu-map/master/LICENSE)
 
 
 [npm-url]: https://npmjs.org/package/angular2-baidu-map
