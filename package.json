@@ -7,7 +7,7 @@
   "scripts": {
     "start": "ng serve --aot",
     "lint": "ng lint",
-    "build": "ng build -t production -bh /angular2-baidu-map/ -vc -aot",
+    "build": "ng build -t production -vc -aot",
     "dist": "rm -rf dist && ngc -p tsconfig.json"
   },
   "files": ["dist/"],

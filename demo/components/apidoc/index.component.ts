@@ -32,7 +32,7 @@ import 'rxjs/add/operator/filter'
         }
 
         .api-content {
-            width: 100%;
+            width: 989px;
             display: flex;
             flex-direction: column;
             border: 1px solid #cccccc;
@@ -66,11 +66,30 @@ import 'rxjs/add/operator/filter'
         .api-content .api-introduction .line-text {
             word-break: break-word;
         }
+
+        @media screen and (max-width: 1215px) {
+            .api-content {
+                width: 880px;
+            }
+        }
+
+        @media screen and (max-width: 1115px) {
+            .api-content {
+                width: 800px;
+            }
+        }
+
+        @media screen and (max-width: 1030px) {
+            .api-content {
+                width: 700px;
+            }
+        }
         
         @media screen and (max-width: 960px) {
             .api-content {
                 border-left: 1px solid #cccccc;
                 border-radius: 4px;
+                width: 100%;
             }
         }
         
@@ -113,9 +132,8 @@ export class ApidocComponent implements OnInit, OnDestroy {
     this.routeChangeSub = this.router.events
       .filter(e => e instanceof NavigationEnd)
       .subscribe((val: NavigationEnd) => {
-        this.name =
-          this.activeRoute.firstChild.snapshot.data.name ||
-          val.url.substr(val.url.lastIndexOf('/') + 1)
+        this.api = val.url.substr(val.url.lastIndexOf('/') + 1)
+        this.name = this.activeRoute.firstChild.snapshot.data.name || this.api
       })
   }
 
