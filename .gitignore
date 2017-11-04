@@ -5,10 +5,8 @@ npm-debug.log
 #mac
 .DS_Store
 
-#tsd
-typings
-
 #demo
-build/
+demo/
+demodist/
 dist/
 src/
