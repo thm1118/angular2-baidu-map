@@ -5,7 +5,7 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --aot",
     "lint": "ng lint",
     "build": "ng build --target=production --base-href=/angular2-baidu-map/",
     "dist": "rm -rf dist && ngc -p tsconfig.json"

@@ -70,6 +70,9 @@ export class MarkerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private setOptions(options: MarkerOptions): void {
+    if (isNull(options)) {
+      return
+    }
     if (!isNull(options.offset)) {
       this.marker.setOffset(toSize(options.offset))
     }

@@ -62,6 +62,6 @@ export class ControlComponent implements OnInit, OnDestroy {
     if (type === 'panorama') {
       return new window.BMap.PanoramaControl()
     }
-    return null
+    throw new Error(`Unsupported type:${type} of control`)
   }
 }
