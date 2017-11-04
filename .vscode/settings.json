@@ -6,5 +6,6 @@
   "tslint.enable": true,
   "tslint.run": "onType",
   "javascript.validate.enable": false,
-  "typescript.validate.enable": false
+  "typescript.validate.enable": false,
+  "prettier.jsonEnable": []
 }
