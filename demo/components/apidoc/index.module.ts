@@ -16,6 +16,7 @@ import { DocMapOptionsComponent } from './docMapOptions.component'
 import { DocMarkerComponent } from './docMarker.component'
 import { DocMarkerOptionsComponent } from './docMarkerOptions.component'
 import { DocNavigationControlOptionsComponent } from './docNavigationControlOptions.component'
+import { DocNavigationControlTypeComponent } from './docNavigationControlType.component'
 import { DocPointComponent } from './docPoint.component'
 import { DocSizeComponent } from './docSize.component'
 import { ApidocComponent } from './index.component'
@@ -33,6 +34,7 @@ import { SidebarComponent } from './sidebar.component'
     DocMapOptionsComponent,
     DocMarkerOptionsComponent,
     DocNavigationControlOptionsComponent,
+    DocNavigationControlTypeComponent,
     DocSizeComponent,
     DocMarkerComponent,
     DocControlComponent

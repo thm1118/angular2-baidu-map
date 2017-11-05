@@ -65,5 +65,5 @@ export interface MapOptions {
 }
 
 export interface CenterAndZoom extends Point {
-  zoom: number
+  zoom?: number
 }

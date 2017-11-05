@@ -1,44 +1,45 @@
 import { Component } from '@angular/core'
 
-// import { MapOptions, MarkerOptions, Point } from '../../../src'
-
 @Component({
-  selector: 'doc-center-and-zoom',
+  selector: 'doc-navigation-control-type',
   styles: [],
   template: `
   <p>
-    The literal describes center point and zoom level for <code>baidu-map</code> instance.
+    The enum to describe what kind of navigation it is.
   </p>
-
   <table class="matrix">
     <thead>
         <tr>
             <th style="width: 80px;">Property</th>
             <th>Type</th>
-            <th>Details</th>
+            <th>Value</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>lng</td>
+            <td>BMAP_NAVIGATION_CONTROL_LARGE</td>
             <td><span class="label">Number</span></td>
-            <td>longitude of a geographic point</td>
+            <td>0</td>
         </tr>
         <tr>
-            <td>lat</td>
+            <td>BMAP_NAVIGATION_CONTROL_SMALL</td>
             <td><span class="label">Number</span></td>
-            <td>latitude of a geographic point</td>
+            <td>1</td>
         </tr>
         <tr>
-            <td>zoom</td>
+            <td>BMAP_NAVIGATION_CONTROL_PAN</td>
             <td><span class="label">Number</span></td>
-            <td>zoom leve of the map. Range: 3 ~ 19</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>BMAP_NAVIGATION_CONTROL_ZOOM</td>
+            <td><span class="label">Number</span></td>
+            <td>3</td>
         </tr>
     </tbody>
   </table>
-  <blockquote>Required properties are in red</blockquote>
     `
 })
-export class DocCenterAndZoomComponent {
+export class DocNavigationControlTypeComponent {
   constructor() {}
 }

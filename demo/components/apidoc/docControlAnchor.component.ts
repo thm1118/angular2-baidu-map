@@ -38,7 +38,6 @@ import { Component } from '@angular/core'
         </tr>
     </tbody>
   </table>
-  <blockquote>Required properties are in red</blockquote>
     `
 })
 export class DocControlAnchorComponent {
