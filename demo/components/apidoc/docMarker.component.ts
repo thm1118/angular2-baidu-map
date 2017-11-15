@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment'
   <div class="snippet" highlight>
     <pre><code class="html">
     &lt;baidu-map [options]="expression"&gt;
-      &lt;marker [point]="expression" [options]="expression" (clicked)="expression"&gt;&lt;marker&gt;    
+      &lt;marker [point]="expression" [options]="expression" (clicked)="expression"&gt;&lt;/marker&gt;    
     &lt;/baidu-map&gt;
     </code></pre>
   </div>

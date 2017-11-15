@@ -26,7 +26,7 @@ import {
   <div class="snippet" highlight>
     <pre><code class="html">
     &lt;baidu-map [options]="expression"&gt;
-      &lt;control type="string" [options]="expression"&gt;&lt;control&gt;    
+      &lt;control type="string" [options]="expression"&gt;&lt;/control&gt;    
     &lt;/baidu-map&gt;
     </code></pre>
   </div>
