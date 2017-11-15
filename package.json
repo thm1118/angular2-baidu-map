@@ -1,6 +1,6 @@
 {
   "name": "angular2-baidu-map",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Angular2 component for Baidu map",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -11,12 +11,18 @@
     "deployDemo": "npm run build && git checkout gh-pages && rm -rf *.* assets && mv demodist/* .",
     "dist": "rm -rf dist && ngc -p tsconfig.json"
   },
-  "files": ["dist/src/"],
+  "files": [
+    "dist/src/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leftstick/angular2-baidu-map.git"
   },
-  "keywords": ["angular2", "baidu", "map"],
+  "keywords": [
+    "angular2",
+    "baidu",
+    "map"
+  ],
   "author": "Howard.Zuo",
   "license": "GPL-3.0",
   "bugs": {
@@ -24,23 +30,23 @@
   },
   "homepage": "https://github.com/leftstick/angular2-baidu-map#readme",
   "peerDependencies": {
-    "@angular/core": "^5.0.0"
+    "@angular/core": "^5.0.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.5.0",
-    "@angular/common": "^5.0.0",
-    "@angular/compiler": "^5.0.0",
-    "@angular/compiler-cli": "^5.0.0",
-    "@angular/core": "^5.0.0",
-    "@angular/platform-browser": "^5.0.0",
-    "@angular/platform-browser-dynamic": "^5.0.0",
-    "@angular/router": "^5.0.0",
-    "@types/highlight.js": "^9.1.10",
-    "@types/node": "^8.0.47",
+    "@angular/common": "^5.0.1",
+    "@angular/compiler": "^5.0.1",
+    "@angular/compiler-cli": "^5.0.1",
+    "@angular/core": "^5.0.1",
+    "@angular/platform-browser": "^5.0.1",
+    "@angular/platform-browser-dynamic": "^5.0.1",
+    "@angular/router": "^5.0.1",
+    "@types/highlight.js": "^9.12.1",
+    "@types/node": "^8.0.52",
     "core-js": "^2.5.1",
     "eslint-plugin-prettier": "^2.3.1",
     "highlight.js": "^9.12.0",
-    "prettier": "^1.7.4",
+    "prettier": "^1.8.2",
     "rxjs": "^5.5.2",
     "tslint": "^5.8.0",
     "tslint-config-prettier": "^1.6.0",
