@@ -1,4 +1,5 @@
 import { BIconConstructor, Icon } from './Icon'
+import { BLabel } from './Label'
 import { Overlay } from './Overlay'
 import { BPointConstructor } from './Point'
 import { BSizeConstructor, Size } from './Size'
@@ -22,6 +23,9 @@ export interface BMarker extends Overlay {
   setRotation(rotation: number): void
   setShadow(icon: BIconConstructor): void
   setTitle(title: string): void
+
+  setLabel(label: BLabel): void
+  getLabel(): BLabel
 }
 
 export interface MarkerOptions {

@@ -1,6 +1,6 @@
 {
   "name": "angular2-baidu-map",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Angular2 component for Baidu map",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",

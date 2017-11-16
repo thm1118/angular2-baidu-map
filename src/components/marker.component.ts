@@ -29,6 +29,7 @@ export class MarkerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() private point: Point
   @Input() private options: MarkerOptions
 
+  @Output() private loaded = new EventEmitter()
   @Output() private clicked = new EventEmitter()
 
   private marker: BMarker
@@ -46,6 +47,7 @@ export class MarkerComponent implements OnInit, OnChanges, OnDestroy {
         ))
       })
       .then(({ map }) => {
+        this.loaded.emit(this.marker)
         this.addListener(this.marker, map)
       })
       .then(() => {

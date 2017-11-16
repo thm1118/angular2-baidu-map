@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 
 import { MapOptions, MarkerOptions, Point } from '../../../src'
 import { environment } from '../../environments/environment'
+import { BMarker } from '../../../src/types/Marker'
 
 @Component({
   selector: 'doc-marker',
@@ -14,7 +15,7 @@ import { environment } from '../../environments/environment'
   <div class="snippet" highlight>
     <pre><code class="html">
     &lt;baidu-map [options]="expression"&gt;
-      &lt;marker [point]="expression" [options]="expression" (clicked)="expression"&gt;&lt;/marker&gt;    
+      &lt;marker [point]="expression" [options]="expression" (loaded)="expression" (clicked)="expression"&gt;&lt;/marker&gt;    
     &lt;/baidu-map&gt;
     </code></pre>
   </div>
@@ -42,6 +43,11 @@ import { environment } from '../../environments/environment'
         <td>
         Literal for constructing marker. See <a href="#/apidoc/marker-options">MarkerOptions</a>
         </td>
+      </tr>
+      <tr>
+        <td>loaded</td>
+        <td><span class="label">expression</span></td>
+        <td>Expression to evaluate upon marker load event. (<code>$event</code> object is available as <a href="http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a3b2" target="_blank">BMap.Marker</a>)</td>
       </tr>
       <tr>
         <td>clicked</td>

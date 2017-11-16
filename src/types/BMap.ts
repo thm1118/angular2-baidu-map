@@ -8,6 +8,7 @@ import {
 } from './Control'
 import { BIconConstructor } from './Icon'
 import { BInfoWindowConstructor } from './InfoWindow'
+import { BLabelConstructor } from './Label'
 import { BMapConstructor } from './Map'
 import { BMarkerConstructor } from './Marker'
 import { BPointConstructor } from './Point'
@@ -19,6 +20,7 @@ export interface BMap {
   Point: BPointConstructor
   Size: BSizeConstructor
   Icon: BIconConstructor
+  Label: BLabelConstructor
   InfoWindow: BInfoWindowConstructor
   NavigationControl: BNavigationControlConstructor
   OverviewMapControl: BOverviewMapControlConstructor
