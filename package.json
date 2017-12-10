@@ -7,8 +7,10 @@
   "scripts": {
     "start": "ng serve --aot",
     "lint": "ng lint",
-    "build": "ng build -t production -bh /angular2-baidu-map/ -d /angular2-baidu-map/ -vc -aot",
-    "deployDemo": "npm run build && git checkout gh-pages && rm -rf *.* assets && mv demodist/* .",
+    "build":
+      "ng build --prod -bh /angular2-baidu-map/ -d /angular2-baidu-map/ -vc",
+    "deployDemo":
+      "npm run build && git checkout gh-pages && rm -rf *.* assets && mv demodist/* .",
     "dist": "rm -rf dist && ngc -p tsconfig.json"
   },
   "files": [
