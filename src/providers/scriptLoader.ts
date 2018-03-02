@@ -3,9 +3,9 @@ import { Inject, Injectable } from '@angular/core'
 import { nullCheck } from '../helpers/validate'
 
 export enum LOADING_STATE {
-  'NON',
-  'LOADED',
-  'LOADING'
+  NON = 0,
+  LOADED = 1,
+  LOADING = 2
 }
 
 export class ScriptLoaderConfig {
